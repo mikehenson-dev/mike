@@ -1,187 +1,311 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050b18">
-  <meta name="description" content="Mike Henson Arcalas - IT Student and Aspiring Cybersecurity Professional">
-  <title>Mike Henson Arcalas | Portfolio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071326">
+<title>Mike Henson Arcalas | Portfolio</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
-  <div class="stars" aria-hidden="true"></div>
 
-  <header class="site-header">
-    <a class="brand" href="#home">MHA<span>.</span></a>
-    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+<div class="ambient a"></div>
+<div class="ambient b"></div>
+<div class="grid"></div>
+<canvas id="stars"></canvas>
 
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#home" data-page="home" class="active">Home</a>
-      <a href="#about" data-page="about">About Me</a>
-      <a href="#interests" data-page="interests">Interests</a>
-      <a href="#education" data-page="education">Education</a>
-      <a href="#projects" data-page="projects">Projects</a>
-      <a href="#family" data-page="family">Family</a>
-      <a href="#contact" data-page="contact">Contact</a>
-    </nav>
-  </header>
+<header>
+<a class="logo" href="#home"><b>M</b> MHA<span>.</span></a>
+<div class="status">● PORTFOLIO SYSTEM / ONLINE</div>
+<button class="menu" aria-label="Toggle menu">☰</button>
 
-  <main>
-    <!-- PAGE 1: HOME -->
-    <section class="page active" id="home">
-      <div class="hero-layout">
-        <div class="portrait-wrap">
-          <div class="portrait-glow"></div>
-          <img class="portrait" src="profile.jpg" alt="Portrait of Mike Henson Arcalas">
-        </div>
+<nav>
+<a href="#home" data-page="home" class="active">Home</a>
+<a href="#about" data-page="about">About Me</a>
+<a href="#interests" data-page="interests">Interests</a>
+<a href="#education" data-page="education">Education</a>
+<a href="#projects" data-page="projects">Projects</a>
+<a href="#contact" data-page="contact">Contact</a>
+</nav>
+</header>
 
-        <div class="hero-copy">
-          <p class="eyebrow"><span class="status-dot"></span> IT STUDENT · ASPIRING CYBERSECURITY PROFESSIONAL</p>
-          <h1>Hi, I'm <span>Mike Henson Arcalas.</span></h1>
-          <h2>BSIT Student · Network &amp; Security</h2>
-          <p class="intro">
-            I'm a Bachelor of Science in Information Technology student at the University
-            of the Cordilleras. I'm interested in computer networks, cybersecurity, and
-            learning how technology can be used and protected.
-          </p>
+<main>
 
-          <div class="actions">
-            <a class="btn btn-primary" href="#about">About Me <span>↗</span></a>
-            <a class="btn btn-secondary" href="#contact">Contact Me</a>
-          </div>
+<section class="page active" id="home">
+<div class="hero">
 
-          <div class="hero-meta">
-            <span>Curious by nature</span>
-            <span>Based in the Philippines</span>
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="photo-col">
+<div class="photo-frame">
+<i class="c tl"></i>
+<i class="c tr"></i>
+<i class="c bl"></i>
+<i class="c br"></i>
+<img src="profile.jpg" alt="Mike Henson Arcalas portrait">
+<label>● PROFILE / VERIFIED</label>
+</div>
+<small>FIG. 01　 /　 IDENTITY PROFILE</small>
+</div>
 
-    <!-- PAGE 2: ABOUT ME -->
-    <section class="page content-page" id="about">
-      <div class="page-heading">
-        <p class="eyebrow">02 / PERSONAL PROFILE</p>
-        <h1>About <span>Me.</span></h1>
-        <p class="page-lead">A little about who I am, what interests me, and where I want to go.</p>
-      </div>
+<div class="hero-copy">
+<p class="eyebrow">● IT STUDENT　/　 ASPIRING CYBERSECURITY PROFESSIONAL</p>
+<small class="mono">HELLO, I'M</small>
 
-      <div class="about-grid">
-        <article class="glass-card about-intro">
-          <span class="card-index">01 — INTRODUCTION</span>
-          <h2>Getting to know me.</h2>
-          <p>I'm Mike Henson Arcalas, an Information Technology student at the University of the Cordilleras, specializing in Network and Security.</p>
-          <p>I'm curious about how digital systems work, how devices communicate, and how information can be protected.</p>
-        </article>
+<h1>Mike Henson<br><em>Arcalas<span>_</span></em></h1>
 
-        <article class="glass-card">
-          <span class="card-index">02 — INTERESTS</span>
-          <h2>What I enjoy</h2>
-          <ul class="clean-list">
-            <li>Cybersecurity and ethical hacking</li>
-            <li>Computer networking</li>
-            <li>Technology and troubleshooting</li>
-            <li>Cycling and endurance sports</li>
-          </ul>
-        </article>
+<h2>BSIT STUDENT · NETWORK &amp; SECURITY</h2>
 
-        <article class="glass-card">
-          <span class="card-index">03 — MY GOAL</span>
-          <h2>Where I'm heading</h2>
-          <p>My goal is to build a career in cybersecurity, with a particular interest in network security. I want to learn how to identify vulnerabilities, understand cyber threats, and help protect systems.</p>
-        </article>
+<p class="intro">
+Exploring the digital world and learning how to secure it. I'm an Information Technology student interested in cybersecurity, computer networks, and the systems that connect us.
+</p>
 
-        <article class="glass-card quote-card">
-          <span class="quote-mark">“</span>
-          <h2>Always learning. Always improving.</h2>
-          <p>I believe progress comes from curiosity, patience, and consistent practice.</p>
-        </article>
-      </div>
-    </section>
+<div class="actions">
+<a class="btn primary" href="#about">About Me <b>↗</b></a>
+<a class="btn secondary" href="#contact">Contact Me <b>↗</b></a>
+</div>
 
-    <!-- PAGE 3: INTERESTS -->
-    <section class="page content-page" id="interests">
-      <div class="page-heading">
-        <p class="eyebrow">03 / WHAT I ENJOY</p>
-        <h1>My <span>Interests.</span></h1>
-        <p class="page-lead">The subjects and activities that keep me curious.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card"><h2>Cybersecurity</h2><p>Learning about digital security and protecting systems.</p></article>
-        <article class="feature-card"><h2>Networking</h2><p>Exploring how computers and devices communicate.</p></article>
-        <article class="feature-card"><h2>Technology</h2><p>Understanding computers and troubleshooting.</p></article>
-        <article class="feature-card"><h2>Cycling</h2><p>Enjoying endurance, challenging climbs, and improvement.</p></article>
-      </div>
-    </section>
+<p class="note">✳　 CURIOUS BY NATURE. COMMITTED TO LEARNING.</p>
+</div>
 
-    <!-- PAGE 4: EDUCATION -->
-    <section class="page content-page" id="education">
-      <div class="page-heading">
-        <p class="eyebrow">04 / ACADEMIC JOURNEY</p>
-        <h1>My <span>Education.</span></h1>
-      </div>
-      <div class="timeline">
-        <article class="timeline-item"><span class="timeline-year">2014 — 2020</span><div class="glass-card"><h2>San Vicente Elementary School</h2><p>Elementary education</p></div></article>
-        <article class="timeline-item"><span class="timeline-year">2020 — 2024</span><div class="glass-card"><h2>San Vicente National High School</h2><p>Junior High School · Loyalty Award</p></div></article>
-        <article class="timeline-item"><span class="timeline-year">2024 — 2026</span><div class="glass-card"><h2>University of the Cordilleras</h2><p>Senior High School · STEM</p></div></article>
-        <article class="timeline-item"><span class="timeline-year">PRESENT</span><div class="glass-card"><h2>University of the Cordilleras</h2><p>BSIT · Network and Security</p></div></article>
-      </div>
-    </section>
+<div class="coordinates">
+16°24' N　120°35' E<br>
+PHILIPPINES // LOCAL NODE
+</div>
 
-    <!-- PAGE 5: PROJECTS -->
-    <section class="page content-page" id="projects">
-      <div class="page-heading">
-        <p class="eyebrow">05 / SELECTED WORK</p>
-        <h1>My <span>Projects.</span></h1>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card"><h2>Smart Blind Stick</h2><p>An Arduino prototype designed to detect obstacles.</p></article>
-        <article class="feature-card"><h2>Coin-Operated Shampoo Dispenser</h2><p>An automated dispensing project.</p></article>
-        <article class="feature-card"><h2>Personal Portfolio</h2><p>A website documenting my personal and academic journey.</p></article>
-      </div>
-    </section>
+</div>
+</section>
 
-    <!-- PAGE 6: FAMILY -->
-    <section class="page content-page" id="family">
-      <div class="page-heading">
-        <p class="eyebrow">06 / PERSONAL LIFE</p>
-        <h1>My <span>Family.</span></h1>
-      </div>
-      <article class="glass-card family-card">
-        <h2>My family is part of my story.</h2>
-        <p>My family is an important part of my life and motivates me to keep learning, growing, and working toward a better future.</p>
-      </article>
-    </section>
+<section class="page content" id="about">
+<div class="heading">
+<small>02 / PERSONAL PROFILE</small>
+<h2>Beyond the <em>screen.</em></h2>
+<p>A little about who I am, what interests me, and the direction I'm working toward.</p>
+</div>
 
-    <!-- PAGE 7: CONTACT -->
-    <section class="page content-page" id="contact">
-      <div class="page-heading">
-        <p class="eyebrow">07 / GET IN TOUCH</p>
-        <h1>Let's <span>Connect.</span></h1>
-        <p class="page-lead">Have a question or want to connect? Find me through the links below.</p>
-      </div>
-      <div class="contact-grid">
-        <a class="contact-card" href="https://github.com/mikehenson-dev" target="_blank" rel="noopener noreferrer">
-          <span>GITHUB</span><strong>mikehenson-dev</strong><i>↗</i>
-        </a>
-        <div class="contact-card"><span>LOCATION</span><strong>Philippines</strong></div>
-        <div class="contact-card"><span>FIELD OF INTEREST</span><strong>Cybersecurity &amp; Network Security</strong></div>
-      </div>
-    </section>
-  </main>
+<div class="about-grid">
+<article class="panel large">
+<small>01 — INTRODUCTION</small>
+<div class="quote">“</div>
+<h3>I'm Mike Henson Arcalas.</h3>
+<p>I'm a Bachelor of Science in Information Technology student at the University of the Cordilleras, specializing in Network and Security.</p>
+<p>I'm curious about how digital systems work, how devices communicate, and how information can be protected. I'm building my foundations and turning that curiosity into practical skills.</p>
+<footer>LEARNING / BUILDING / IMPROVING</footer>
+</article>
 
-  <footer>
-    <span>© <span id="year"></span> Mike Henson Arcalas</span>
-    <span>PERSONAL PORTFOLIO</span>
-  </footer>
+<div class="stack">
+<article class="panel">
+<small>02 — INTERESTS</small>
+<h3>What keeps me curious</h3>
+<div class="tags">
+<span>Cybersecurity</span>
+<span>Networking</span>
+<span>Technology</span>
+<span>Troubleshooting</span>
+<span>Cycling</span>
+</div>
+</article>
 
-  <script src="script.js"></script>
+<article class="panel">
+<small>03 — DIRECTION</small>
+<h3>Where I'm heading</h3>
+<p>My goal is to build a career in cybersecurity, particularly network security. I want to learn how to identify vulnerabilities, understand threats, and help protect digital systems.</p>
+</article>
+
+<div class="motto">
+MY MINDSET
+<h3>Always learning.<br><i>Always improving.</i></h3>
+</div>
+</div>
+</div>
+</section>
+
+<section class="page content" id="interests">
+<div class="heading">
+<small>03 / WHAT I ENJOY</small>
+<h2>Areas of <em>interest.</em></h2>
+<p>The topics and activities that motivate me to explore and keep improving.</p>
+</div>
+
+<div class="tiles">
+<article class="panel tile">
+<b>⌘</b>
+<small>01 / DIGITAL DEFENSE</small>
+<h3>Cybersecurity</h3>
+<p>Understanding cyber threats, digital protection, and the practices that help keep systems secure.</p>
+</article>
+
+<article class="panel tile">
+<b>⌁</b>
+<small>02 / CONNECTIVITY</small>
+<h3>Networking</h3>
+<p>Learning how devices communicate, how networks are structured, and how they can be protected.</p>
+</article>
+
+<article class="panel tile">
+<b>◈</b>
+<small>03 / DISCOVERY</small>
+<h3>Technology</h3>
+<p>Exploring computer systems, hardware, troubleshooting, and new technology.</p>
+</article>
+
+<article class="panel tile">
+<b>↗</b>
+<small>04 / OUTSIDE THE SCREEN</small>
+<h3>Cycling</h3>
+<p>Enjoying endurance, challenging climbs, and steady progress through consistent training.</p>
+</article>
+</div>
+</section>
+
+<section class="page content" id="education">
+<div class="heading">
+<small>04 / ACADEMIC JOURNEY</small>
+<h2>My <em>education.</em></h2>
+<p>The milestones that have shaped my learning journey so far.</p>
+</div>
+
+<div class="timeline">
+<div>
+<time>2014 — 2020</time>
+<article class="panel">
+<small>ELEMENTARY</small>
+<h3>San Vicente Elementary School</h3>
+<p>Elementary education</p>
+</article>
+</div>
+
+<div>
+<time>2020 — 2024</time>
+<article class="panel">
+<small>JUNIOR HIGH</small>
+<h3>San Vicente National High School</h3>
+<p>Junior High School · Loyalty Award</p>
+</article>
+</div>
+
+<div>
+<time>2024 — 2026</time>
+<article class="panel">
+<small>SENIOR HIGH</small>
+<h3>University of the Cordilleras</h3>
+<p>Senior High School · STEM</p>
+</article>
+</div>
+
+<div>
+<time>PRESENT</time>
+<article class="panel current">
+<small>UNDERGRADUATE</small>
+<h3>University of the Cordilleras</h3>
+<p>BS Information Technology · Network and Security</p>
+</article>
+</div>
+</div>
+</section>
+
+<section class="page content" id="projects">
+<div class="heading">
+<small>05 / SELECTED WORK</small>
+<h2>Things I've <em>built.</em></h2>
+<p>A growing collection of academic and personal projects.</p>
+</div>
+
+<div class="projects">
+<article class="panel project">
+<div class="art">
+<b>⌁</b>
+<small>ARDUINO / PROTOTYPE</small>
+</div>
+<small>PROJECT 01</small>
+<h3>Smart Blind Stick</h3>
+<p>An Arduino-based prototype designed to help detect nearby obstacles.</p>
+<div class="tags">
+<span>ARDUINO</span>
+<span>HARDWARE</span>
+</div>
+</article>
+
+<article class="panel project">
+<div class="art alt">
+<b>◉</b>
+<small>AUTOMATION / PROTOTYPE</small>
+</div>
+<small>PROJECT 02</small>
+<h3>Coin-Operated Shampoo Dispenser</h3>
+<p>An automated dispensing concept activated through a coin-operated mechanism.</p>
+<div class="tags">
+<span>PROTOTYPING</span>
+<span>AUTOMATION</span>
+</div>
+</article>
+
+<article class="panel project">
+<div class="art third">
+<b>MHA<span>.</span></b>
+<small>HTML / CSS / JAVASCRIPT</small>
+</div>
+<small>PROJECT 03</small>
+<h3>Personal Portfolio</h3>
+<p>This website, created to present my background, interests, and developing skills.</p>
+<div class="tags">
+<span>HTML</span>
+<span>CSS</span>
+<span>JAVASCRIPT</span>
+</div>
+</article>
+</div>
+</section>
+
+<section class="page content" id="contact">
+<div class="contact">
+<div class="heading">
+<small>06 / OPEN CHANNEL</small>
+<h2>Let's make a <em>connection.</em></h2>
+<p>I'm open to learning, connecting, and exploring opportunities in technology.</p>
+</div>
+
+<div class="contact-list">
+<a href="https://github.com/mikehenson-dev" target="_blank" rel="noopener">
+<b>GH</b>
+<span>
+<small>GITHUB PROFILE</small>
+<strong>mikehenson-dev</strong>
+</span>
+↗
+</a>
+
+<div>
+<b>LOC</b>
+<span>
+<small>LOCATION</small>
+<strong>Philippines</strong>
+</span>
+</div>
+
+<div>
+<b>FOCUS</b>
+<span>
+<small>FIELD OF INTEREST</small>
+<strong>Cybersecurity &amp; Network Security</strong>
+</span>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+<span>© <span id="year"></span> MIKE HENSON ARCALAS</span>
+<span>DESIGNED WITH CURIOSITY ✳</span>
+<span>MHA // PORTFOLIO</span>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
