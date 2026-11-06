@@ -1,0 +1,1 @@
+MHA FUTURISTIC PORTFOLIO\n\nUpload index.html, style.css, script.js, and your own profile photo named profile.jpg into the ROOT of your GitHub Pages repository. Keep all files together. index.html must be at the root to avoid a 404.\n
