@@ -1,4 +1,193 @@
-/* Consistent right-aligned next buttons */
+/* ==============================
+   EDUCATION PAGE
+============================== */
+
+.education-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 850px;
+    margin: 35px auto 15px;
+}
+
+.education-card {
+    position: relative;
+    width: 100%;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 35px;
+    border: 1px solid rgba(100, 180, 255, .2);
+    border-radius: 18px;
+    background: rgba(8, 25, 55, .75);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, .25);
+}
+
+.education-slide {
+    display: none;
+    width: 100%;
+    text-align: center;
+    animation: educationFade .35s ease;
+}
+
+.education-slide.active {
+    display: block;
+}
+
+@keyframes educationFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* SCHOOL LOGO */
+
+.school-logo {
+    width: 115px;
+    height: 115px;
+    margin: 0 auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .95);
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(50, 150, 255, .2);
+}
+
+.school-logo img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+}
+
+.icon-logo span {
+    font-size: 55px;
+}
+
+/* SCHOOL DETAILS */
+
+.school-info small {
+    display: block;
+    color: #65c5ff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.school-info h3 {
+    color: white;
+    font-size: clamp(19px, 3vw, 26px);
+    margin: 0 0 10px;
+}
+
+.school-info p {
+    color: #a9bdd9;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* AWARDS AND STATUS */
+
+.award {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    padding: 12px 18px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .05);
+}
+
+.award-icon {
+    font-size: 25px;
+}
+
+.award strong {
+    color: white;
+    display: block;
+    font-size: 14px;
+}
+
+.award small {
+    color: #8fa9ca;
+    font-size: 9px;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.school-status {
+    display: inline-block;
+    padding: 9px 13px;
+    margin: 5px;
+    border: 1px solid rgba(65, 165, 255, .3);
+    border-radius: 8px;
+    background: rgba(35, 130, 240, .12);
+    color: #80ccff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.current-status {
+    background: rgba(35, 130, 240, .2);
+}
+
+/* ARROW CONTROLS */
+
+.education-arrow {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    border: 1px solid rgba(90, 180, 255, .35);
+    border-radius: 50%;
+    color: white;
+    background: linear-gradient(
+        110deg,
+        #67d0ff,
+        #258df0 55%,
+        #395bdc
+    );
+    font-size: 17px;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 5px 20px #187eff44;
+}
+
+.education-arrow:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 28px #238dff88;
+}
+
+/* COUNTER */
+
+.education-counter {
+    text-align: center;
+    color: #829bbd;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin: 15px 0;
+}
+
+.education-counter #edu-number {
+    color: #65c5ff;
+    font-weight: 900;
+}
+
+/* NEXT BUTTON */
+
 .page-navigation {
     display: flex;
     justify-content: flex-end;
@@ -13,13 +202,12 @@
     align-items: center;
     justify-content: space-between;
     gap: 22px;
-
     color: white;
     text-decoration: none;
     font-size: 12px;
     font-weight: 800;
-
     border-radius: 9px;
+
     background: linear-gradient(
         110deg,
         #67d0ff,
@@ -41,4 +229,37 @@
 
 .next-button b {
     font-size: 19px;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 600px) {
+
+    .education-container {
+        gap: 10px;
+    }
+
+    .education-card {
+        min-height: 330px;
+        padding: 22px 12px;
+    }
+
+    .school-logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .education-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 13px;
+    }
+
+    .school-info h3 {
+        font-size: 18px;
+    }
+
+    .next-button {
+        min-width: 145px;
+    }
 }
