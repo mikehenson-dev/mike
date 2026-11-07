@@ -1,144 +1,44 @@
-/* HIGHLIGHTED NEXT BUTTON AFTER ABOUT ME */
-
-#about .page-navigation .next-button {
-    background: linear-gradient(110deg, #087edb, #1260c5, #263fc0);
-    border: 1px solid #9ceaff;
-    color: #ffffff;
-    padding: 16px 23px;
-    box-shadow:
-        0 0 12px #168bff88,
-        0 0 30px #168bff55,
-        inset 0 1px 0 #ffffff55;
-    animation: nextPulse 2s ease-in-out infinite;
-}
-
-#about .page-navigation .next-button b {
-    color: white;
-    font-size: 25px;
-}
-
-#about .page-navigation .next-button:hover {
-    transform: translateX(6px) scale(1.03);
-    box-shadow: 0 0 35px #28aaffaa;
-}
-
-@keyframes nextPulse {
-    0%, 100% {
-        box-shadow: 0 0 12px #168bff66, 0 0 25px #168bff33;
-    }
-    50% {
-        box-shadow: 0 0 22px #168bffbb, 0 0 42px #168bff66;
-    }
-}
-
-/* EDUCATION CARDS */
-
-.education-list {
-    display: grid;
-    gap: 17px;
-    max-width: 900px;
-}
-
-.education-card {
+/* Consistent right-aligned next buttons */
+.page-navigation {
     display: flex;
-    align-items: center;
-    gap: 25px;
-    padding: 23px;
-}
-
-.school-logo {
-    width: 95px;
-    height: 95px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    border-radius: 13px;
-    background: #ffffff;
-    padding: 10px;
-    box-shadow: 0 0 20px #56baff22;
-}
-
-.school-logo img {
+    justify-content: flex-end;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    margin-top: 25px;
 }
 
-.school-info h3 {
-    font: 600 21px var(--display);
-    margin: 9px 0;
-}
-
-.school-info p {
-    color: var(--muted);
-    font-size: 12px;
-    margin-bottom: 12px;
-}
-
-.school-status {
-    display: inline-block;
-    padding: 7px 11px;
-    border: 1px solid #62baff66;
-    background: #168bff20;
-    color: #a9e5ff;
-    border-radius: 5px;
-    font: 9px var(--mono);
-    letter-spacing: 1px;
-}
-
-.current-status {
-    border-color: #78e5ff;
-    background: #0c8caa33;
-    color: #b6f4ff;
-}
-
-/* LOYALTY AWARD */
-
-.award {
+.next-button {
+    min-width: 165px;
+    padding: 14px 18px;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 5px;
-    padding: 11px 15px;
-    border: 1px solid #e8c66c77;
+    justify-content: space-between;
+    gap: 22px;
+
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+
     border-radius: 9px;
-    background: linear-gradient(110deg, #8b641e33, #d6a83c18);
+    background: linear-gradient(
+        110deg,
+        #67d0ff,
+        #258df0 55%,
+        #395bdc
+    );
+
+    box-shadow:
+        0 7px 28px #187eff55,
+        inset 0 1px #ffffff77;
+
+    transition: .25s;
 }
 
-.award-icon {
-    font-size: 25px;
+.next-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px #238dff99;
 }
 
-.award strong {
-    display: block;
-    color: #ffe4a0;
-    font: 700 12px var(--display);
-}
-
-.award small {
-    display: block;
-    color: #c6ad78;
-    font: 8px var(--mono);
-    margin-top: 4px;
-}
-
-@media(max-width:600px) {
-    .education-card {
-        gap: 14px;
-        padding: 15px;
-    }
-
-    .school-logo {
-        width: 68px;
-        height: 68px;
-        padding: 7px;
-    }
-
-    .school-info h3 {
-        font-size: 15px;
-    }
-
-    .school-info p {
-        font-size: 10px;
-    }
+.next-button b {
+    font-size: 19px;
 }
