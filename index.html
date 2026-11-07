@@ -1,84 +1,120 @@
-<!-- EDUCATION -->
+<!-- EDUCATION PAGE -->
 <section class="page content" id="education">
 
     <div class="heading">
         <small>03 / ACADEMIC JOURNEY</small>
-        <h2>My <em>education.</em></h2>
+        <h2>Educational <em>Attainment.</em></h2>
         <p>The schools and milestones that shaped my academic journey.</p>
     </div>
 
-    <div class="education-list">
+    <div class="education-container">
 
-        <article class="education-card panel">
-            <div class="school-logo">
-                <img src="sv-elementary-logo.png"
-                     alt="San Vicente Elementary School logo">
-            </div>
+        <button class="education-arrow" id="edu-prev"
+                aria-label="Previous school">
+            &#10094;
+        </button>
 
-            <div class="school-info">
-                <small>ELEMENTARY EDUCATION</small>
-                <h3>San Vicente Elementary School</h3>
-                <p>2014 — 2020</p>
-                <span class="school-status">COMPLETED</span>
-            </div>
-        </article>
+        <div class="education-card panel">
 
-        <article class="education-card panel">
-            <div class="school-logo">
-                <img src="svnhs-logo.png"
-                     alt="San Vicente National High School logo">
-            </div>
+            <!-- ELEMENTARY -->
+            <article class="education-slide active">
+                <div class="school-logo icon-logo">
+                    <span>🎓</span>
+                </div>
 
-            <div class="school-info">
-                <small>JUNIOR HIGH SCHOOL</small>
-                <h3>San Vicente National High School</h3>
-                <p>2020 — 2024</p>
+                <div class="school-info">
+                    <small>ELEMENTARY EDUCATION</small>
+                    <h3>San Vicente Elementary School</h3>
+                    <p>2014 — 2020</p>
 
-                <div class="award">
-                    <span class="award-icon">🏅</span>
-                    <div>
-                        <strong>Loyalty Award</strong>
-                        <small>RECOGNITION / ACHIEVEMENT</small>
+                    <div class="award">
+                        <span class="award-icon">🏅</span>
+                        <div>
+                            <strong>Loyalty Award</strong>
+                            <small>RECOGNITION / ACHIEVEMENT</small>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </article>
+            </article>
 
-        <article class="education-card panel">
-            <div class="school-logo">
-                <img src="uc-logo.png"
-                     alt="University of the Cordilleras logo">
-            </div>
+            <!-- JUNIOR HIGH -->
+            <article class="education-slide">
+                <div class="school-logo">
+                    <img src="svnhs-logo.png"
+                         alt="San Vicente National High School logo">
+                </div>
 
-            <div class="school-info">
-                <small>SENIOR HIGH SCHOOL</small>
-                <h3>University of the Cordilleras</h3>
-                <p>2024 — 2026</p>
-                <span class="school-status">STEM STRAND</span>
-            </div>
-        </article>
+                <div class="school-info">
+                    <small>JUNIOR HIGH SCHOOL</small>
+                    <h3>San Vicente National High School</h3>
+                    <p>2020 — 2024</p>
 
-        <article class="education-card panel current">
-            <div class="school-logo">
-                <img src="uc-logo.png"
-                     alt="University of the Cordilleras logo">
-            </div>
+                    <div class="award">
+                        <span class="award-icon">🏅</span>
+                        <div>
+                            <strong>Loyalty Award</strong>
+                            <small>RECOGNITION / ACHIEVEMENT</small>
+                        </div>
+                    </div>
+                </div>
+            </article>
 
-            <div class="school-info">
-                <small>UNDERGRADUATE / PRESENT</small>
-                <h3>University of the Cordilleras</h3>
-                <p>Bachelor of Science in Information Technology</p>
-                <span class="school-status current-status">
-                    NETWORK AND SECURITY TRACK
-                </span>
-            </div>
-        </article>
+            <!-- SENIOR HIGH -->
+            <article class="education-slide">
+                <div class="school-logo">
+                    <img src="uc-logo.png"
+                         alt="University of the Cordilleras logo">
+                </div>
+
+                <div class="school-info">
+                    <small>SENIOR HIGH SCHOOL</small>
+                    <h3>University of the Cordilleras</h3>
+                    <p>2024 — 2026</p>
+
+                    <span class="school-status">STEM STRAND</span>
+                    <span class="school-status">RED CROSS</span>
+                </div>
+            </article>
+
+            <!-- COLLEGE -->
+            <article class="education-slide">
+                <div class="school-logo">
+                    <img src="uc-logo.png"
+                         alt="University of the Cordilleras logo">
+                </div>
+
+                <div class="school-info">
+                    <small>UNDERGRADUATE / PRESENT</small>
+                    <h3>University of the Cordilleras</h3>
+                    <p>2026 — Present</p>
+
+                    <span class="school-status current-status">
+                        BS INFORMATION TECHNOLOGY
+                    </span>
+
+                    <span class="school-status">
+                        NETWORK AND SECURITY TRACK
+                    </span>
+                </div>
+            </article>
+
+        </div>
+
+        <button class="education-arrow" id="edu-next"
+                aria-label="Next school">
+            &#10095;
+        </button>
 
     </div>
 
+    <div class="education-counter">
+        <span id="edu-number">01</span>
+        <span>/ 04</span>
+    </div>
+
     <div class="page-navigation">
-        <a class="next-button" href="#projects">
-            <span>Next: Projects</span>
+        <a class="next-button" href="#interests">
+            <span>Next: Interests</span>
             <b>→</b>
         </a>
     </div>
