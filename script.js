@@ -1,4 +1,4 @@
-
+alert("JavaScript is working!");
 // PAGE NAVIGATION
 
 const pages = document.querySelectorAll(".page");
