@@ -838,3 +838,10 @@ main {
         height: 230px;
     }
 }
+
+.hero-text h1 span {
+    display: block;
+    font-size: clamp(30px, 3.5vw, 48px);
+    margin-top: 8px;
+    line-height: 1.3;
+}
