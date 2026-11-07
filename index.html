@@ -1,207 +1,78 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#071326">
-<title>Mike Henson Arcalas | Portfolio</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-<div class="ambient a"></div>
-<div class="ambient b"></div>
-<div class="grid"></div>
-<canvas id="stars"></canvas>
-
-<header>
-    <a class="logo" href="#home"><b>M</b> MHA<span>.</span></a>
-    <div class="status">● PORTFOLIO SYSTEM / ONLINE</div>
-    <button class="menu" aria-label="Toggle menu">☰</button>
-
-    <nav>
-        <a href="#home" data-page="home">Home</a>
-        <a href="#about" data-page="about">About Me</a>
-        <a href="#education" data-page="education">Education</a>
-        <a href="#projects" data-page="projects">Projects</a>
-        <a href="#interests" data-page="interests">Interests</a>
-    </nav>
-</header>
-
-<main>
-
-<!-- HOME -->
-<section class="page" id="home">
-<div class="hero">
-
-    <div class="photo-col">
-        <div class="photo-frame">
-            <i class="c tl"></i>
-            <i class="c tr"></i>
-            <i class="c bl"></i>
-            <i class="c br"></i>
-            <img src="profile.jpg" alt="Mike Henson Arcalas">
-            <label>● PROFILE / VERIFIED</label>
-        </div>
-        <small>FIG. 01 / IDENTITY PROFILE</small>
-    </div>
-
-    <div class="hero-copy">
-        <p class="eyebrow">● IT STUDENT / ASPIRING CYBERSECURITY PROFESSIONAL</p>
-        <small class="mono">HELLO, I'M</small>
-
-        <h1>Mike Henson<br><em>Arcalas<span>_</span></em></h1>
-
-        <h2>BSIT STUDENT · NETWORK &amp; SECURITY</h2>
-
-        <p class="intro">
-            Exploring the digital world and learning how to secure it.
-            I'm an Information Technology student interested in cybersecurity,
-            computer networks, and the systems that connect us.
-        </p>
-
-        <a class="next-button primary" href="#about">
-            <span>About Me</span>
-            <b>→</b>
-        </a>
-
-        <p class="note">✳ CURIOUS BY NATURE. COMMITTED TO LEARNING.</p>
-    </div>
-
-    <div class="coordinates">
-        16°24' N 120°35' E<br>
-        PHILIPPINES // LOCAL NODE
-    </div>
-
-</div>
-</section>
-
-<!-- ABOUT ME -->
-<section class="page content" id="about">
-
-    <div class="heading">
-        <small>02 / PERSONAL PROFILE</small>
-        <h2>Beyond the <em>screen.</em></h2>
-        <p>A little about who I am, what interests me, and the direction I'm working toward.</p>
-    </div>
-
-    <div class="about-grid">
-
-        <article class="panel large">
-            <small>01 — INTRODUCTION</small>
-            <div class="quote">“</div>
-
-            <h3>I'm Mike Henson Arcalas.</h3>
-
-            <p>
-                I'm a Bachelor of Science in Information Technology student
-                at the University of the Cordilleras, specializing in
-                Network and Security.
-            </p>
-
-            <p>
-                I'm curious about how digital systems work, how devices
-                communicate, and how information can be protected.
-                I'm building my foundations and turning that curiosity
-                into practical skills.
-            </p>
-
-            <footer>LEARNING / BUILDING / IMPROVING</footer>
-        </article>
-
-        <div class="stack">
-
-            <article class="panel">
-                <small>02 — INTERESTS</small>
-                <h3>What keeps me curious</h3>
-
-                <div class="tags">
-                    <span>Cybersecurity</span>
-                    <span>Networking</span>
-                    <span>Technology</span>
-                    <span>Troubleshooting</span>
-                    <span>Cycling</span>
-                </div>
-            </article>
-
-            <article class="panel">
-                <small>03 — DIRECTION</small>
-                <h3>Where I'm heading</h3>
-
-                <p>
-                    My goal is to build a career in cybersecurity,
-                    particularly network security. I want to learn
-                    how to identify vulnerabilities, understand threats,
-                    and help protect digital systems.
-                </p>
-            </article>
-
-            <div class="motto">
-                MY MINDSET
-                <h3>Always learning.<br><i>Always improving.</i></h3>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="page-navigation">
-        <a class="next-button" href="#education">
-            <span>Next: Education</span>
-            <b>→</b>
-        </a>
-    </div>
-
-</section>
-
 <!-- EDUCATION -->
 <section class="page content" id="education">
 
     <div class="heading">
         <small>03 / ACADEMIC JOURNEY</small>
         <h2>My <em>education.</em></h2>
-        <p>The milestones that have shaped my learning journey so far.</p>
+        <p>The schools and milestones that shaped my academic journey.</p>
     </div>
 
-    <div class="timeline">
+    <div class="education-list">
 
-        <div>
-            <time>2014 — 2020</time>
-            <article class="panel">
-                <small>ELEMENTARY</small>
+        <article class="education-card panel">
+            <div class="school-logo">
+                <img src="sv-elementary-logo.png"
+                     alt="San Vicente Elementary School logo">
+            </div>
+
+            <div class="school-info">
+                <small>ELEMENTARY EDUCATION</small>
                 <h3>San Vicente Elementary School</h3>
-                <p>Elementary education</p>
-            </article>
-        </div>
+                <p>2014 — 2020</p>
+                <span class="school-status">COMPLETED</span>
+            </div>
+        </article>
 
-        <div>
-            <time>2020 — 2024</time>
-            <article class="panel">
-                <small>JUNIOR HIGH</small>
+        <article class="education-card panel">
+            <div class="school-logo">
+                <img src="svnhs-logo.png"
+                     alt="San Vicente National High School logo">
+            </div>
+
+            <div class="school-info">
+                <small>JUNIOR HIGH SCHOOL</small>
                 <h3>San Vicente National High School</h3>
-                <p>Junior High School · Loyalty Award</p>
-            </article>
-        </div>
+                <p>2020 — 2024</p>
 
-        <div>
-            <time>2024 — 2026</time>
-            <article class="panel">
-                <small>SENIOR HIGH</small>
-                <h3>University of the Cordilleras</h3>
-                <p>Senior High School · STEM</p>
-            </article>
-        </div>
+                <div class="award">
+                    <span class="award-icon">🏅</span>
+                    <div>
+                        <strong>Loyalty Award</strong>
+                        <small>RECOGNITION / ACHIEVEMENT</small>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-        <div>
-            <time>PRESENT</time>
-            <article class="panel current">
-                <small>UNDERGRADUATE</small>
+        <article class="education-card panel">
+            <div class="school-logo">
+                <img src="uc-logo.png"
+                     alt="University of the Cordilleras logo">
+            </div>
+
+            <div class="school-info">
+                <small>SENIOR HIGH SCHOOL</small>
                 <h3>University of the Cordilleras</h3>
-                <p>BS Information Technology · Network and Security</p>
-            </article>
-        </div>
+                <p>2024 — 2026</p>
+                <span class="school-status">STEM STRAND</span>
+            </div>
+        </article>
+
+        <article class="education-card panel current">
+            <div class="school-logo">
+                <img src="uc-logo.png"
+                     alt="University of the Cordilleras logo">
+            </div>
+
+            <div class="school-info">
+                <small>UNDERGRADUATE / PRESENT</small>
+                <h3>University of the Cordilleras</h3>
+                <p>Bachelor of Science in Information Technology</p>
+                <span class="school-status current-status">
+                    NETWORK AND SECURITY TRACK
+                </span>
+            </div>
+        </article>
 
     </div>
 
@@ -213,155 +84,3 @@
     </div>
 
 </section>
-
-<!-- PROJECTS -->
-<section class="page content" id="projects">
-
-    <div class="heading">
-        <small>04 / SELECTED WORK</small>
-        <h2>Things I've <em>built.</em></h2>
-        <p>A growing collection of academic and personal projects.</p>
-    </div>
-
-    <div class="projects">
-
-        <article class="panel project">
-            <div class="art">
-                <b>⌁</b>
-                <small>ARDUINO / PROTOTYPE</small>
-            </div>
-
-            <small>PROJECT 01</small>
-            <h3>Smart Blind Stick</h3>
-            <p>
-                An Arduino-based prototype designed to help detect nearby obstacles.
-            </p>
-
-            <div class="tags">
-                <span>ARDUINO</span>
-                <span>HARDWARE</span>
-            </div>
-        </article>
-
-        <article class="panel project">
-            <div class="art alt">
-                <b>◉</b>
-                <small>AUTOMATION / PROTOTYPE</small>
-            </div>
-
-            <small>PROJECT 02</small>
-            <h3>Coin-Operated Shampoo Dispenser</h3>
-            <p>
-                An automated dispensing concept activated through a coin-operated mechanism.
-            </p>
-
-            <div class="tags">
-                <span>PROTOTYPING</span>
-                <span>AUTOMATION</span>
-            </div>
-        </article>
-
-        <article class="panel project">
-            <div class="art third">
-                <b>MHA<span>.</span></b>
-                <small>HTML / CSS / JAVASCRIPT</small>
-            </div>
-
-            <small>PROJECT 03</small>
-            <h3>Personal Portfolio</h3>
-            <p>
-                This website, created to present my background, interests,
-                and developing skills.
-            </p>
-
-            <div class="tags">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JAVASCRIPT</span>
-            </div>
-        </article>
-
-    </div>
-
-    <div class="page-navigation">
-        <a class="next-button" href="#interests">
-            <span>Next: Interests</span>
-            <b>→</b>
-        </a>
-    </div>
-
-</section>
-
-<!-- INTERESTS -->
-<section class="page content" id="interests">
-
-    <div class="heading">
-        <small>05 / WHAT I ENJOY</small>
-        <h2>Areas of <em>interest.</em></h2>
-        <p>The topics and activities that motivate me to explore and keep improving.</p>
-    </div>
-
-    <div class="tiles">
-
-        <article class="panel tile">
-            <b>⌘</b>
-            <small>01 / DIGITAL DEFENSE</small>
-            <h3>Cybersecurity</h3>
-            <p>
-                Understanding cyber threats, digital protection,
-                and practices that help keep systems secure.
-            </p>
-        </article>
-
-        <article class="panel tile">
-            <b>⌁</b>
-            <small>02 / CONNECTIVITY</small>
-            <h3>Networking</h3>
-            <p>
-                Learning how devices communicate, how networks are structured,
-                and how they can be protected.
-            </p>
-        </article>
-
-        <article class="panel tile">
-            <b>◈</b>
-            <small>03 / DISCOVERY</small>
-            <h3>Technology</h3>
-            <p>
-                Exploring computer systems, hardware, troubleshooting,
-                and new technology.
-            </p>
-        </article>
-
-        <article class="panel tile">
-            <b>↗</b>
-            <small>04 / OUTSIDE THE SCREEN</small>
-            <h3>Cycling</h3>
-            <p>
-                Enjoying endurance, challenging climbs,
-                and steady progress through consistent training.
-            </p>
-        </article>
-
-    </div>
-
-    <div class="page-navigation">
-        <a class="next-button" href="#home">
-            <span>Back to Home</span>
-            <b>↺</b>
-        </a>
-    </div>
-
-</section>
-
-</main>
-
-<footer class="site-footer">
-    <span>© <span id="year"></span> MIKE HENSON ARCALAS</span>
-    <span>DESIGNED WITH CURIOSITY ✳</span>
-    <span>MHA // PORTFOLIO</span>
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
