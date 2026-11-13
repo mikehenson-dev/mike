@@ -2,424 +2,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mike Henson Arcalas | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of Mike Henson Arcalas.">
+  <title>Mike Henson Arcalas | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="header">
-    <a href="#home" class="logo" data-page="home">MH<span>.</span></a>
+<header class="site-header">
+  <nav class="nav container">
 
-    <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation">
-        ☰
-    </button>
+    <a class="brand" href="#home" data-page-link>MHA<span>.</span></a>
 
-    <nav id="navigation">
-        <a href="#home" class="active" data-page="home">Home</a>
-        <a href="#about" data-page="about">About Me</a>
-        <a href="#education" data-page="education">Education</a>
-        <a href="#interests" data-page="interests">Interests</a>
-        <a href="#projects" data-page="projects">Projects</a>
-        <a href="#contact" data-page="contact">Contact</a>
-    </nav>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+
+    <div class="nav-links">
+      <a href="#home" data-page-link>Home</a>
+      <a href="#about" data-page-link>Personal Info</a>
+      <a href="#achievements" data-page-link>Achievements</a>
+      <a href="#projects" data-page-link>Projects</a>
+      <a href="#family" data-page-link>Family</a>
+      <a href="#contact" data-page-link>Contact</a>
+    </div>
+
+  </nav>
 </header>
 
 <main>
 
-    <!-- HOME PAGE -->
-    <section class="page active" id="home">
-        <div class="hero">
+  <!-- HOME PAGE -->
+  <section id="home" class="page-panel hero active">
 
-            <div class="profile-side">
-                <div class="profile-glow"></div>
-                <div class="profile-frame">
-                    <img src="profile.jpg" alt="Mike Henson Arcalas">
-                </div>
-                <div class="profile-caption">ASPIRING IT PROFESSIONAL</div>
-            </div>
+    <div class="hero-glow"></div>
 
-            <div class="hero-text">
-                <p class="eyebrow">WELCOME TO MY PORTFOLIO</p>
-                <h1>Hi, I'm <span>Mike Henson Arcalas</span></h1>
-                <h2>Information Technology Student</h2>
+    <div class="container hero-grid">
 
-                <p class="hero-description">
-                    Exploring technology, networking, and cybersecurity.
-                    Building my skills one experience and project at a time.
-                </p>
+      <div class="portrait-wrap">
+        <div class="portrait-ring"></div>
 
-                <div class="hero-buttons">
-                    <button class="primary-button" data-target="about">
-                        About Me <span>→</span>
-                    </button>
-                    <button class="secondary-button" data-target="projects">
-                        View Projects
-                    </button>
-                </div>
+        <img
+          src="profile.png"
+          alt="Mike Henson Arcalas"
+          class="portrait"
+        >
 
-                <div class="hero-status">
-                    <span class="status-dot"></span>
-                    BSIT Student · Network and Security
-                </div>
-            </div>
+        <span class="portrait-sparkle">✦</span>
+      </div>
 
-        </div>
+      <div class="hero-copy">
 
-        <div class="home-footer">
-            <span>PORTFOLIO 2026</span>
-            <span>DESIGNED BY MIKE HENSON ARCALAS</span>
-        </div>
-    </section>
+        <p class="eyebrow">IT STUDENT · ASPIRING DEVELOPER</p>
 
+        <h1>Hi, I'm <span>Mike Henson</span></h1>
 
-    <!-- ABOUT ME PAGE -->
-    <section class="page" id="about">
-        <div class="section-heading">
-            <p class="eyebrow">GET TO KNOW ME</p>
-            <h1>About <span>Me</span></h1>
-            <p>A little introduction about who I am.</p>
-        </div>
+        <p class="hero-role">
+          BSIT Student · Network &amp; Security
+        </p>
 
-        <div class="about-container glass-panel">
+        <p class="hero-text">
+          I'm a Bachelor of Science in Information Technology
+          student at the University of the Cordilleras.
+          I enjoy exploring technology, developing practical
+          projects, and continuously improving my skills.
+        </p>
 
-            <div class="about-text">
-                <h2>Hello, I'm <span>Mike!</span></h2>
+        <div class="hero-actions">
 
-                <p>
-                    I'm Mike Henson Arcalas, an Information Technology student
-                    at the University of the Cordilleras, currently specializing
-                    in Network and Security.
-                </p>
+          <a class="button primary" href="#projects" data-page-link>
+            View My Projects ↗
+          </a>
 
-                <p>
-                    I'm passionate about technology, computer systems,
-                    networking, and cybersecurity. I enjoy discovering how
-                    digital systems work, exploring new technologies, and
-                    developing practical skills through hands-on projects
-                    and continuous learning.
-                </p>
-
-                <p>
-                    Beyond academics, I enjoy cycling, running, and photography.
-                    These interests have taught me the value of discipline,
-                    patience, creativity, and continuous improvement.
-                </p>
-
-                <p>
-                    My ambition is to grow into a skilled cybersecurity
-                    professional, contribute to a safer digital environment,
-                    and keep pushing myself to learn beyond the classroom.
-                </p>
-            </div>
-
-            <div class="info-grid">
-                <div class="info-item">
-                    <small>FULL NAME</small>
-                    <strong>Mike Henson Arcalas</strong>
-                </div>
-
-                <div class="info-item">
-                    <small>DATE OF BIRTH</small>
-                    <strong>November 25, 2007</strong>
-                </div>
-
-                <div class="info-item">
-                    <small>COURSE</small>
-                    <strong>BS Information Technology</strong>
-                </div>
-
-                <div class="info-item">
-                    <small>UNIVERSITY</small>
-                    <strong>University of the Cordilleras</strong>
-                </div>
-
-                <div class="info-item">
-                    <small>SPECIALIZATION</small>
-                    <strong>Network and Security</strong>
-                </div>
-
-                <div class="info-item">
-                    <small>EMAIL ADDRESS</small>
-                    <a href="mailto:mikehensona@gmail.com">
-                        mikehensona@gmail.com
-                    </a>
-                </div>
-            </div>
+          <a class="button secondary" href="#about" data-page-link>
+            About Me
+          </a>
 
         </div>
 
-        <div class="page-navigation">
-            <button class="next-button" data-target="education">
-                Education <span>→</span>
-            </button>
-        </div>
-    </section>
+      </div>
+
+    </div>
+  </section>
 
 
-    <!-- EDUCATION PAGE -->
-    <section class="page" id="education">
-        <div class="section-heading">
-            <p class="eyebrow">MY ACADEMIC BACKGROUND</p>
-            <h1>My <span>Education</span></h1>
-            <p>My educational journey through the years.</p>
-        </div>
+  <!-- PERSONAL INFORMATION -->
+  <section id="about" class="page-panel section" hidden>
 
-        <div class="education-container glass-panel">
+    <div class="container">
 
-            <button class="edu-arrow" id="edu-prev" aria-label="Previous school">
-                &#10094;
-            </button>
+      <div class="section-heading">
+        <p class="eyebrow">01 / PERSONAL INFORMATION</p>
+        <h2>Get to know me.</h2>
+        <p class="section-lead">
+          A little information about who I am.
+        </p>
+      </div>
 
-            <div class="education-slides">
+      <div class="personal-grid">
 
-                <article class="education-slide active">
-                    <div class="school-logo logo-placeholder">🎓</div>
-                    <p class="school-level">ELEMENTARY</p>
-                    <h2>San Vicente Elementary School</h2>
-                    <p class="school-years">2014 – 2020</p>
-                    <p class="school-description">
-                        Completed my elementary education and built
-                        the foundation for my academic journey.
-                    </p>
-                    <span class="school-status">COMPLETED</span>
-                </article>
-
-                <article class="education-slide">
-                    <div class="school-logo">
-                        <img src="svnhs-logo.png" alt="San Vicente National High School logo">
-                    </div>
-                    <p class="school-level">JUNIOR HIGH SCHOOL</p>
-                    <h2>San Vicente National High School</h2>
-                    <p class="school-years">2020 – 2024</p>
-                    <p class="school-description">
-                        Completed junior high school and received
-                        a Loyalty Award.
-                    </p>
-                    <span class="school-status">LOYALTY AWARD</span>
-                </article>
-
-                <article class="education-slide">
-                    <div class="school-logo">
-                        <img src="uc-logo.png" alt="University of the Cordilleras logo">
-                    </div>
-                    <p class="school-level">SENIOR HIGH SCHOOL</p>
-                    <h2>University of the Cordilleras</h2>
-                    <p class="school-years">2024 – 2026</p>
-                    <p class="school-description">
-                        Completed Senior High School under the
-                        Science, Technology, Engineering, and Mathematics
-                        (STEM) strand.
-                    </p>
-                    <span class="school-status">STEM GRADUATE</span>
-                </article>
-
-                <article class="education-slide">
-                    <div class="school-logo">
-                        <img src="uc-logo.png" alt="University of the Cordilleras logo">
-                    </div>
-                    <p class="school-level">COLLEGE</p>
-                    <h2>University of the Cordilleras</h2>
-                    <p class="school-years">2026 – PRESENT</p>
-                    <p class="school-description">
-                        Currently pursuing a Bachelor of Science in
-                        Information Technology under the Network
-                        and Security track.
-                    </p>
-                    <span class="school-status">CURRENTLY ENROLLED</span>
-                </article>
-
-            </div>
-
-            <button class="edu-arrow" id="edu-next" aria-label="Next school">
-                &#10095;
-            </button>
-
+        <div class="personal-card">
+          <span>FULL NAME</span>
+          <h3>Mike Henson Arcalas</h3>
         </div>
 
-        <div class="education-counter">
-            <span id="edu-number">01 / 04</span>
+        <div class="personal-card">
+          <span>DATE OF BIRTH</span>
+          <h3>November 25, 2007</h3>
         </div>
 
-        <div class="page-navigation">
-            <button class="next-button" data-target="interests">
-                Interests <span>→</span>
-            </button>
-        </div>
-    </section>
-
-
-    <!-- INTERESTS PAGE -->
-    <section class="page" id="interests">
-        <div class="section-heading">
-            <p class="eyebrow">WHAT I ENJOY</p>
-            <h1>My <span>Interests</span></h1>
-            <p>The things that inspire me to learn and improve.</p>
+        <div class="personal-card">
+          <span>NATIONALITY</span>
+          <h3>Filipino</h3>
         </div>
 
-        <div class="card-grid">
-
-            <div class="interest-card">
-                <div class="card-icon">💻</div>
-                <h2>Technology</h2>
-                <p>
-                    Exploring computers, software, hardware,
-                    and emerging technologies.
-                </p>
-            </div>
-
-            <div class="interest-card">
-                <div class="card-icon">🔐</div>
-                <h2>Cybersecurity</h2>
-                <p>
-                    Learning about digital security, networks,
-                    vulnerabilities, and system protection.
-                </p>
-            </div>
-
-            <div class="interest-card">
-                <div class="card-icon">🚴</div>
-                <h2>Cycling</h2>
-                <p>
-                    Enjoying long rides, climbing, endurance,
-                    and improving my cycling performance.
-                </p>
-            </div>
-
-            <div class="interest-card">
-                <div class="card-icon">🏃</div>
-                <h2>Running</h2>
-                <p>
-                    Developing endurance, discipline,
-                    and consistency through running.
-                </p>
-            </div>
-
-            <div class="interest-card">
-                <div class="card-icon">📷</div>
-                <h2>Photography</h2>
-                <p>
-                    Capturing moments, exploring perspectives,
-                    and expressing creativity through images.
-                </p>
-            </div>
-
+        <div class="personal-card">
+          <span>LOCATION</span>
+          <h3>Baguio City, Philippines</h3>
         </div>
 
-        <div class="page-navigation">
-            <button class="next-button" data-target="projects">
-                Projects <span>→</span>
-            </button>
-        </div>
-    </section>
-
-
-    <!-- PROJECTS PAGE -->
-    <section class="page" id="projects">
-        <div class="section-heading">
-            <p class="eyebrow">MY WORK AND EXPERIENCES</p>
-            <h1>My <span>Projects</span></h1>
-            <p>Some of the projects I have worked on as a student.</p>
+        <div class="personal-card">
+          <span>UNIVERSITY</span>
+          <h3>University of the Cordilleras</h3>
         </div>
 
-        <div class="card-grid">
-
-            <div class="project-card">
-                <div class="card-icon">🤖</div>
-                <p class="project-category">ENGINEERING PROJECT</p>
-                <h2>Brushbot</h2>
-                <p>
-                    A small robotic project that demonstrates
-                    basic mechanical movement and simple electronics.
-                </p>
-                <a href="brushbot-project.pdf" target="_blank" class="project-link">
-                    View Project <span>↗</span>
-                </a>
-            </div>
-
-            <div class="project-card">
-                <div class="card-icon">🦯</div>
-                <p class="project-category">ARDUINO PROJECT</p>
-                <h2>Smart Blind Stick</h2>
-                <p>
-                    A prototype designed to help visually impaired
-                    individuals detect nearby obstacles.
-                </p>
-                <span class="project-tag">STUDENT PROJECT</span>
-            </div>
-
-            <div class="project-card">
-                <div class="card-icon">🧴</div>
-                <p class="project-category">AUTOMATION PROJECT</p>
-                <h2>Coin-Operated Dispenser</h2>
-                <p>
-                    A dispensing prototype that uses a coin-operated
-                    mechanism to control product distribution.
-                </p>
-                <span class="project-tag">STUDENT PROJECT</span>
-            </div>
-
+        <div class="personal-card">
+          <span>COURSE</span>
+          <h3>BS Information Technology</h3>
         </div>
 
-        <div class="page-navigation">
-            <button class="next-button" data-target="contact">
-                Contact <span>→</span>
-            </button>
+        <div class="personal-card">
+          <span>SPECIALIZATION</span>
+          <h3>Network and Security</h3>
         </div>
-    </section>
 
-
-    <!-- CONTACT PAGE -->
-    <section class="page" id="contact">
-        <div class="contact-content glass-panel">
-            <p class="eyebrow">LET'S CONNECT</p>
-            <h1>Get In <span>Touch</span></h1>
-
-            <p class="contact-description">
-                Have a question, an opportunity, or just want to connect?
-                Feel free to reach out through my email.
-            </p>
-
-            <a href="mailto:mikehensona@gmail.com" class="primary-button contact-button">
-                Send Me an Email <span>→</span>
+        <div class="personal-card">
+          <span>EMAIL ADDRESS</span>
+          <h3>
+            <a href="mailto:mikehensona@gmail.com">
+              mikehensona@gmail.com
             </a>
-
-            <div class="contact-details">
-                <div class="contact-detail">
-                    <span>EMAIL</span>
-                    <a href="mailto:mikehensona@gmail.com">
-                        mikehensona@gmail.com
-                    </a>
-                </div>
-
-                <div class="contact-detail">
-                    <span>UNIVERSITY</span>
-                    <strong>University of the Cordilleras</strong>
-                </div>
-
-                <div class="contact-detail">
-                    <span>COURSE</span>
-                    <strong>BS Information Technology</strong>
-                </div>
-            </div>
+          </h3>
         </div>
 
-        <div class="page-navigation">
-            <button class="next-button" data-target="home">
-                Back to Home <span>→</span>
-            </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- EDUCATION AND ACHIEVEMENTS -->
+  <section id="achievements" class="page-panel section" hidden>
+
+    <div class="container">
+
+      <div class="section-heading">
+        <p class="eyebrow">02 / MY ACADEMIC JOURNEY</p>
+        <h2>Education &amp; Achievements</h2>
+        <p class="section-lead">
+          My academic background and milestones throughout the years.
+        </p>
+      </div>
+
+      <div class="academic-layout">
+
+        <!-- EDUCATION COLUMN -->
+        <div class="academic-column">
+
+          <h3 class="column-title">Education</h3>
+
+          <div class="academic-timeline">
+
+            <article class="academic-item">
+
+              <span class="academic-year">2014 – 2020</span>
+
+              <div>
+                <h4>San Vicente Elementary School</h4>
+                <p>Elementary Education</p>
+              </div>
+
+            </article>
+
+            <article class="academic-item">
+
+              <span class="academic-year">2020 – 2024</span>
+
+              <div>
+                <h4>San Vicente National High School</h4>
+                <p>Junior High School</p>
+              </div>
+
+            </article>
+
+            <article class="academic-item">
+
+              <span class="academic-year">2024 – 2026</span>
+
+              <div>
+                <h4>University of the Cordilleras</h4>
+                <p>Senior High School – STEM Strand</p>
+              </div>
+
+            </article>
+
+            <article class="academic-item current">
+
+              <span class="academic-year">PRESENT</span>
+
+              <div>
+                <h4>University of the Cordilleras</h4>
+                <p>BS Information Technology</p>
+                <p>Network and Security Track</p>
+              </div>
+
+            </article>
+
+          </div>
         </div>
-    </section>
+
+
+        <!-- ACHIEVEMENTS COLUMN -->
+        <div class="academic-column">
+
+          <h3 class="column-title">Achievements &amp; Recognition</h3>
+
+          <div class="recognition-list">
+
+            <article class="recognition-card">
+
+              <span class="recognition-icon">✦</span>
+
+              <div>
+                <span class="academic-year">JUNIOR HIGH SCHOOL</span>
+                <h4>Loyalty Award</h4>
+
+                <p>
+                  Recognized with a Loyalty Award upon completing
+                  my Junior High School education at San Vicente
+                  National High School.
+                </p>
+              </div>
+
+            </article>
+
+            <article class="recognition-card">
+
+              <span class="recognition-icon">✦</span>
+
+              <div>
+                <span class="academic-year">SENIOR HIGH SCHOOL</span>
+                <h4>STEM Graduate</h4>
+
+                <p>
+                  Successfully completed the STEM strand at the
+                  University of the Cordilleras in 2026.
+                </p>
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section id="projects" class="page-panel section" hidden>
+
+    <div class="container">
+
+      <div class="section-heading">
+        <p class="eyebrow">03 / PROJECTS</p>
+        <h2>Learning through building.</h2>
+      </div>
+
+      <article class="project-card">
+
+        <div class="project-number">01</div>
+
+        <div class="project-body">
+
+          <span class="project-tag">STEM · ROBOTICS · ARDUINO</span>
+
+          <h3>
+            Design and Development of a Bristle-Based
+            Brush Bot for Comfort Room Cleaning
+          </h3>
+
+          <p>
+            An Arduino Uno-based Brushbot cleaning robot.
+            The prototype uses a cleaning brush, a DC motor,
+            and an Arduino-controlled motor system to create
+            vibration and movement across tiled surfaces.
+          </p>
+
+          <div class="project-details">
+            <span>Arduino Uno</span>
+            <span>DC Motor</span>
+            <span>Rotating Bristles</span>
+            <span>Prototype</span>
+          </div>
+
+          <a class="text-link" href="brushbot-project.pdf" target="_blank">
+            View project document →
+          </a>
+
+        </div>
+
+      </article>
+
+      <p class="project-note">
+        This portfolio will continue to grow as I complete
+        more coursework, experiments, and personal projects.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- FAMILY -->
+  <section id="family" class="page-panel section" hidden>
+
+    <div class="container family-grid">
+
+      <div class="family-image">
+
+        <img
+          src="mother-graduation.jpg"
+          alt="Mike with his mother during graduation"
+        >
+
+      </div>
+
+      <div class="family-copy">
+
+        <p class="eyebrow">04 / FAMILY</p>
+
+        <h2>My mother.</h2>
+
+        <p>
+          My mother has been a steady and grounding presence
+          throughout every stage of my life, from my earliest
+          school days to finishing high school.
+        </p>
+
+        <p>
+          Her guidance and support have helped me navigate
+          challenges and celebrate milestones along the way.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="page-panel section" hidden>
+
+    <div class="container contact-inner">
+
+      <div>
+
+        <p class="eyebrow">05 / GET IN TOUCH</p>
+
+        <h2>Let's connect.</h2>
+
+        <p>
+          Thank you for taking the time to explore my portfolio.
+          You can visit my GitHub profile to see more of my work
+          and learning progress.
+        </p>
+
+        <p>
+          Email: <a href="mailto:mikehensona@gmail.com">
+            mikehensona@gmail.com
+          </a>
+        </p>
+
+      </div>
+
+      <a
+        class="button primary"
+        href="https://github.com/mikehenson-dev"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Visit My GitHub ↗
+      </a>
+
+    </div>
+  </section>
 
 </main>
 
+
 <footer class="site-footer">
-    © 2026 Mike Henson Arcalas. All Rights Reserved.
+
+  <div class="container footer-inner">
+    <span>© 2026 Mike Henson Arcalas</span>
+    <span>Personal Portfolio</span>
+  </div>
+
 </footer>
 
-<script src="script.js"></script>
+
+<!-- CLICKABLE PAGE NAVIGATION -->
+<script>
+
+  const panels = [...document.querySelectorAll(".page-panel")];
+
+  const links = [...document.querySelectorAll("[data-page-link]")];
+
+  const menu = document.querySelector(".menu-toggle");
+
+  const nav = document.querySelector(".nav-links");
+
+
+  function showPage(id, changeHash = true) {
+
+    const page = panels.find(p => p.id === id) || panels[0];
+
+    panels.forEach(p => {
+
+      p.hidden = p !== page;
+
+      p.classList.toggle("active", p === page);
+
+    });
+
+
+    links.forEach(a => {
+
+      const active = a.getAttribute("href") === "#" + page.id;
+
+      a.classList.toggle("selected", active);
+
+      if (active) {
+
+        a.setAttribute("aria-current", "page");
+
+      } else {
+
+        a.removeAttribute("aria-current");
+
+      }
+
+    });
+
+
+    if (changeHash) {
+
+      history.pushState(null, "", "#" + page.id);
+
+    }
+
+
+    nav.classList.remove("open");
+
+    menu.setAttribute("aria-expanded", "false");
+
+  }
+
+
+  links.forEach(a => {
+
+    a.addEventListener("click", e => {
+
+      const id = a.getAttribute("href").slice(1);
+
+      if (panels.some(p => p.id === id)) {
+
+        e.preventDefault();
+
+        showPage(id);
+
+      }
+
+    });
+
+  });
+
+
+  menu.addEventListener("click", () => {
+
+    const open = nav.classList.toggle("open");
+
+    menu.setAttribute("aria-expanded", String(open));
+
+  });
+
+
+  window.addEventListener("popstate", () => {
+
+    showPage(location.hash.slice(1) || "home", false);
+
+  });
+
+
+  showPage(location.hash.slice(1) || "home", false);
+
+</script>
+
 </body>
 </html>
