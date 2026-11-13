@@ -2,504 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mike Henson | Personal Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <title>Mike Henson | Personal Portfolio</title>
 
-:root {
-    --blue: #168cff;
-    --light-blue: #55b5ff;
-    --navy: #071326;
-    --panel: rgba(15, 35, 65, 0.88);
-    --text: #f4f8ff;
-    --muted: #a9bad2;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--text);
-    background:
-        radial-gradient(circle at 20% 20%, #123765 0, transparent 35%),
-        radial-gradient(circle at 85% 80%, #102c53 0, transparent 35%),
-        var(--navy);
-    min-height: 100vh;
-    overflow: hidden;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    opacity: .25;
-    background-image:
-        radial-gradient(white 1px, transparent 1px);
-    background-size: 55px 55px;
-}
-
-header {
-    height: 78px;
-    padding: 0 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(100, 170, 255, .15);
-    background: rgba(4, 15, 32, .75);
-    backdrop-filter: blur(15px);
-    position: relative;
-    z-index: 10;
-}
-
-.logo {
-    font-size: 23px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.logo span {
-    color: var(--light-blue);
-}
-
-nav {
-    display: flex;
-    gap: 25px;
-}
-
-nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: bold;
-    transition: .3s;
-    cursor: pointer;
-}
-
-nav a:hover,
-nav a.active {
-    color: var(--light-blue);
-}
-
-.menu-toggle {
-    display: none;
-    color: white;
-    font-size: 27px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-main {
-    position: relative;
-    z-index: 1;
-}
-
-.page-panel {
-    height: calc(100vh - 78px);
-    width: 100%;
-    padding: 45px 8%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    animation: fadeIn .4s ease;
-}
-
-.page-panel[hidden] {
-    display: none;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* HOME */
-
-.home-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 65px;
-    width: 100%;
-    max-width: 1150px;
-}
-
-.profile-container {
-    display: flex;
-    justify-content: center;
-}
-
-.profile-container img {
-    width: 100%;
-    max-width: 410px;
-    height: 480px;
-    object-fit: cover;
-    border-radius: 25px;
-    border: 2px solid rgba(75, 165, 255, .5);
-    box-shadow: 0 0 45px rgba(22, 140, 255, .2);
-}
-
-.home-text .small-heading {
-    color: var(--light-blue);
-    letter-spacing: 4px;
-    font-size: 13px;
-    margin-bottom: 18px;
-}
-
-.home-text h1 {
-    font-size: clamp(35px, 5vw, 62px);
-    line-height: 1.1;
-    margin-bottom: 15px;
-}
-
-.home-text h1 span {
-    color: var(--light-blue);
-}
-
-.home-text h2 {
-    font-size: 19px;
-    color: var(--muted);
-    font-weight: normal;
-    margin-bottom: 22px;
-}
-
-.home-text p {
-    color: var(--muted);
-    line-height: 1.8;
-    max-width: 480px;
-    margin-bottom: 30px;
-}
-
-.primary-button {
-    display: inline-block;
-    background: linear-gradient(100deg, #0877ed, #38adff);
-    color: white;
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.primary-button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(22, 140, 255, .35);
-}
-
-/* GENERAL PAGES */
-
-.content-wrapper {
-    width: 100%;
-    max-width: 1050px;
-    max-height: 100%;
-    overflow-y: auto;
-    padding: 10px 12px 25px;
-}
-
-.section-heading {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.section-heading span {
-    color: var(--light-blue);
-}
-
-.section-description {
-    color: var(--muted);
-    margin-bottom: 28px;
-    line-height: 1.6;
-}
-
-.info-card,
-.achievement-card,
-.project-card,
-.family-card {
-    background: var(--panel);
-    border: 1px solid rgba(75, 165, 255, .25);
-    border-radius: 15px;
-    padding: 23px;
-    transition: .3s;
-}
-
-.info-card:hover,
-.achievement-card:hover,
-.project-card:hover,
-.family-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--light-blue);
-    box-shadow: 0 0 20px rgba(22, 140, 255, .12);
-}
-
-/* PERSONAL INFO */
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 17px;
-}
-
-.info-card small {
-    color: var(--light-blue);
-    display: block;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
-}
-
-.info-card h3 {
-    font-size: 17px;
-}
-
-/* ACHIEVEMENTS */
-
-.achievement-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 17px;
-}
-
-.achievement-card {
-    display: flex;
-    gap: 15px;
-    align-items: flex-start;
-}
-
-.achievement-icon {
-    font-size: 30px;
-    min-width: 35px;
-}
-
-.achievement-category {
-    color: var(--light-blue);
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    font-weight: bold;
-}
-
-.achievement-card h3 {
-    margin: 9px 0;
-    font-size: 17px;
-}
-
-.achievement-card p {
-    color: var(--muted);
-    line-height: 1.6;
-    font-size: 13px;
-}
-
-.timeline {
-    border-left: 2px solid var(--blue);
-    margin: 15px 0 30px 8px;
-    padding-left: 25px;
-}
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 22px;
-}
-
-.timeline-item::before {
-    content: "";
-    position: absolute;
-    left: -32px;
-    top: 4px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--light-blue);
-    box-shadow: 0 0 12px var(--blue);
-}
-
-.timeline-item h3 {
-    font-size: 17px;
-    margin-bottom: 6px;
-}
-
-.timeline-item p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.year {
-    color: var(--light-blue);
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-/* PROJECTS */
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.project-card h3 {
-    margin: 12px 0;
-}
-
-.project-card p {
-    color: var(--muted);
-    line-height: 1.6;
-    font-size: 14px;
-    margin-bottom: 18px;
-}
-
-.project-icon {
-    font-size: 35px;
-}
-
-/* FAMILY */
-
-.family-card {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.family-card img {
-    width: 240px;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-.family-card p {
-    color: var(--muted);
-    line-height: 1.8;
-    margin-top: 12px;
-}
-
-/* CONTACT */
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.contact-card {
-    background: var(--panel);
-    border: 1px solid rgba(75, 165, 255, .25);
-    padding: 25px;
-    border-radius: 15px;
-}
-
-.contact-card h3 {
-    color: var(--light-blue);
-    margin-bottom: 12px;
-}
-
-.contact-card a {
-    color: white;
-    text-decoration: none;
-    overflow-wrap: anywhere;
-}
-
-.contact-card a:hover {
-    color: var(--light-blue);
-}
-
-footer {
-    color: #8295b0;
-    font-size: 11px;
-    text-align: center;
-    margin-top: 30px;
-}
-
-/* MOBILE */
-
-@media (max-width: 800px) {
-    header {
-        padding: 0 5%;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    nav {
-        display: none;
-        position: absolute;
-        top: 78px;
-        left: 0;
-        width: 100%;
-        background: #091a32;
-        padding: 22px;
-        flex-direction: column;
-        gap: 20px;
-        border-bottom: 1px solid rgba(100, 170, 255, .2);
-    }
-
-    nav.show {
-        display: flex;
-    }
-
-    .page-panel {
-        padding: 25px 5%;
-        height: calc(100vh - 78px);
-    }
-
-    .home-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        text-align: center;
-        overflow-y: auto;
-        max-height: 100%;
-    }
-
-    .profile-container img {
-        max-width: 220px;
-        height: 230px;
-    }
-
-    .home-text p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .home-text h1 {
-        font-size: 36px;
-    }
-
-    .section-heading {
-        font-size: 29px;
-    }
-
-    .achievement-list,
-    .info-grid,
-    .project-grid,
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .family-card {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .family-card img {
-        width: 190px;
-        height: 210px;
-    }
-}
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -523,18 +31,24 @@ footer {
 
 <main>
 
-    <!-- HOME -->
+    <!-- HOME PAGE -->
     <section class="page-panel" id="home">
+
         <div class="home-content">
 
             <div class="profile-container">
-                <img src="profile.png" alt="Mike Henson profile photo">
+                <img src="profile.jpg" alt="Mike Henson profile photo">
             </div>
 
             <div class="home-text">
-                <div class="small-heading">WELCOME TO MY PORTFOLIO</div>
 
-                <h1>Hello, I'm <span>Mike Henson</span></h1>
+                <div class="small-heading">
+                    WELCOME TO MY PORTFOLIO
+                </div>
+
+                <h1>
+                    Hello, I'm <span>Mike Henson</span>
+                </h1>
 
                 <h2>BS Information Technology Student</h2>
 
@@ -547,16 +61,22 @@ footer {
                 <button class="primary-button" onclick="showPage('personal')">
                     Explore My Profile →
                 </button>
+
             </div>
 
         </div>
+
     </section>
 
-    <!-- PERSONAL INFO -->
+
+    <!-- PERSONAL INFORMATION -->
     <section class="page-panel" id="personal" hidden>
+
         <div class="content-wrapper">
 
-            <h1 class="section-heading">Personal <span>Information</span></h1>
+            <h1 class="section-heading">
+                Personal <span>Information</span>
+            </h1>
 
             <p class="section-description">
                 Get to know more about my background and current studies.
@@ -605,20 +125,30 @@ footer {
                 </div>
 
             </div>
+
         </div>
+
     </section>
 
-    <!-- ACHIEVEMENTS AND EDUCATION -->
+
+    <!-- EDUCATION AND ACHIEVEMENTS -->
     <section class="page-panel" id="achievements" hidden>
+
         <div class="content-wrapper">
 
-            <h1 class="section-heading">Education & <span>Achievements</span></h1>
+            <h1 class="section-heading">
+                Education & <span>Achievements</span>
+            </h1>
 
             <p class="section-description">
                 My academic journey, recognitions, and community involvement.
             </p>
 
-            <h2 style="margin-bottom:20px;">Educational Journey</h2>
+
+            <!-- EDUCATIONAL TIMELINE -->
+            <h2 style="margin-bottom:20px;">
+                Educational Journey
+            </h2>
 
             <div class="timeline">
 
@@ -643,75 +173,118 @@ footer {
                 <div class="timeline-item">
                     <div class="year">2026 – Present</div>
                     <h3>Bachelor of Science in Information Technology</h3>
-                    <p>University of the Cordilleras – Network and Security Track</p>
+                    <p>
+                        University of the Cordilleras –
+                        Network and Security Track
+                    </p>
                 </div>
 
             </div>
 
-            <h2 style="margin-bottom:20px;">Recognitions & Accomplishments</h2>
+
+            <!-- RECOGNITIONS -->
+            <h2 style="margin-bottom:20px;">
+                Recognitions & Accomplishments
+            </h2>
 
             <div class="achievement-list">
 
                 <div class="achievement-card">
+
                     <div class="achievement-icon">🏅</div>
+
                     <div>
-                        <span class="achievement-category">ACADEMIC RECOGNITION</span>
+                        <span class="achievement-category">
+                            ACADEMIC RECOGNITION
+                        </span>
+
                         <h3>Junior High School Loyalty Award</h3>
+
                         <p>
                             Recognized for loyalty and continued attendance
                             throughout my junior high school journey.
                         </p>
                     </div>
+
                 </div>
 
+
                 <div class="achievement-card">
+
                     <div class="achievement-icon">🎓</div>
+
                     <div>
-                        <span class="achievement-category">ACADEMIC MILESTONE</span>
+                        <span class="achievement-category">
+                            ACADEMIC MILESTONE
+                        </span>
+
                         <h3>Senior High School STEM Graduate</h3>
+
                         <p>
                             Completed the Science, Technology, Engineering,
                             and Mathematics strand at the University of the Cordilleras.
                         </p>
                     </div>
+
                 </div>
 
+
                 <div class="achievement-card">
+
                     <div class="achievement-icon">❤️</div>
+
                     <div>
-                        <span class="achievement-category">COMMUNITY INVOLVEMENT</span>
+                        <span class="achievement-category">
+                            COMMUNITY INVOLVEMENT
+                        </span>
+
                         <h3>Philippine Red Cross Volunteer</h3>
+
                         <p>
                             Participated in humanitarian service and community
                             activities, demonstrating compassion, responsibility,
                             and commitment to helping others.
                         </p>
                     </div>
+
                 </div>
 
+
                 <div class="achievement-card">
+
                     <div class="achievement-icon">💻</div>
+
                     <div>
-                        <span class="achievement-category">TECHNICAL DEVELOPMENT</span>
+                        <span class="achievement-category">
+                            TECHNICAL DEVELOPMENT
+                        </span>
+
                         <h3>Personal Portfolio Website</h3>
+
                         <p>
                             Developed a personal portfolio website using
                             HTML, CSS, and JavaScript to present my background
                             and projects.
                         </p>
                     </div>
+
                 </div>
 
             </div>
 
         </div>
+
     </section>
+
 
     <!-- PROJECTS -->
     <section class="page-panel" id="projects" hidden>
+
         <div class="content-wrapper">
 
-            <h1 class="section-heading">My <span>Projects</span></h1>
+            <h1 class="section-heading">
+                My <span>Projects</span>
+            </h1>
 
             <p class="section-description">
                 A collection of projects and practical work from my learning journey.
@@ -720,41 +293,57 @@ footer {
             <div class="project-grid">
 
                 <div class="project-card">
+
                     <div class="project-icon">🤖</div>
+
                     <h3>Arduino Brush Bot</h3>
+
                     <p>
                         A prototype project that explores the use of Arduino
                         technology to create a small automated cleaning robot.
                     </p>
+
                     <a href="brushbot-project.pdf"
                        class="primary-button"
                        target="_blank">
                         View Project →
                     </a>
+
                 </div>
 
+
                 <div class="project-card">
+
                     <div class="project-icon">🌐</div>
+
                     <h3>Personal Portfolio Website</h3>
+
                     <p>
-                        A responsive personal website designed to showcase
-                        my personal information, education, achievements,
-                        and projects.
+                        A personal website designed to showcase my personal
+                        information, education, achievements, and projects.
                     </p>
+
                     <span style="color:#55b5ff;font-size:13px;">
                         HTML • CSS • JavaScript
                     </span>
+
                 </div>
 
             </div>
+
         </div>
+
     </section>
+
 
     <!-- FAMILY -->
     <section class="page-panel" id="family" hidden>
+
         <div class="content-wrapper">
 
-            <h1 class="section-heading">My <span>Family</span></h1>
+            <h1 class="section-heading">
+                My <span>Family</span>
+            </h1>
 
             <p class="section-description">
                 The person who continues to inspire and support me.
@@ -765,23 +354,32 @@ footer {
                 <img src="mother-graduation.jpg" alt="My mother">
 
                 <div>
+
                     <h2>My Mother</h2>
+
                     <p>
                         My mother is an important part of my life.
                         Her support, sacrifices, and guidance inspire me
                         to continue studying, work hard, and pursue my goals.
                     </p>
+
                 </div>
 
             </div>
+
         </div>
+
     </section>
+
 
     <!-- CONTACT -->
     <section class="page-panel" id="contact" hidden>
+
         <div class="content-wrapper">
 
-            <h1 class="section-heading">Get In <span>Touch</span></h1>
+            <h1 class="section-heading">
+                Get In <span>Touch</span>
+            </h1>
 
             <p class="section-description">
                 Feel free to connect with me through the following platforms.
@@ -790,18 +388,25 @@ footer {
             <div class="contact-grid">
 
                 <div class="contact-card">
+
                     <h3>📧 Email</h3>
+
                     <a href="mailto:mikehensona@gmail.com">
                         mikehensona@gmail.com
                     </a>
+
                 </div>
 
+
                 <div class="contact-card">
+
                     <h3>💻 GitHub</h3>
+
                     <a href="https://github.com/mikehenson-dev"
                        target="_blank">
                         github.com/mikehenson-dev
                     </a>
+
                 </div>
 
             </div>
@@ -811,63 +416,12 @@ footer {
             </footer>
 
         </div>
+
     </section>
 
 </main>
 
-<script>
-const pages = document.querySelectorAll(".page-panel");
-const navLinks = document.querySelectorAll("[data-page-link]");
-const navigation = document.getElementById("navigation");
-const menuToggle = document.getElementById("menuToggle");
-
-function showPage(pageId, updateHistory = true) {
-
-    const selectedPage = document.getElementById(pageId);
-
-    if (!selectedPage) {
-        return;
-    }
-
-    pages.forEach(page => {
-        page.hidden = page.id !== pageId;
-    });
-
-    navLinks.forEach(link => {
-        link.classList.toggle(
-            "active",
-            link.dataset.pageLink === pageId
-        );
-    });
-
-    navigation.classList.remove("show");
-
-    if (updateHistory) {
-        history.pushState(null, "", "#" + pageId);
-    }
-}
-
-navLinks.forEach(link => {
-    link.addEventListener("click", function(event) {
-        event.preventDefault();
-        showPage(this.dataset.pageLink);
-    });
-});
-
-menuToggle.addEventListener("click", function() {
-    navigation.classList.toggle("show");
-});
-
-window.addEventListener("popstate", function() {
-    const pageId = location.hash.replace("#", "") || "home";
-    showPage(pageId, false);
-});
-
-window.addEventListener("load", function() {
-    const pageId = location.hash.replace("#", "") || "home";
-    showPage(pageId, false);
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
