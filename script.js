@@ -1,134 +1,78 @@
 
-// PAGE NAVIGATION
+// Get all website pages and navigation links
+const pages = document.querySelectorAll(".page-panel");
+const navLinks = document.querySelectorAll("[data-page-link]");
 
-const pages = document.querySelectorAll(".page");
-const navLinks = document.querySelectorAll("nav a[data-page]");
 const navigation = document.getElementById("navigation");
-const menuToggle = document.getElementById("menu-toggle");
+const menuToggle = document.getElementById("menuToggle");
 
-function showPage(pageId) {
-    const targetPage = document.getElementById(pageId);
+// Function to switch pages
+function showPage(pageId, updateHistory = true) {
 
-    if (!targetPage) return;
+    const selectedPage = document.getElementById(pageId);
 
+    if (!selectedPage) {
+        return;
+    }
+
+    // Hide all pages except the selected one
     pages.forEach(page => {
-        page.classList.remove("active");
+        page.hidden = page.id !== pageId;
     });
 
-    targetPage.classList.add("active");
-
+    // Update active navigation link
     navLinks.forEach(link => {
         link.classList.toggle(
             "active",
-            link.dataset.page === pageId
+            link.dataset.pageLink === pageId
         );
     });
 
-    navigation.classList.remove("open");
-    window.location.hash = pageId;
+    // Close mobile navigation
+    navigation.classList.remove("show");
 
-    targetPage.scrollTop = 0;
+    // Update website URL
+    if (updateHistory) {
+        history.pushState(null, "", "#" + pageId);
+    }
 }
 
-// Navigation links
+// Navigation button clicks
 navLinks.forEach(link => {
-    link.addEventListener("click", event => {
+
+    link.addEventListener("click", function(event) {
+
         event.preventDefault();
-        showPage(link.dataset.page);
-    });
-});
 
-// Buttons that navigate to other pages
-document.querySelectorAll("[data-target]").forEach(button => {
-    button.addEventListener("click", () => {
-        showPage(button.dataset.target);
-    });
-});
+        const pageId = this.dataset.pageLink;
 
-// Mobile navigation
-menuToggle.addEventListener("click", () => {
-    navigation.classList.toggle("open");
-});
+        showPage(pageId);
 
-// Logo returns to home
-document.querySelector(".logo").addEventListener("click", event => {
-    event.preventDefault();
-    showPage("home");
-});
-
-// Load the page from the URL hash
-function loadPageFromHash() {
-    const pageId = window.location.hash.replace("#", "");
-    showPage(
-        document.getElementById(pageId) ? pageId : "home"
-    );
-}
-
-window.addEventListener("hashchange", loadPageFromHash);
-
-
-// EDUCATION CAROUSEL
-
-const educationSlides = document.querySelectorAll(".education-slide");
-const previousButton = document.getElementById("edu-prev");
-const nextButton = document.getElementById("edu-next");
-const educationNumber = document.getElementById("edu-number");
-
-let currentEducation = 0;
-
-function showEducation(index) {
-    if (educationSlides.length === 0) return;
-
-    if (index < 0) {
-        currentEducation = educationSlides.length - 1;
-    } else if (index >= educationSlides.length) {
-        currentEducation = 0;
-    } else {
-        currentEducation = index;
-    }
-
-    educationSlides.forEach((slide, slideIndex) => {
-        slide.classList.toggle(
-            "active",
-            slideIndex === currentEducation
-        );
     });
 
-    const current = String(currentEducation + 1).padStart(2, "0");
-    const total = String(educationSlides.length).padStart(2, "0");
-
-    educationNumber.textContent = `${current} / ${total}`;
-}
-
-previousButton.addEventListener("click", () => {
-    showEducation(currentEducation - 1);
 });
 
-nextButton.addEventListener("click", () => {
-    showEducation(currentEducation + 1);
+// Mobile menu
+menuToggle.addEventListener("click", function() {
+
+    navigation.classList.toggle("show");
+
 });
 
-showEducation(0);
+// Browser back and forward buttons
+window.addEventListener("popstate", function() {
 
+    const pageId = location.hash.replace("#", "") || "home";
 
-// KEYBOARD NAVIGATION
+    showPage(pageId, false);
 
-document.addEventListener("keydown", event => {
-    if (event.key === "ArrowRight") {
-        const activePage = document.querySelector(".page.active");
-        if (activePage && activePage.id === "education") {
-            showEducation(currentEducation + 1);
-        }
-    }
+});
 
-    if (event.key === "ArrowLeft") {
-        const activePage = document.querySelector(".page.active");
-        if (activePage && activePage.id === "education") {
-            showEducation(currentEducation - 1);
-        }
-    }
+// Load the correct page
+window.addEventListener("DOMContentLoaded", function() {
 
-    if (event.key === "Escape") {
-        navigation.classList.remove("open");
-    }
+    const pageId = location.hash.replace("#", "") || "home";
+
+    showPage(pageId, false);
+
 });
