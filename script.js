@@ -1,27 +1,24 @@
 
-// Get all website pages and navigation links
 const pages = document.querySelectorAll(".page-panel");
 const navLinks = document.querySelectorAll("[data-page-link]");
 
 const navigation = document.getElementById("navigation");
 const menuToggle = document.getElementById("menuToggle");
 
-// Function to switch pages
 function showPage(pageId, updateHistory = true) {
-
     const selectedPage = document.getElementById(pageId);
 
-    if (!selectedPage) {
+    if (!selectedPage || !selectedPage.classList.contains("page-panel")) {
         return;
     }
 
-    // Hide all pages except the selected one
-    pages.forEach(page => {
+    // Hide all pages except the selected page
+    pages.forEach((page) => {
         page.hidden = page.id !== pageId;
     });
 
     // Update active navigation link
-    navLinks.forEach(link => {
+    navLinks.forEach((link) => {
         link.classList.toggle(
             "active",
             link.dataset.pageLink === pageId
@@ -31,48 +28,48 @@ function showPage(pageId, updateHistory = true) {
     // Close mobile navigation
     navigation.classList.remove("show");
 
-    // Update website URL
-    if (updateHistory) {
+    // Update browser URL
+    if (updateHistory && location.hash !== "#" + pageId) {
         history.pushState(null, "", "#" + pageId);
     }
+
+    // Return selected page to the top
+    selectedPage.scrollTop = 0;
 }
 
-// Navigation button clicks
-navLinks.forEach(link => {
 
+// Navigation links
+navLinks.forEach((link) => {
     link.addEventListener("click", function(event) {
-
         event.preventDefault();
 
         const pageId = this.dataset.pageLink;
-
         showPage(pageId);
-
     });
-
 });
+
+
+// Buttons that navigate to another page
+document.querySelectorAll("[data-go-to]").forEach((button) => {
+    button.addEventListener("click", function() {
+        showPage(this.dataset.goTo);
+    });
+});
+
 
 // Mobile menu
 menuToggle.addEventListener("click", function() {
-
     navigation.classList.toggle("show");
-
 });
+
 
 // Browser back and forward buttons
 window.addEventListener("popstate", function() {
-
     const pageId = location.hash.replace("#", "") || "home";
-
     showPage(pageId, false);
-
 });
 
-// Load the correct page
-window.addEventListener("DOMContentLoaded", function() {
 
-    const pageId = location.hash.replace("#", "") || "home";
-
-    showPage(pageId, false);
-
-});
+// Open the correct page when website loads
+const initialPage = location.hash.replace("#", "") || "home";
+showPage(initialPage, false);
