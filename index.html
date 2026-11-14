@@ -4,424 +4,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Mike Henson | Personal Portfolio</title>
-
+    <title>Mike Henson Arcalas | Personal Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-    <div class="logo">MIKE<span>.</span></div>
+    <header class="header">
+        <a href="#home" class="logo" data-page-link="home">
+            MH<span>.</span>
+        </a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-        ☰
-    </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            ☰
+        </button>
 
-    <nav id="navigation">
-        <a href="#home" class="active" data-page-link="home">Home</a>
-        <a href="#personal" data-page-link="personal">Personal Info</a>
-        <a href="#achievements" data-page-link="achievements">Achievements</a>
-        <a href="#projects" data-page-link="projects">Projects</a>
-        <a href="#family" data-page-link="family">Family</a>
-        <a href="#contact" data-page-link="contact">Contact</a>
-    </nav>
-</header>
+        <nav class="navigation" id="navigation">
+            <a href="#home" data-page-link="home" class="active">Home</a>
+            <a href="#personal" data-page-link="personal">About Me</a>
+            <a href="#education" data-page-link="education">Education & Achievements</a>
+            <a href="#projects" data-page-link="projects">Projects</a>
+            <a href="#family" data-page-link="family">Family</a>
+            <a href="#contact" data-page-link="contact">Contact</a>
+        </nav>
+    </header>
 
-<main>
+    <main>
 
-    <!-- HOME PAGE -->
-    <section class="page-panel" id="home">
+        <!-- HOME PAGE -->
+        <section id="home" class="page-panel home-page">
+            <div class="home-content">
 
-        <div class="home-content">
+                <div class="home-text">
+                    <p class="intro">WELCOME TO MY PERSONAL PORTFOLIO</p>
 
-            <div class="profile-container">
-                <img src="profile.jpg" alt="Mike Henson profile photo">
-            </div>
+                    <h1>Hi, I'm <span>Mike Henson</span></h1>
 
-            <div class="home-text">
+                    <h2>BS Information Technology Student</h2>
 
-                <div class="small-heading">
-                    WELCOME TO MY PORTFOLIO
-                </div>
-
-                <h1>
-                    Hello, I'm <span>Mike Henson</span>
-                </h1>
-
-                <h2>BS Information Technology Student</h2>
-
-                <p>
-                    I am an aspiring IT professional interested in technology,
-                    innovation, and continuous learning. This portfolio presents
-                    my background, educational journey, achievements, and projects.
-                </p>
-
-                <button class="primary-button" onclick="showPage('personal')">
-                    Explore My Profile →
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PERSONAL INFORMATION -->
-    <section class="page-panel" id="personal" hidden>
-
-        <div class="content-wrapper">
-
-            <h1 class="section-heading">
-                Personal <span>Information</span>
-            </h1>
-
-            <p class="section-description">
-                Get to know more about my background and current studies.
-            </p>
-
-            <div class="info-grid">
-
-                <div class="info-card">
-                    <small>FULL NAME</small>
-                    <h3>Mike Henson Arcalas</h3>
-                </div>
-
-                <div class="info-card">
-                    <small>BIRTHDATE</small>
-                    <h3>November 25, 2007</h3>
-                </div>
-
-                <div class="info-card">
-                    <small>NATIONALITY</small>
-                    <h3>Filipino</h3>
-                </div>
-
-                <div class="info-card">
-                    <small>LOCATION</small>
-                    <h3>Baguio City, Philippines</h3>
-                </div>
-
-                <div class="info-card">
-                    <small>UNIVERSITY</small>
-                    <h3>University of the Cordilleras</h3>
-                </div>
-
-                <div class="info-card">
-                    <small>COURSE</small>
-                    <h3>BS Information Technology</h3>
-                </div>
-
-                <div class="info-card">
-                    <small>SPECIALIZATION</small>
-                    <h3>Network and Security</h3>
-                </div>
-
-                <div class="info-card">
-                    <small>EMAIL ADDRESS</small>
-                    <h3>mikehensona@gmail.com</h3>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- EDUCATION AND ACHIEVEMENTS -->
-    <section class="page-panel" id="achievements" hidden>
-
-        <div class="content-wrapper">
-
-            <h1 class="section-heading">
-                Education & <span>Achievements</span>
-            </h1>
-
-            <p class="section-description">
-                My academic journey, recognitions, and community involvement.
-            </p>
-
-
-            <!-- EDUCATIONAL TIMELINE -->
-            <h2 style="margin-bottom:20px;">
-                Educational Journey
-            </h2>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <div class="year">2014 – 2020</div>
-                    <h3>Elementary Education</h3>
-                    <p>San Vicente Elementary School</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">2020 – 2024</div>
-                    <h3>Junior High School</h3>
-                    <p>San Vicente National High School</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">2024 – 2026</div>
-                    <h3>Senior High School – STEM</h3>
-                    <p>University of the Cordilleras</p>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="year">2026 – Present</div>
-                    <h3>Bachelor of Science in Information Technology</h3>
-                    <p>
-                        University of the Cordilleras –
-                        Network and Security Track
+                    <p class="description">
+                        A student passionate about technology, creativity,
+                        and learning new things. Explore my journey,
+                        achievements, and projects.
                     </p>
+
+                    <button class="primary-btn" data-go-to="personal">
+                        Explore My Profile <span>→</span>
+                    </button>
+                </div>
+
+                <div class="profile-container">
+                    <div class="profile-glow"></div>
+                    <img src="profile.jpg" alt="Mike Henson profile photo">
                 </div>
 
             </div>
+        </section>
 
 
-            <!-- RECOGNITIONS -->
-            <h2 style="margin-bottom:20px;">
-                Recognitions & Accomplishments
-            </h2>
+        <!-- ABOUT ME PAGE -->
+        <section id="personal" class="page-panel" hidden>
+            <div class="section-heading">
+                <p class="intro">GET TO KNOW ME</p>
+                <h1>About <span>Me</span></h1>
+                <p>Personal information and background</p>
+            </div>
 
-            <div class="achievement-list">
-
-                <div class="achievement-card">
-
-                    <div class="achievement-icon">🏅</div>
-
-                    <div>
-                        <span class="achievement-category">
-                            ACADEMIC RECOGNITION
-                        </span>
-
-                        <h3>Junior High School Loyalty Award</h3>
-
-                        <p>
-                            Recognized for loyalty and continued attendance
-                            throughout my junior high school journey.
-                        </p>
+            <div class="about-card">
+                <div class="about-details">
+                    <div class="detail-item">
+                        <span>Full Name</span>
+                        <h3>Mike Henson Arcalas</h3>
                     </div>
 
+                    <div class="detail-item">
+                        <span>Birthdate</span>
+                        <h3>November 25, 2007</h3>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Location</span>
+                        <h3>Baguio City, Philippines</h3>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>University</span>
+                        <h3>University of the Cordilleras</h3>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Course</span>
+                        <h3>BS Information Technology</h3>
+                    </div>
+
+                    <div class="detail-item">
+                        <span>Specialization</span>
+                        <h3>Network and Security</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- EDUCATION AND ACHIEVEMENTS PAGE -->
+        <section id="education" class="page-panel" hidden>
+            <div class="section-heading">
+                <p class="intro">MY ACADEMIC JOURNEY</p>
+                <h1>Education <span>& Achievements</span></h1>
+                <p>My educational background and accomplishments</p>
+            </div>
+
+            <div class="education-achievements">
+
+                <!-- LEFT COLUMN: EDUCATION -->
+                <div class="info-column">
+                    <h2>Education</h2>
+
+                    <div class="info-card">
+                        <span class="card-number">01</span>
+                        <h3>Elementary</h3>
+                        <p>San Vicente Elementary School</p>
+                        <span class="year">2014 – 2020</span>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="card-number">02</span>
+                        <h3>Junior High School</h3>
+                        <p>San Vicente National High School</p>
+                        <span class="year">2020 – 2024</span>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="card-number">03</span>
+                        <h3>Senior High School</h3>
+                        <p>University of the Cordilleras – STEM</p>
+                        <span class="year">2024 – 2026</span>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="card-number">04</span>
+                        <h3>College</h3>
+                        <p>University of the Cordilleras</p>
+                        <span class="year">BSIT – Network and Security</span>
+                        <span class="year">2026 – Present</span>
+                    </div>
                 </div>
 
 
-                <div class="achievement-card">
+                <!-- RIGHT COLUMN: ACHIEVEMENTS -->
+                <div class="info-column">
+                    <h2>Achievements</h2>
 
-                    <div class="achievement-icon">🎓</div>
-
-                    <div>
-                        <span class="achievement-category">
-                            ACADEMIC MILESTONE
-                        </span>
-
-                        <h3>Senior High School STEM Graduate</h3>
-
-                        <p>
-                            Completed the Science, Technology, Engineering,
-                            and Mathematics strand at the University of the Cordilleras.
-                        </p>
+                    <div class="info-card achievement-card">
+                        <span class="achievement-icon">🏆</span>
+                        <h3>Loyalty Award</h3>
+                        <p>Recognized for loyalty and dedication during Junior High School.</p>
+                        <span class="year">Junior High School</span>
                     </div>
 
-                </div>
+                    <div class="info-card achievement-card">
+                        <span class="achievement-icon">🎓</span>
+                        <h3>STEM Graduate</h3>
+                        <p>Successfully completed the Science, Technology, Engineering, and Mathematics strand.</p>
+                        <span class="year">2026</span>
+                    </div>
 
-
-                <div class="achievement-card">
-
-                    <div class="achievement-icon">❤️</div>
-
-                    <div>
-                        <span class="achievement-category">
-                            COMMUNITY INVOLVEMENT
-                        </span>
-
+                    <div class="info-card achievement-card">
+                        <span class="achievement-icon">❤️</span>
                         <h3>Philippine Red Cross Volunteer</h3>
-
-                        <p>
-                            Participated in humanitarian service and community
-                            activities, demonstrating compassion, responsibility,
-                            and commitment to helping others.
-                        </p>
+                        <p>Humanitarian service and community activities.</p>
                     </div>
 
-                </div>
-
-
-                <div class="achievement-card">
-
-                    <div class="achievement-icon">💻</div>
-
-                    <div>
-                        <span class="achievement-category">
-                            TECHNICAL DEVELOPMENT
-                        </span>
-
+                    <div class="info-card achievement-card">
+                        <span class="achievement-icon">💻</span>
                         <h3>Personal Portfolio Website</h3>
-
-                        <p>
-                            Developed a personal portfolio website using
-                            HTML, CSS, and JavaScript to present my background
-                            and projects.
-                        </p>
+                        <p>Designed and developed my own personal website.</p>
                     </div>
-
                 </div>
 
             </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- PROJECTS -->
-    <section class="page-panel" id="projects" hidden>
-
-        <div class="content-wrapper">
-
-            <h1 class="section-heading">
-                My <span>Projects</span>
-            </h1>
-
-            <p class="section-description">
-                A collection of projects and practical work from my learning journey.
-            </p>
+        <!-- PROJECTS PAGE -->
+        <section id="projects" class="page-panel" hidden>
+            <div class="section-heading">
+                <p class="intro">MY WORK</p>
+                <h1>My <span>Projects</span></h1>
+                <p>Some of the projects I have worked on</p>
+            </div>
 
             <div class="project-grid">
 
                 <div class="project-card">
-
                     <div class="project-icon">🤖</div>
-
-                    <h3>Arduino Brush Bot</h3>
-
+                    <h2>Arduino Brush Bot</h2>
                     <p>
-                        A prototype project that explores the use of Arduino
-                        technology to create a small automated cleaning robot.
+                        A prototype cleaning robot developed using Arduino
+                        as part of a school project.
                     </p>
-
-                    <a href="brushbot-project.pdf"
-                       class="primary-button"
-                       target="_blank">
-                        View Project →
+                    <a href="brushbot-project.pdf" target="_blank" class="project-link">
+                        View Project PDF →
                     </a>
-
                 </div>
-
 
                 <div class="project-card">
-
                     <div class="project-icon">🌐</div>
-
-                    <h3>Personal Portfolio Website</h3>
-
+                    <h2>Personal Portfolio Website</h2>
                     <p>
-                        A personal website designed to showcase my personal
-                        information, education, achievements, and projects.
+                        A personal website showcasing my background,
+                        education, achievements, and projects.
                     </p>
-
-                    <span style="color:#55b5ff;font-size:13px;">
-                        HTML • CSS • JavaScript
-                    </span>
-
+                    <span class="project-link">HTML · CSS · JavaScript</span>
                 </div>
 
             </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- FAMILY -->
-    <section class="page-panel" id="family" hidden>
-
-        <div class="content-wrapper">
-
-            <h1 class="section-heading">
-                My <span>Family</span>
-            </h1>
-
-            <p class="section-description">
-                The person who continues to inspire and support me.
-            </p>
+        <!-- FAMILY PAGE -->
+        <section id="family" class="page-panel" hidden>
+            <div class="section-heading">
+                <p class="intro">MY INSPIRATION</p>
+                <h1>My <span>Family</span></h1>
+                <p>The person who continues to inspire and support me</p>
+            </div>
 
             <div class="family-card">
-
-                <img src="mother-graduation.jpg" alt="My mother">
-
-                <div>
-
-                    <h2>My Mother</h2>
-
-                    <p>
-                        My mother is an important part of my life.
-                        Her support, sacrifices, and guidance inspire me
-                        to continue studying, work hard, and pursue my goals.
-                    </p>
-
+                <div class="family-image">
+                    <img src="mother-graduation.jpg" alt="My mother">
                 </div>
 
+                <div class="family-text">
+                    <h2>My Mother</h2>
+                    <p>
+                        My mother is an important part of my life.
+                        Her support, sacrifices, and guidance inspire
+                        me to work hard and pursue my goals.
+                    </p>
+                </div>
             </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- CONTACT -->
-    <section class="page-panel" id="contact" hidden>
-
-        <div class="content-wrapper">
-
-            <h1 class="section-heading">
-                Get In <span>Touch</span>
-            </h1>
-
-            <p class="section-description">
-                Feel free to connect with me through the following platforms.
-            </p>
+        <!-- CONTACT PAGE -->
+        <section id="contact" class="page-panel" hidden>
+            <div class="section-heading">
+                <p class="intro">LET'S CONNECT</p>
+                <h1>Contact <span>Me</span></h1>
+                <p>Feel free to reach out through the following platforms</p>
+            </div>
 
             <div class="contact-grid">
 
                 <div class="contact-card">
-
-                    <h3>📧 Email</h3>
-
+                    <span>✉️</span>
+                    <h3>Email</h3>
                     <a href="mailto:mikehensona@gmail.com">
                         mikehensona@gmail.com
                     </a>
-
                 </div>
 
-
                 <div class="contact-card">
-
-                    <h3>💻 GitHub</h3>
-
-                    <a href="https://github.com/mikehenson-dev"
-                       target="_blank">
-                        github.com/mikehenson-dev
+                    <span>💻</span>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/mikehenson-dev" target="_blank">
+                        Visit My GitHub
                     </a>
-
                 </div>
 
             </div>
+        </section>
 
-            <footer>
-                © 2026 Mike Henson Arcalas. All Rights Reserved.
-            </footer>
+    </main>
 
-        </div>
+    <footer>
+        <p>© 2026 Mike Henson Arcalas. All Rights Reserved.</p>
+    </footer>
 
-    </section>
-
-</main>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
