@@ -4,73 +4,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050b18">
     <title>Mike Henson Arcalas | Personal Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+    <!-- HEADER -->
     <header class="header">
+
         <a href="#home" class="logo" data-page-link="home">
             MH<span>.</span>
         </a>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <button class="menu-toggle" id="menuToggle"
+            aria-label="Toggle navigation">
             ☰
         </button>
 
         <nav class="navigation" id="navigation">
             <a href="#home" data-page-link="home" class="active">Home</a>
-            <a href="#personal" data-page-link="personal">About Me</a>
+            <a href="#personal" data-page-link="personal">Personal Info</a>
             <a href="#education" data-page-link="education">Education & Achievements</a>
             <a href="#projects" data-page-link="projects">Projects</a>
             <a href="#family" data-page-link="family">Family</a>
             <a href="#contact" data-page-link="contact">Contact</a>
         </nav>
+
     </header>
 
+
+    <!-- MAIN CONTENT -->
     <main>
 
-        <!-- HOME PAGE -->
+        <!-- HOME -->
         <section id="home" class="page-panel home-page">
+
             <div class="home-content">
 
                 <div class="home-text">
+
                     <p class="intro">WELCOME TO MY PERSONAL PORTFOLIO</p>
 
-                    <h1>Hi, I'm <span>Mike Henson</span></h1>
+                    <h1>
+                        Hi, I'm <span>Mike Henson</span>
+                    </h1>
 
                     <h2>BS Information Technology Student</h2>
 
                     <p class="description">
                         A student passionate about technology, creativity,
                         and learning new things. Explore my journey,
-                        achievements, and projects.
+                        educational background, achievements, and projects.
                     </p>
 
                     <button class="primary-btn" data-go-to="personal">
                         Explore My Profile <span>→</span>
                     </button>
+
                 </div>
 
                 <div class="profile-container">
+
                     <div class="profile-glow"></div>
-                    <img src="profile.jpg" alt="Mike Henson profile photo">
+
+                    <img src="profile.jpg"
+                        alt="Mike Henson profile photo">
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- ABOUT ME PAGE -->
+        <!-- PERSONAL INFO -->
         <section id="personal" class="page-panel" hidden>
+
             <div class="section-heading">
+
                 <p class="intro">GET TO KNOW ME</p>
-                <h1>About <span>Me</span></h1>
-                <p>Personal information and background</p>
+
+                <h1>Personal <span>Information</span></h1>
+
+                <p>Learn more about my background and identity.</p>
+
             </div>
 
             <div class="about-card">
+
                 <div class="about-details">
+
                     <div class="detail-item">
                         <span>Full Name</span>
                         <h3>Mike Henson Arcalas</h3>
@@ -100,187 +125,317 @@
                         <span>Specialization</span>
                         <h3>Network and Security</h3>
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
 
-        <!-- EDUCATION AND ACHIEVEMENTS PAGE -->
-        <section id="education" class="page-panel" hidden>
-            <div class="section-heading">
+        <!-- EDUCATION AND ACHIEVEMENTS -->
+        <section id="education" class="page-panel education-page" hidden>
+
+            <div class="section-heading compact-heading">
+
                 <p class="intro">MY ACADEMIC JOURNEY</p>
+
                 <h1>Education <span>& Achievements</span></h1>
+
                 <p>My educational background and accomplishments</p>
+
             </div>
+
 
             <div class="education-achievements">
 
                 <!-- LEFT COLUMN: EDUCATION -->
                 <div class="info-column">
+
                     <h2>Education</h2>
 
-                    <div class="info-card">
+                    <div class="info-card education-card">
+
                         <span class="card-number">01</span>
+
                         <h3>Elementary</h3>
+
                         <p>San Vicente Elementary School</p>
+
                         <span class="year">2014 – 2020</span>
+
                     </div>
 
-                    <div class="info-card">
+
+                    <div class="info-card education-card">
+
                         <span class="card-number">02</span>
+
                         <h3>Junior High School</h3>
+
                         <p>San Vicente National High School</p>
+
                         <span class="year">2020 – 2024</span>
+
                     </div>
 
-                    <div class="info-card">
+
+                    <div class="info-card education-card">
+
                         <span class="card-number">03</span>
+
                         <h3>Senior High School</h3>
+
                         <p>University of the Cordilleras – STEM</p>
+
                         <span class="year">2024 – 2026</span>
+
                     </div>
 
-                    <div class="info-card">
+
+                    <div class="info-card education-card">
+
                         <span class="card-number">04</span>
+
                         <h3>College</h3>
+
                         <p>University of the Cordilleras</p>
+
                         <span class="year">BSIT – Network and Security</span>
+
                         <span class="year">2026 – Present</span>
+
                     </div>
+
                 </div>
 
 
                 <!-- RIGHT COLUMN: ACHIEVEMENTS -->
                 <div class="info-column">
+
                     <h2>Achievements</h2>
 
                     <div class="info-card achievement-card">
+
                         <span class="achievement-icon">🏆</span>
+
                         <h3>Loyalty Award</h3>
-                        <p>Recognized for loyalty and dedication during Junior High School.</p>
-                        <span class="year">Junior High School</span>
+
+                        <p>
+                            Recognized for loyalty and dedication
+                            during Junior High School.
+                        </p>
+
                     </div>
 
+
                     <div class="info-card achievement-card">
+
                         <span class="achievement-icon">🎓</span>
+
                         <h3>STEM Graduate</h3>
-                        <p>Successfully completed the Science, Technology, Engineering, and Mathematics strand.</p>
+
+                        <p>
+                            Successfully completed the Science,
+                            Technology, Engineering, and Mathematics strand.
+                        </p>
+
                         <span class="year">2026</span>
+
                     </div>
 
+
                     <div class="info-card achievement-card">
+
                         <span class="achievement-icon">❤️</span>
+
                         <h3>Philippine Red Cross Volunteer</h3>
-                        <p>Humanitarian service and community activities.</p>
+
+                        <p>
+                            Humanitarian service and community activities.
+                        </p>
+
                     </div>
 
+
                     <div class="info-card achievement-card">
+
                         <span class="achievement-icon">💻</span>
+
                         <h3>Personal Portfolio Website</h3>
-                        <p>Designed and developed my own personal website.</p>
+
+                        <p>
+                            Designed and developed my own personal website.
+                        </p>
+
                     </div>
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- PROJECTS PAGE -->
+        <!-- PROJECTS -->
         <section id="projects" class="page-panel" hidden>
+
             <div class="section-heading">
+
                 <p class="intro">MY WORK</p>
+
                 <h1>My <span>Projects</span></h1>
-                <p>Some of the projects I have worked on</p>
+
+                <p>Some of the projects I have worked on.</p>
+
             </div>
+
 
             <div class="project-grid">
 
                 <div class="project-card">
+
                     <div class="project-icon">🤖</div>
+
                     <h2>Arduino Brush Bot</h2>
+
                     <p>
                         A prototype cleaning robot developed using Arduino
                         as part of a school project.
                     </p>
-                    <a href="brushbot-project.pdf" target="_blank" class="project-link">
+
+                    <a href="brushbot-project.pdf"
+                        target="_blank"
+                        rel="noopener"
+                        class="project-link">
                         View Project PDF →
                     </a>
+
                 </div>
 
+
                 <div class="project-card">
+
                     <div class="project-icon">🌐</div>
+
                     <h2>Personal Portfolio Website</h2>
+
                     <p>
                         A personal website showcasing my background,
                         education, achievements, and projects.
                     </p>
-                    <span class="project-link">HTML · CSS · JavaScript</span>
+
+                    <span class="project-link">
+                        HTML · CSS · JavaScript
+                    </span>
+
                 </div>
 
             </div>
+
         </section>
 
 
-        <!-- FAMILY PAGE -->
+        <!-- FAMILY -->
         <section id="family" class="page-panel" hidden>
+
             <div class="section-heading">
+
                 <p class="intro">MY INSPIRATION</p>
+
                 <h1>My <span>Family</span></h1>
-                <p>The person who continues to inspire and support me</p>
+
+                <p>The person who inspires and supports me.</p>
+
             </div>
 
+
             <div class="family-card">
+
                 <div class="family-image">
-                    <img src="mother-graduation.jpg" alt="My mother">
+
+                    <img src="mother-graduation.jpg"
+                        alt="My mother">
+
                 </div>
 
+
                 <div class="family-text">
+
                     <h2>My Mother</h2>
+
                     <p>
                         My mother is an important part of my life.
                         Her support, sacrifices, and guidance inspire
                         me to work hard and pursue my goals.
                     </p>
+
                 </div>
+
             </div>
+
         </section>
 
 
-        <!-- CONTACT PAGE -->
+        <!-- CONTACT -->
         <section id="contact" class="page-panel" hidden>
+
             <div class="section-heading">
+
                 <p class="intro">LET'S CONNECT</p>
+
                 <h1>Contact <span>Me</span></h1>
-                <p>Feel free to reach out through the following platforms</p>
+
+                <p>Feel free to reach out through the following platforms.</p>
+
             </div>
+
 
             <div class="contact-grid">
 
                 <div class="contact-card">
+
                     <span>✉️</span>
+
                     <h3>Email</h3>
+
                     <a href="mailto:mikehensona@gmail.com">
                         mikehensona@gmail.com
                     </a>
+
                 </div>
 
+
                 <div class="contact-card">
+
                     <span>💻</span>
+
                     <h3>GitHub</h3>
-                    <a href="https://github.com/mikehenson-dev" target="_blank">
+
+                    <a href="https://github.com/mikehenson-dev"
+                        target="_blank"
+                        rel="noopener">
                         Visit My GitHub
                     </a>
+
                 </div>
 
             </div>
+
         </section>
 
     </main>
 
+
+    <!-- FOOTER -->
     <footer>
+
         <p>© 2026 Mike Henson Arcalas. All Rights Reserved.</p>
+
     </footer>
 
+
     <script src="script.js"></script>
+
 </body>
 </html>
