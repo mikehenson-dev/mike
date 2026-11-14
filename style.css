@@ -1,6 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+
+/* =========================
+   GLOBAL SETTINGS
+========================= */
+
 :root {
     --background: #050b18;
     --card: #0b1830;
@@ -25,25 +30,34 @@ body {
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     color: var(--white);
+
     background:
         radial-gradient(circle at 15% 20%, #102b52 0%, transparent 35%),
         radial-gradient(circle at 85% 80%, #071c3a 0%, transparent 35%),
         var(--background);
+
     overflow: hidden;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 .header {
     width: 100%;
-    height: 80px;
-    padding: 0 7%;
+    height: 75px;
+    padding: 0 6%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     position: relative;
     z-index: 10;
+
     border-bottom: 1px solid rgba(84, 181, 255, 0.12);
+
     background: rgba(5, 11, 24, 0.85);
     backdrop-filter: blur(15px);
 }
@@ -63,13 +77,13 @@ body {
 .navigation {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 22px;
 }
 
 .navigation a {
     color: var(--muted);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     transition: 0.3s;
 }
@@ -88,19 +102,22 @@ body {
     cursor: pointer;
 }
 
-/* MAIN PAGE SYSTEM */
+
+/* =========================
+   MAIN PAGE SYSTEM
+========================= */
 
 main {
-    height: calc(100vh - 125px);
+    height: calc(100vh - 120px);
     position: relative;
 }
 
 .page-panel {
     width: 100%;
     height: 100%;
-    padding: 35px 7%;
+    padding: 30px 6%;
     overflow-y: auto;
-    animation: fadeIn 0.5s ease;
+    animation: fadeIn 0.45s ease;
 }
 
 .page-panel[hidden] {
@@ -112,13 +129,17 @@ main {
         opacity: 0;
         transform: translateY(12px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* HOME */
+
+/* =========================
+   HOME PAGE
+========================= */
 
 .home-page {
     display: flex;
@@ -129,6 +150,7 @@ main {
 .home-content {
     width: 100%;
     max-width: 1100px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -141,7 +163,7 @@ main {
 
 .intro {
     color: var(--light-blue);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
     margin-bottom: 18px;
@@ -166,7 +188,7 @@ main {
 
 .description {
     color: var(--muted);
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.8;
     max-width: 520px;
     margin-bottom: 30px;
@@ -176,7 +198,9 @@ main {
     padding: 14px 22px;
     border: none;
     border-radius: 7px;
+
     background: linear-gradient(120deg, #0875e8, #36aaff);
+
     color: white;
     font-weight: 700;
     cursor: pointer;
@@ -193,8 +217,8 @@ main {
 }
 
 .profile-container {
-    width: 310px;
-    height: 390px;
+    width: 300px;
+    height: 370px;
     flex-shrink: 0;
     position: relative;
 }
@@ -204,8 +228,10 @@ main {
     height: 100%;
     object-fit: cover;
     object-position: center;
+
     border-radius: 20px;
     border: 2px solid var(--light-blue);
+
     position: relative;
     z-index: 1;
 }
@@ -213,13 +239,19 @@ main {
 .profile-glow {
     position: absolute;
     inset: -15px;
+
     border-radius: 25px;
+
     background: linear-gradient(135deg, #0875e8, #54b5ff);
+
     filter: blur(35px);
     opacity: 0.25;
 }
 
-/* SECTION HEADINGS */
+
+/* =========================
+   SECTION HEADINGS
+========================= */
 
 .section-heading {
     text-align: center;
@@ -237,18 +269,25 @@ main {
 
 .section-heading p:last-child {
     color: var(--muted);
-    font-size: 14px;
+    font-size: 13px;
 }
 
-/* ABOUT ME */
+
+/* =========================
+   PERSONAL INFORMATION
+========================= */
 
 .about-card {
     max-width: 850px;
     margin: 35px auto;
+
     padding: 35px;
+
     border: 1px solid var(--border);
     border-radius: 18px;
+
     background: rgba(11, 24, 48, 0.8);
+
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -275,85 +314,142 @@ main {
     font-weight: 600;
 }
 
-/* EDUCATION AND ACHIEVEMENTS */
+
+/* =========================
+   EDUCATION AND ACHIEVEMENTS
+   FIT TO DESKTOP SCREEN
+========================= */
+
+.education-page {
+    height: 100%;
+    min-height: 0;
+
+    overflow: hidden;
+
+    padding: 14px 5% 10px;
+}
+
+.compact-heading {
+    margin-bottom: 12px;
+}
+
+.compact-heading .intro {
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+.compact-heading h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.compact-heading p:last-child {
+    font-size: 11px;
+}
 
 .education-achievements {
+    width: 100%;
+    max-width: 1050px;
+
+    height: calc(100% - 65px);
+
+    margin: 0 auto;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: 20px;
 }
 
 .info-column {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-rows:
+        28px
+        repeat(4, minmax(0, 1fr));
+
+    gap: 8px;
 }
 
 .info-column > h2 {
     color: var(--light-blue);
-    font-size: 23px;
-    margin-bottom: 5px;
+    font-size: 19px;
+    margin: 0;
+    align-self: center;
 }
 
 .info-card {
-    position: relative;
-    padding: 16px 18px;
-    border-radius: 12px;
+    min-height: 0;
+
+    padding: 9px 13px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 10px;
     border: 1px solid var(--border);
+
     background: linear-gradient(
         135deg,
         rgba(16, 43, 82, 0.9),
         rgba(8, 20, 41, 0.95)
     );
+
     transition: 0.3s;
 }
 
 .info-card:hover {
     transform: translateY(-3px);
     border-color: var(--light-blue);
+
     box-shadow: 0 5px 20px rgba(22, 139, 255, 0.12);
 }
 
 .info-card h3 {
-    font-size: 16px;
-    margin-bottom: 6px;
+    font-size: 13px;
+    margin-bottom: 4px;
 }
 
 .info-card p {
     color: var(--muted);
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 10px;
+    line-height: 1.4;
 }
 
 .card-number {
     display: block;
     color: var(--light-blue);
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .info-card .year {
     display: block;
     color: var(--light-blue);
-    font-size: 11px;
-    margin-top: 6px;
+    font-size: 9px;
+    margin-top: 4px;
 }
 
 .achievement-icon {
     display: block;
-    font-size: 22px;
-    margin-bottom: 7px;
+    font-size: 17px;
+    margin-bottom: 4px;
 }
 
-/* PROJECTS */
+
+/* =========================
+   PROJECTS
+========================= */
 
 .project-grid {
     max-width: 1000px;
     margin: 35px auto;
+
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
@@ -361,9 +457,12 @@ main {
 
 .project-card {
     padding: 28px;
+
     background: rgba(11, 24, 48, 0.85);
+
     border: 1px solid var(--border);
     border-radius: 16px;
+
     transition: 0.3s;
 }
 
@@ -384,7 +483,7 @@ main {
 
 .project-card p {
     color: var(--muted);
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.7;
     margin-bottom: 20px;
 }
@@ -392,20 +491,27 @@ main {
 .project-link {
     color: var(--light-blue);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
 }
 
-/* FAMILY */
+
+/* =========================
+   FAMILY
+========================= */
 
 .family-card {
     max-width: 850px;
     margin: 30px auto;
+
     display: flex;
     align-items: center;
     gap: 35px;
+
     padding: 25px;
+
     background: rgba(11, 24, 48, 0.85);
+
     border: 1px solid var(--border);
     border-radius: 18px;
 }
@@ -431,15 +537,19 @@ main {
 
 .family-text p {
     color: var(--muted);
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.8;
 }
 
-/* CONTACT */
+
+/* =========================
+   CONTACT
+========================= */
 
 .contact-grid {
     max-width: 850px;
     margin: 40px auto;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
@@ -447,10 +557,14 @@ main {
 
 .contact-card {
     padding: 30px 20px;
+
     text-align: center;
+
     background: rgba(11, 24, 48, 0.85);
+
     border: 1px solid var(--border);
     border-radius: 15px;
+
     transition: 0.3s;
 }
 
@@ -470,60 +584,125 @@ main {
 .contact-card a {
     color: var(--light-blue);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     overflow-wrap: anywhere;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     height: 45px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-top: 1px solid rgba(84, 181, 255, 0.12);
+
     color: #8195ae;
-    font-size: 11px;
+    font-size: 10px;
+
     text-align: center;
     padding: 0 10px;
 }
 
-/* RESPONSIVE DESIGN */
 
-@media (max-width: 900px) {
-    .header {
-        padding: 0 4%;
+/* =========================
+   SMALL DESKTOP SCREENS
+========================= */
+
+@media (max-height: 700px) and (min-width: 701px) {
+
+    .education-page {
+        padding-top: 7px;
     }
 
-    .navigation {
-        gap: 13px;
+    .compact-heading {
+        margin-bottom: 6px;
     }
 
-    .navigation a {
-        font-size: 11px;
-    }
-
-    .page-panel {
-        padding: 30px 4%;
-    }
-
-    .profile-container {
-        width: 260px;
-        height: 330px;
+    .compact-heading h1 {
+        font-size: 23px;
     }
 
     .education-achievements {
-        gap: 15px;
+        height: calc(100% - 48px);
+        gap: 14px;
     }
+
+    .info-column {
+        grid-template-rows:
+            22px
+            repeat(4, minmax(0, 1fr));
+
+        gap: 5px;
+    }
+
+    .info-card {
+        padding: 5px 9px;
+    }
+
+    .info-card h3 {
+        font-size: 11px;
+    }
+
+    .info-card p {
+        font-size: 9px;
+    }
+
+    .info-card .year {
+        font-size: 8px;
+    }
+
 }
 
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) and (min-width: 701px) {
+
+    .header {
+        padding: 0 3%;
+    }
+
+    .navigation {
+        gap: 11px;
+    }
+
+    .navigation a {
+        font-size: 10px;
+    }
+
+    .profile-container {
+        width: 250px;
+        height: 310px;
+    }
+
+    .education-achievements {
+        gap: 12px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 700px) {
+
     body {
         overflow: auto;
     }
 
     .header {
         height: 70px;
+        padding: 0 6%;
     }
 
     .menu-toggle {
@@ -532,15 +711,20 @@ footer {
 
     .navigation {
         display: none;
+
         position: absolute;
         top: 70px;
         left: 0;
+
         width: 100%;
         padding: 20px;
+
         flex-direction: column;
         align-items: flex-start;
         gap: 20px;
+
         background: #08162c;
+
         border-bottom: 1px solid var(--border);
     }
 
@@ -560,14 +744,16 @@ footer {
     .page-panel {
         min-height: calc(100vh - 115px);
         height: auto;
-        padding: 35px 6%;
+
+        padding: 30px 6%;
+
         overflow: visible;
     }
 
     .home-content {
         flex-direction: column-reverse;
         text-align: center;
-        gap: 35px;
+        gap: 30px;
     }
 
     .home-text {
@@ -580,8 +766,8 @@ footer {
     }
 
     .profile-container {
-        width: 220px;
-        height: 270px;
+        width: 210px;
+        height: 260px;
     }
 
     .about-details {
@@ -593,8 +779,45 @@ footer {
         padding: 25px;
     }
 
+    /* Mobile education layout */
+    .education-page {
+        height: auto;
+        min-height: calc(100vh - 115px);
+
+        overflow: visible;
+    }
+
     .education-achievements {
+        height: auto;
         grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .info-column {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .info-column > h2 {
+        margin-bottom: 5px;
+    }
+
+    .info-card {
+        min-height: 80px;
+        padding: 13px;
+    }
+
+    .info-card h3 {
+        font-size: 14px;
+    }
+
+    .info-card p {
+        font-size: 11px;
+    }
+
+    .compact-heading h1 {
+        font-size: 23px;
     }
 
     .project-grid,
@@ -616,4 +839,5 @@ footer {
     footer {
         height: 45px;
     }
-}
+
+                                 }
