@@ -308,8 +308,7 @@ footer::before {
 }
 
 .pager-btn[hidden] {
-    display: inline-block;
-    visibility: hidden;
+    display: none !important;
 }
 
 
