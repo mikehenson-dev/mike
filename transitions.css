@@ -1,1 +1,648 @@
+/* =========================
+   FUTURISTIC THEME
+========================= */
+
+:root {
+    --background: #040a1a;
+    --blue: #4d7cff;
+    --light-blue: #37e6ff;
+    --muted: #9fb2cf;
+    --border: rgba(55, 230, 255, 0.28);
+
+    --neon: #37e6ff;
+    --violet: #3d6bff;
+    --pink: #7fd8ff;
+
+    --head: 'Chakra Petch', 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    font-family: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+
+    background:
+        linear-gradient(rgba(55, 160, 255, 0.04) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(90deg, rgba(55, 160, 255, 0.04) 1px, transparent 1px) 0 0 / 44px 44px,
+        var(--background);
+}
+
+h1,
+h2,
+h3,
+.logo,
+.primary-btn,
+.navigation a {
+    font-family: var(--head);
+}
+
+h1,
+h2 {
+    letter-spacing: 0.01em;
+}
+
+
+/* ---------- Header ---------- */
+
+.header {
+    background: rgba(3, 5, 13, 0.8);
+    border-bottom: 1px solid transparent;
+}
+
+.header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon),
+        var(--violet),
+        var(--pink),
+        transparent
+    );
+}
+
+.logo {
+    text-shadow: 0 0 18px rgba(55, 230, 255, 0.6);
+}
+
+.logo span {
+    color: var(--pink);
+}
+
+.navigation a {
+    position: relative;
+    letter-spacing: 0.06em;
+}
+
+.navigation a.active {
+    color: #ffffff;
+}
+
+.navigation a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 2px;
+
+    background: linear-gradient(90deg, var(--neon), var(--violet));
+    box-shadow: 0 0 10px var(--neon);
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+}
+
+.navigation a.active::after,
+.navigation a:hover::after {
+    transform: scaleX(1);
+}
+
+
+/* ---------- Headings and text ---------- */
+
+.home-text h1 span,
+.section-heading h1 span {
+    background: linear-gradient(100deg, var(--neon), var(--violet) 55%, var(--pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+.intro {
+    color: var(--neon);
+}
+
+.card-number,
+.info-card .year,
+.detail-item span,
+.project-link,
+.contact-card a,
+.family-text h2,
+.info-column > h2 {
+    color: var(--neon);
+}
+
+
+/* ---------- Button ---------- */
+
+.primary-btn {
+    border-radius: 6px;
+    letter-spacing: 0.03em;
+
+    background: linear-gradient(110deg, #17c8ff, #2f6bff 60%, #3d4fe8);
+
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+        0 0 22px rgba(47, 107, 255, 0.5);
+}
+
+.primary-btn:hover {
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+        0 0 34px rgba(55, 230, 255, 0.6);
+}
+
+
+/* ---------- Profile photo ---------- */
+
+.profile-container img {
+    border-radius: 10px;
+    border: 1px solid var(--neon);
+}
+
+.profile-glow {
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--neon), var(--violet) 55%, var(--pink));
+    opacity: 0.4;
+    filter: blur(40px);
+}
+
+.profile-container::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    top: 0;
+    height: 2px;
+    z-index: 2;
+
+    background: linear-gradient(90deg, transparent, var(--neon), transparent);
+    box-shadow: 0 0 14px var(--neon);
+
+    pointer-events: none;
+    animation: scan 4s linear infinite;
+}
+
+@keyframes scan {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    10%,
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: calc(100% - 2px);
+        opacity: 0;
+    }
+}
+
+
+/* ---------- Cards ---------- */
+
+.about-card,
+.project-card,
+.family-card,
+.contact-card {
+    position: relative;
+
+    border-radius: 6px;
+    background: rgba(10, 18, 38, 0.72);
+    backdrop-filter: blur(10px);
+}
+
+.info-card {
+    position: relative;
+
+    border-radius: 6px;
+    background: linear-gradient(
+        135deg,
+        rgba(20, 36, 76, 0.85),
+        rgba(8, 14, 32, 0.92)
+    );
+}
+
+.family-image img {
+    border-radius: 6px;
+}
+
+.about-card::before,
+.project-card::before,
+.family-card::before,
+.contact-card::before,
+.info-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: 2;
+    pointer-events: none;
+
+    background:
+        linear-gradient(var(--neon), var(--neon)) top left / 14px 2px no-repeat,
+        linear-gradient(var(--neon), var(--neon)) top left / 2px 14px no-repeat,
+        linear-gradient(var(--pink), var(--pink)) bottom right / 14px 2px no-repeat,
+        linear-gradient(var(--pink), var(--pink)) bottom right / 2px 14px no-repeat;
+}
+
+.project-card:hover,
+.contact-card:hover,
+.info-card:hover {
+    border-color: var(--neon);
+    box-shadow: 0 0 26px rgba(55, 230, 255, 0.22);
+}
+
+
+/* ---------- Footer with back / next buttons ---------- */
+
+footer {
+    position: relative;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 6%;
+
+    border-top: 1px solid transparent;
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1px;
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--violet),
+        var(--neon),
+        transparent
+    );
+}
+
+.pager-btn {
+    padding: 7px 14px;
+
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    color: var(--neon);
+    font-family: var(--head);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.pager-btn:hover {
+    color: #ffffff;
+    border-color: var(--neon);
+    box-shadow: 0 0 16px rgba(55, 230, 255, 0.35);
+}
+
+.pager-btn[hidden] {
+    display: inline-block;
+    visibility: hidden;
+}
+
+
+/* =========================
+   PAGE ENTRANCE
+========================= */
+
+.page-panel {
+    animation: none;
+}
+
+.page-panel.enter :is(
+    .home-text,
+    .profile-container,
+    .section-heading,
+    .about-card,
+    .info-column,
+    .project-card,
+    .family-card,
+    .contact-card
+) {
+    animation: pageRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.page-panel.enter :is(.profile-container, .info-column:nth-child(2), .project-card:nth-child(2), .contact-card:nth-child(2)) {
+    animation-delay: 0.1s;
+}
+
+.page-panel.enter :is(.about-card, .family-card, .project-card:nth-child(3), .contact-card:nth-child(3)) {
+    animation-delay: 0.15s;
+}
+
+.page-panel.enter :is(.project-card:nth-child(4), .contact-card:nth-child(4)) {
+    animation-delay: 0.22s;
+}
+
+@keyframes pageRise {
+    from {
+        opacity: 0;
+        transform: translateY(26px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   GRADIENT TRANSITION
+========================= */
+
+.wipe {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.wipe-layer {
+    position: absolute;
+    top: -5vh;
+    bottom: -5vh;
+    left: -15vw;
+    width: 130vw;
+
+    transform: translateX(160vw) skewX(-12deg);
+}
+
+.wipe-layer:nth-child(1) {
+    background: linear-gradient(120deg, #00e5ff, #2f6bff);
+    box-shadow: 0 0 60px 6px rgba(0, 229, 255, 0.7);
+}
+
+.wipe-layer:nth-child(2) {
+    background: linear-gradient(120deg, #2f6bff, #1f4bd8);
+}
+
+.wipe-layer:nth-child(3) {
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px) 0 0 / 40px 40px,
+        linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px) 0 0 / 40px 40px,
+        linear-gradient(120deg, #1b3fd0, #2f7bff 55%, #37e6ff);
+}
+
+.wipe-mark {
+    position: absolute;
+    inset: 0;
+
+    display: grid;
+    place-items: center;
+
+    font-family: var(--head);
+    font-size: clamp(56px, 16vw, 130px);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #ffffff;
+
+    text-shadow:
+        0 0 30px rgba(255, 255, 255, 0.7),
+        0 0 60px rgba(55, 230, 255, 0.8);
+
+    opacity: 0;
+}
+
+
+/* =========================
+   EDUCATION TABS
+========================= */
+
+.edu-tabs {
+    display: none;
+}
+
+
+/* =========================
+   MOBILE: THE PAGE ITSELF
+   NEVER SCROLLS
+========================= */
+
+@media (max-width: 700px) {
+
+    body {
+        overflow: hidden;
+    }
+
+    main {
+        height: calc(100dvh - 115px);
+        min-height: 0;
+    }
+
+    .page-panel {
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    footer p {
+        display: none;
+    }
+
+    .compact-heading > p:last-child {
+        display: none;
+    }
+
+    .edu-tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .edu-tab {
+        flex: 1;
+        padding: 11px 8px;
+
+        border: 1px solid var(--border);
+        border-radius: 6px;
+
+        background: transparent;
+        color: var(--muted);
+
+        font-family: var(--head);
+        font-size: 14px;
+        font-weight: 700;
+
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .edu-tab.active {
+        background: linear-gradient(110deg, #17c8ff, #2f6bff 60%, #3d4fe8);
+        border-color: transparent;
+        color: #ffffff;
+    }
+
+    /* The page fills the screen and shares height between the cards */
+    .education-page {
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+
+        display: flex;
+        flex-direction: column;
+        padding-top: 18px;
+        padding-bottom: 14px;
+    }
+
+    .education-achievements {
+        flex: 1 1 auto;
+        display: flex;
+    }
+
+    .education-achievements[data-view="edu"] .ach-col,
+    .education-achievements[data-view="ach"] .edu-col {
+        display: none;
+    }
+
+    .info-column {
+        flex: 1;
+        gap: 8px;
+    }
+
+    .info-column > h2 {
+        display: none;
+    }
+
+    .info-card {
+        flex: 1 1 auto;
+        min-height: 64px;
+        padding: 10px 14px;
+    }
+
+    .info-card h3 {
+        font-size: 14px;
+    }
+
+    .info-card p {
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================
+   BIG PROFILE PHOTO (HOME)
+========================= */
+
+.home-content {
+    max-width: 1280px;
+}
+
+.profile-container {
+    width: clamp(240px, 25vw, 440px);
+    height: clamp(300px, calc(100vh - 210px), 600px);
+}
+
+.profile-container img {
+    object-position: center top;
+}
+
+@media (max-width: 700px) {
+
+    .profile-container {
+        width: min(64vw, 250px);
+        height: min(34dvh, 320px);
+    }
+
+}
+
+
+/* =========================
+   MOVING BLUE BACKGROUND
+========================= */
+
+.bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+
+    width: 70vmax;
+    height: 70vmax;
+
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+body::before {
+    top: -25vmax;
+    left: -20vmax;
+
+    background: radial-gradient(circle, rgba(47, 107, 255, 0.3), transparent 65%);
+    animation: driftOne 22s ease-in-out infinite alternate;
+}
+
+body::after {
+    bottom: -30vmax;
+    right: -20vmax;
+
+    background: radial-gradient(circle, rgba(55, 230, 255, 0.2), transparent 65%);
+    animation: driftTwo 28s ease-in-out infinite alternate;
+}
+
+@keyframes driftOne {
+    to {
+        transform: translate(18vmax, 12vmax) scale(1.15);
+    }
+}
+
+@keyframes driftTwo {
+    to {
+        transform: translate(-16vmax, -10vmax) scale(1.1);
+    }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    body::before,
+    body::after {
+        animation: none;
+    }
+
+    .profile-container::after {
+        animation: none;
+        display: none;
+    }
+
+    .page-panel.enter :is(
+        .home-text,
+        .profile-container,
+        .section-heading,
+        .about-card,
+        .info-column,
+        .project-card,
+        .family-card,
+        .contact-card
+    ) {
+        animation: none;
+    }
+
+      }
 
