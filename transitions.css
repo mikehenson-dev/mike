@@ -605,3 +605,38 @@ body::after {
     }
 
 }
+/* Ensure page controls remain interactive */
+.header,
+.navigation,
+.navigation a,
+.menu-toggle,
+main,
+.page-panel,
+footer,
+.pager-btn,
+.primary-btn,
+.edu-tab,
+[data-go-to] {
+    pointer-events: auto;
+}
+
+.bg-canvas,
+.family-tree-backdrop,
+.profile-container::after {
+    pointer-events: none !important;
+}
+
+.header {
+    z-index: 100;
+}
+
+footer {
+    position: relative;
+    z-index: 100;
+}
+
+.pager-btn {
+    position: relative;
+    z-index: 101;
+    cursor: pointer;
+}
