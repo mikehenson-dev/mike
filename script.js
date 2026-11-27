@@ -595,4 +595,13 @@ initBackground();
 const initialPage = location.hash.replace("#", "") || "home";
 
 showPage(initialPage, false);
+
+console.log("Pages detected:", pageOrder);
+console.log("Current page:", currentPage);
+console.log("Next button target:", nextButton.dataset.target);
+
+nextButton.addEventListener("click", function () {
+    console.log("NEXT CLICKED");
+    console.log("Going to:", this.dataset.target);
+});
             
