@@ -32,13 +32,7 @@ let pendingPage = null;
 
 // TRANSITION PANEL (BLUE GRADIENT WITH LOGO)
 
-const wipe = document.createElement("div");
 
-wipe.className = "wipe";
-wipe.setAttribute("aria-hidden", "true");
-wipe.textContent = "MH.";
-
-document.body.appendChild(wipe);
 
 
 // BACK / NEXT BUTTONS IN THE FOOTER
