@@ -1,0 +1,146 @@
+/* =========================
+   NEW FONTS
+========================= */
+
+body {
+    font-family: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+.logo,
+.primary-btn,
+.navigation a {
+    font-family: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+}
+
+h1,
+h2 {
+    letter-spacing: -0.02em;
+}
+
+
+/* =========================
+   PAGE ENTRANCE
+   (replaces the old fade)
+========================= */
+
+.page-panel {
+    animation: none;
+}
+
+.page-panel.enter :is(
+    .home-text,
+    .profile-container,
+    .section-heading,
+    .about-card,
+    .info-column,
+    .project-card,
+    .family-card,
+    .contact-card
+) {
+    animation: pageRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.page-panel.enter :is(.profile-container, .info-column:nth-child(2), .project-card:nth-child(2), .contact-card:nth-child(2)) {
+    animation-delay: 0.1s;
+}
+
+.page-panel.enter :is(.about-card, .family-card, .project-card:nth-child(3), .contact-card:nth-child(3)) {
+    animation-delay: 0.15s;
+}
+
+.page-panel.enter :is(.project-card:nth-child(4), .contact-card:nth-child(4)) {
+    animation-delay: 0.22s;
+}
+
+@keyframes pageRise {
+    from {
+        opacity: 0;
+        transform: translateY(26px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   WIPE TRANSITION
+========================= */
+
+.wipe {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+
+    display: grid;
+    place-items: center;
+
+    background: linear-gradient(120deg, #0875e8, #36aaff);
+    color: #ffffff;
+
+    font-family: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+    font-size: clamp(56px, 16vw, 130px);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+
+    transform: translateX(101%);
+    pointer-events: none;
+}
+
+
+/* =========================
+   MOBILE: THE PAGE ITSELF
+   NEVER SCROLLS
+========================= */
+
+@media (max-width: 700px) {
+
+    body {
+        overflow: hidden;
+    }
+
+    main {
+        height: calc(100dvh - 115px);
+        min-height: 0;
+    }
+
+    .page-panel {
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+    .education-page {
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .page-panel.enter :is(
+        .home-text,
+        .profile-container,
+        .section-heading,
+        .about-card,
+        .info-column,
+        .project-card,
+        .family-card,
+        .contact-card
+    ) {
+        animation: none;
+    }
+
+}
