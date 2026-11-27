@@ -841,3 +841,11 @@ footer {
     }
 
                                  }
+
+/* Make footer navigation buttons clickable */
+.pager-btn {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 9999;
+    cursor: pointer;
+}
