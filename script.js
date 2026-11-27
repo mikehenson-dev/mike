@@ -8,7 +8,18 @@ const navigation = document.getElementById("navigation");
 
 const menuToggle = document.getElementById("menuToggle");
 
+const footer = document.querySelector("footer");
+
 const pageOrder = Array.from(pages).map((page) => page.id);
+
+const pageLabels = {
+    home: "Home",
+    personal: "Personal Info",
+    education: "Achievements",
+    projects: "Projects",
+    family: "Family",
+    contact: "Contact"
+};
 
 const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
@@ -19,35 +30,92 @@ let isMoving = false;
 let pendingPage = null;
 
 
-// LOAD NEW FONTS AND TRANSITION STYLES
-
-function addStylesheet(href) {
-
-    const link = document.createElement("link");
-
-    link.rel = "stylesheet";
-    link.href = href;
-
-    document.head.appendChild(link);
-
-}
-
-addStylesheet(
-    "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap"
-);
-
-addStylesheet("transitions.css");
-
-
-// WIPE PANEL USED FOR PAGE TRANSITIONS
+// TRANSITION PANELS (THREE GRADIENT LAYERS AND A LOGO)
 
 const wipe = document.createElement("div");
 
 wipe.className = "wipe";
 wipe.setAttribute("aria-hidden", "true");
-wipe.textContent = "MH.";
+
+const layers = [0, 1, 2].map(() => {
+
+    const layer = document.createElement("div");
+
+    layer.className = "wipe-layer";
+
+    wipe.appendChild(layer);
+
+    return layer;
+
+});
+
+const mark = document.createElement("div");
+
+mark.className = "wipe-mark";
+mark.textContent = "MH.";
+
+wipe.appendChild(mark);
 
 document.body.appendChild(wipe);
+
+
+// BACK / NEXT BUTTONS IN THE FOOTER
+
+const prevButton = document.createElement("button");
+const nextButton = document.createElement("button");
+
+prevButton.className = "pager-btn";
+nextButton.className = "pager-btn";
+
+prevButton.type = "button";
+nextButton.type = "button";
+
+footer.insertBefore(prevButton, footer.firstChild);
+footer.appendChild(nextButton);
+
+prevButton.addEventListener("click", function() {
+
+    goToPage(this.dataset.target);
+
+});
+
+nextButton.addEventListener("click", function() {
+
+    goToPage(this.dataset.target);
+
+});
+
+function pageLabel(pageId) {
+
+    return pageLabels[pageId] || pageId;
+
+}
+
+function updatePager(pageId) {
+
+    const index = pageOrder.indexOf(pageId);
+
+    const previous = pageOrder[index - 1];
+    const next = pageOrder[index + 1];
+
+    prevButton.hidden = !previous;
+    nextButton.hidden = !next;
+
+    if (previous) {
+
+        prevButton.dataset.target = previous;
+        prevButton.textContent = "‹ " + pageLabel(previous);
+
+    }
+
+    if (next) {
+
+        nextButton.dataset.target = next;
+        nextButton.textContent = pageLabel(next) + " ›";
+
+    }
+
+}
 
 
 // SHOW SELECTED PAGE
@@ -108,10 +176,39 @@ function showPage(pageId, updateHistory = true) {
 
     currentPage = pageId;
 
+    updatePager(pageId);
+
 }
 
 
 // GO TO A PAGE WITH A TRANSITION
+
+const DURATION = 450;
+const STAGGER = 70;
+const EASE = "cubic-bezier(0.65, 0, 0.25, 1)";
+
+function slideLayers(from, to, skew, reverseOrder) {
+
+    return layers.map((layer, index) => {
+
+        const order = reverseOrder ? layers.length - 1 - index : index;
+
+        return layer.animate(
+            [
+                { transform: "translateX(" + from + "vw) skewX(" + skew + "deg)" },
+                { transform: "translateX(" + to + "vw) skewX(" + skew + "deg)" }
+            ],
+            {
+                duration: DURATION,
+                delay: order * STAGGER,
+                easing: EASE,
+                fill: "both"
+            }
+        );
+
+    });
+
+}
 
 function goToPage(pageId, updateHistory = true) {
 
@@ -136,7 +233,7 @@ function goToPage(pageId, updateHistory = true) {
 
     }
 
-    // First load or reduced motion: no wipe
+    // First load or reduced motion: no transition
     if (currentPage === null || reduceMotion) {
 
         showPage(pageId, updateHistory);
@@ -151,41 +248,51 @@ function goToPage(pageId, updateHistory = true) {
     const direction =
         pageOrder.indexOf(pageId) > pageOrder.indexOf(currentPage) ? 1 : -1;
 
+    const skew = -12 * direction;
+
     navigation.classList.remove("show");
 
-    const options = {
-        duration: 420,
-        easing: "cubic-bezier(0.7, 0, 0.3, 1)",
-        fill: "forwards"
-    };
+    const running = [];
 
-    const cover = wipe.animate(
+    // Panels sweep in and cover the screen
+    const cover = slideLayers(direction * 160, 0, skew, false);
+
+    const markIn = mark.animate(
         [
-            { transform: "translateX(" + direction * 100 + "%)" },
-            { transform: "translateX(0)" }
+            { opacity: 0, transform: "scale(0.9)" },
+            { opacity: 1, transform: "scale(1)" }
         ],
-        options
+        { duration: 300, delay: 250, fill: "both" }
     );
 
-    cover.finished
+    running.push(...cover, markIn);
+
+    Promise.all([...cover, markIn].map((animation) => animation.finished))
         .then(() => {
 
             showPage(pageId, updateHistory);
 
-            const reveal = wipe.animate(
+            // Panels sweep away and reveal the new page
+            const reveal = slideLayers(0, direction * -160, skew, true);
+
+            const markOut = mark.animate(
                 [
-                    { transform: "translateX(0)" },
-                    { transform: "translateX(" + direction * -100 + "%)" }
+                    { opacity: 1, transform: "scale(1)" },
+                    { opacity: 0, transform: "scale(1.08)" }
                 ],
-                options
+                { duration: 250, fill: "both" }
             );
 
-            return reveal.finished;
+            running.push(...reveal, markOut);
+
+            return Promise.all(
+                [...reveal, markOut].map((animation) => animation.finished)
+            );
 
         })
         .then(() => {
 
-            wipe.getAnimations().forEach((animation) => animation.cancel());
+            running.forEach((animation) => animation.cancel());
 
         })
         .finally(() => {
@@ -248,6 +355,29 @@ menuToggle.addEventListener("click", function() {
 });
 
 
+// EDUCATION / ACHIEVEMENTS TABS (PHONES)
+
+const eduTabs = document.querySelectorAll("[data-edu-tab]");
+
+const eduGrid = document.querySelector(".education-achievements");
+
+eduTabs.forEach((tab) => {
+
+    tab.addEventListener("click", function() {
+
+        eduGrid.dataset.view = this.dataset.eduTab;
+
+        eduTabs.forEach((button) => {
+
+            button.classList.toggle("active", button === this);
+
+        });
+
+    });
+
+});
+
+
 // ARROW KEYS MOVE BETWEEN PAGES
 
 document.addEventListener("keydown", function(event) {
@@ -285,4 +415,3 @@ window.addEventListener("popstate", function() {
 const initialPage = location.hash.replace("#", "") || "home";
 
 showPage(initialPage, false);
-                            
