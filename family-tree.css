@@ -1,1 +1,354 @@
+/* =========================================================
+   FAMILY & FRIENDS TRANSLUCENT TREE SCENE
+   Synced with transitions.css theme & blue circuit tunnel
+   ========================================================= */
+
+#family.family-tree-page {
+    position: relative;
+    background: transparent !important;
+    overflow-x: hidden;
+}
+
+/* Translucent edge-blended tree backdrop */
+.family-tree-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+    mix-blend-mode: screen;
+    -webkit-mask-image: radial-gradient(
+        ellipse 82% 78% at 50% 52%,
+        rgba(0, 0, 0, 1) 42%,
+        rgba(0, 0, 0, 0.55) 72%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: radial-gradient(
+        ellipse 82% 78% at 50% 52%,
+        rgba(0, 0, 0, 1) 42%,
+        rgba(0, 0, 0, 0.55) 72%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+.bioluminescent-tree-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Pivot origins for swaying tree branches */
+#tree-branch-tl {
+    transform-origin: 650px 348px;
+}
+
+#tree-branch-tr {
+    transform-origin: 790px 348px;
+}
+
+#tree-branch-bl {
+    transform-origin: 650px 516px;
+}
+
+#tree-branch-br {
+    transform-origin: 790px 516px;
+}
+
+.tree-canopy-sway {
+    transform-origin: 720px 220px;
+    animation: canopyBreeze 9s ease-in-out infinite alternate;
+}
+
+.island-left {
+    animation: islandFloat 7s ease-in-out infinite alternate;
+}
+
+.island-right {
+    animation: islandFloat 8.5s ease-in-out infinite alternate-reverse;
+}
+
+.tree-spore {
+    animation: sporePulse 3.6s ease-in-out infinite alternate;
+}
+
+.tree-spore:nth-child(even) {
+    animation-delay: 1.5s;
+}
+
+@keyframes canopyBreeze {
+    0% { transform: rotate(-0.7deg) translateX(-4px); }
+    100% { transform: rotate(0.8deg) translateX(5px); }
+}
+
+@keyframes islandFloat {
+    0% { transform: translateY(-7px); }
+    100% { transform: translateY(7px); }
+}
+
+@keyframes sporePulse {
+    0% { opacity: 0.25; }
+    100% { opacity: 0.95; }
+}
+
+/* Foreground stage */
+.family-stage-wrapper {
+    position: relative;
+    z-index: 2;
+    width: min(1220px, 94%);
+    margin: 0 auto;
+    padding-bottom: 1.5rem;
+}
+
+/* Four Cages / Pods Layout: Top (Mother & Father), Bottom (Sibling & Friends) */
+.tree-cages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(290px, 415px));
+    justify-content: space-between;
+    row-gap: 2.35rem;
+    column-gap: 4rem;
+    margin-top: 1.25rem;
+}
+
+.tree-cage-pod {
+    border: 1px solid var(--border);
+    padding: 0.95rem 1.1rem 1.05rem;
+    box-shadow: 0 14px 34px rgba(4, 10, 26, 0.6);
+    cursor: pointer;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    will-change: transform;
+}
+
+.tree-cage-pod:focus-visible {
+    border-color: var(--neon);
+    box-shadow: 0 0 26px rgba(55, 230, 255, 0.28);
+    outline: none;
+}
+
+/* Top bar of each sci-fi pod */
+.pod-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.55rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.pod-tier-tag {
+    font-family: var(--head);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--pink);
+}
+
+.pod-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 10px var(--neon);
+}
+
+.pod-body {
+    display: flex;
+    align-items: center;
+    gap: 0.95rem;
+}
+
+.pod-avatar-frame {
+    flex-shrink: 0;
+    width: 78px;
+    height: 78px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--neon);
+    background: rgba(15, 35, 65, 0.75);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 0 14px rgba(55, 230, 255, 0.2);
+}
+
+.pod-avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pod-avatar-fallback {
+    font-size: 2rem;
+}
+
+.pod-info {
+    text-align: left;
+}
+
+.pod-role {
+    display: inline-block;
+    font-family: var(--head);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--neon);
+    margin-bottom: 0.15rem;
+}
+
+.pod-info h2 {
+    font-family: var(--head);
+    font-size: 1.18rem;
+    color: #ffffff;
+    margin: 0 0 0.3rem;
+}
+
+.pod-info p {
+    font-size: 0.86rem;
+    line-height: 1.48;
+    color: var(--muted);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Walkway bridge connecting pods toward the tree trunk */
+.pod-walkway-connector {
+    position: absolute;
+    top: 50%;
+    width: 34px;
+    height: 8px;
+    border-top: 1px solid var(--neon);
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(90deg, rgba(55, 230, 255, 0.18), transparent);
+    pointer-events: none;
+}
+
+.connector-right {
+    right: -34px;
+}
+
+.connector-left {
+    left: -34px;
+    transform: scaleX(-1);
+}
+
+/* Detail Modal */
+.pod-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(4, 10, 26, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+}
+
+.pod-modal-overlay[hidden] {
+    display: none;
+}
+
+.pod-modal-card {
+    position: relative;
+    width: min(460px, 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(20, 36, 76, 0.92),
+        rgba(8, 14, 32, 0.96)
+    );
+    border: 1px solid var(--neon);
+    border-radius: 6px;
+    padding: 1.6rem;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 28px rgba(55, 230, 255, 0.25);
+}
+
+.pod-modal-close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.95rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--neon);
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: 0.25s;
+}
+
+.pod-modal-close:hover {
+    border-color: var(--neon);
+    color: #ffffff;
+}
+
+.pod-modal-card h2 {
+    font-family: var(--head);
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 0.2rem 0 1rem;
+}
+
+.pod-modal-photo-wrap {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--neon);
+    display: grid;
+    place-items: center;
+    background: rgba(15, 35, 65, 0.8);
+    font-size: 3.5rem;
+}
+
+.pod-modal-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pod-modal-card p {
+    font-size: 0.96rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .tree-cages-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin-inline: auto;
+        row-gap: 1.1rem;
+    }
+
+    .pod-walkway-connector {
+        display: none;
+    }
+
+    .family-tree-backdrop {
+        opacity: 0.45;
+    }
+}
+
+@media (max-width: 700px) {
+    #family.family-tree-page {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .family-stage-wrapper {
+        padding-bottom: 0.75rem;
+    }
+
+    .tree-cages-grid {
+        margin-top: 0.5rem;
+        row-gap: 0.75rem;
+    }
+}
 
