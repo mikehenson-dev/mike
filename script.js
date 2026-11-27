@@ -1,14 +1,22 @@
+
+// ============================================
 // GET WEBSITE ELEMENTS
+// ============================================
 
 const pages = document.querySelectorAll(".page-panel");
-
 const navLinks = document.querySelectorAll("[data-page-link]");
 
 const navigation = document.getElementById("navigation");
-
 const menuToggle = document.getElementById("menuToggle");
 
-const footer = document.querySelector("footer");
+// Create a footer if one does not exist.
+// This prevents the script from crashing.
+let footer = document.querySelector("footer");
+
+if (!footer) {
+    footer = document.createElement("footer");
+    document.body.appendChild(footer);
+}
 
 const pageOrder = Array.from(pages).map((page) => page.id);
 
@@ -28,7 +36,9 @@ const reduceMotion = window.matchMedia(
 let currentPage = null;
 
 
+// ============================================
 // BACK / NEXT BUTTONS IN THE FOOTER
+// ============================================
 
 const prevButton = document.createElement("button");
 const nextButton = document.createElement("button");
@@ -39,29 +49,25 @@ nextButton.className = "pager-btn";
 prevButton.type = "button";
 nextButton.type = "button";
 
+prevButton.textContent = "Previous";
+nextButton.textContent = "Next";
+
 footer.insertBefore(prevButton, footer.firstChild);
 footer.appendChild(nextButton);
 
-prevButton.addEventListener("click", function() {
-
+prevButton.addEventListener("click", function () {
     goToPage(this.dataset.target);
-
 });
 
-nextButton.addEventListener("click", function() {
-
+nextButton.addEventListener("click", function () {
     goToPage(this.dataset.target);
-
 });
 
 function pageLabel(pageId) {
-
     return pageLabels[pageId] || pageId;
-
 }
 
 function updatePager(pageId) {
-
     const index = pageOrder.indexOf(pageId);
 
     const previous = pageOrder[index - 1];
@@ -71,206 +77,209 @@ function updatePager(pageId) {
     nextButton.hidden = !next;
 
     if (previous) {
-
         prevButton.dataset.target = previous;
         prevButton.textContent = "‹ " + pageLabel(previous);
-
     }
 
     if (next) {
-
         nextButton.dataset.target = next;
         nextButton.textContent = pageLabel(next) + " ›";
-
     }
-
 }
 
 
+// ============================================
 // SHOW SELECTED PAGE
+// ============================================
 
 function showPage(pageId, updateHistory = true) {
-
     const selectedPage = document.getElementById(pageId);
 
-    // Check if the selected page exists
     if (
         !selectedPage ||
         !selectedPage.classList.contains("page-panel")
     ) {
+        console.warn("Page not found:", pageId);
         return;
     }
 
     // Hide all other pages
     pages.forEach((page) => {
-
         page.hidden = page.id !== pageId;
-
         page.classList.remove("enter");
-
     });
-
 
     // Update active navigation link
     navLinks.forEach((link) => {
-
         link.classList.toggle(
             "active",
             link.dataset.pageLink === pageId
         );
-
     });
 
-
     // Close mobile navigation
-    navigation.classList.remove("show");
-
-
-    // Update URL
-    if (updateHistory && location.hash !== "#" + pageId) {
-
-        history.pushState(null, "", "#" + pageId);
-
+    if (navigation) {
+        navigation.classList.remove("show");
     }
 
+    // Update URL
+    if (
+        updateHistory &&
+        location.hash !== "#" + pageId
+    ) {
+        history.pushState(null, "", "#" + pageId);
+    }
 
     // Reset page scroll position
     selectedPage.scrollTop = 0;
 
-
-    // Play the entrance animation for this page
+    // Play entrance animation
     void selectedPage.offsetWidth;
-
     selectedPage.classList.add("enter");
 
     currentPage = pageId;
 
     updatePager(pageId);
-
 }
 
 
+// ============================================
 // GO TO A PAGE
+// ============================================
 
 function goToPage(pageId, updateHistory = true) {
-
     if (!pageOrder.includes(pageId)) {
+        console.warn("Invalid page:", pageId);
         return;
     }
 
     if (pageId === currentPage) {
-
-        navigation.classList.remove("show");
-
+        if (navigation) {
+            navigation.classList.remove("show");
+        }
         return;
-
     }
 
     showPage(pageId, updateHistory);
-
 }
 
 
+// ============================================
 // NAVIGATION LINKS
+// ============================================
 
 navLinks.forEach((link) => {
-
-    link.addEventListener("click", function(event) {
-
+    link.addEventListener("click", function (event) {
         event.preventDefault();
 
         const pageId = this.dataset.pageLink;
 
         goToPage(pageId);
-
     });
-
 });
 
 
+// ============================================
 // HOME BUTTON AND OTHER PAGE BUTTONS
+// ============================================
 
 document.querySelectorAll("[data-go-to]").forEach((button) => {
-
-    button.addEventListener("click", function() {
-
+    button.addEventListener("click", function () {
         const pageId = this.dataset.goTo;
 
         goToPage(pageId);
-
     });
-
 });
 
 
+// ============================================
 // MOBILE MENU
+// ============================================
 
-menuToggle.addEventListener("click", function() {
+if (menuToggle && navigation) {
+    menuToggle.addEventListener("click", function () {
+        navigation.classList.toggle("show");
+    });
+}
 
-    navigation.classList.toggle("show");
 
-});
-
-
-// EDUCATION / ACHIEVEMENTS TABS (PHONES)
+// ============================================
+// EDUCATION / ACHIEVEMENTS TABS
+// ============================================
 
 const eduTabs = document.querySelectorAll("[data-edu-tab]");
-
 const eduGrid = document.querySelector(".education-achievements");
 
-eduTabs.forEach((tab) => {
+if (eduGrid) {
+    eduTabs.forEach((tab) => {
+        tab.addEventListener("click", function () {
+            eduGrid.dataset.view = this.dataset.eduTab;
 
-    tab.addEventListener("click", function() {
-
-        eduGrid.dataset.view = this.dataset.eduTab;
-
-        eduTabs.forEach((button) => {
-
-            button.classList.toggle("active", button === this);
-
+            eduTabs.forEach((button) => {
+                button.classList.toggle(
+                    "active",
+                    button === this
+                );
+            });
         });
-
     });
+}
 
-});
 
-
+// ============================================
 // ARROW KEYS MOVE BETWEEN PAGES
+// ============================================
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
+    // Don't navigate when typing in form fields
+    const tag = event.target.tagName;
+
+    if (
+        tag === "INPUT" ||
+        tag === "TEXTAREA" ||
+        tag === "SELECT" ||
+        event.target.isContentEditable
+    ) {
+        return;
+    }
 
     const index = pageOrder.indexOf(currentPage);
 
-    if (event.key === "ArrowRight" && index < pageOrder.length - 1) {
-
+    if (
+        event.key === "ArrowRight" &&
+        index < pageOrder.length - 1
+    ) {
         goToPage(pageOrder[index + 1]);
-
     }
 
-    if (event.key === "ArrowLeft" && index > 0) {
-
+    if (
+        event.key === "ArrowLeft" &&
+        index > 0
+    ) {
         goToPage(pageOrder[index - 1]);
-
     }
-
 });
 
 
+// ============================================
 // BROWSER BACK AND FORWARD BUTTONS
+// ============================================
 
-window.addEventListener("popstate", function() {
-
+window.addEventListener("popstate", function () {
     const pageId = location.hash.replace("#", "") || "home";
 
-    goToPage(pageId, false);
-
+    if (pageOrder.includes(pageId)) {
+        showPage(pageId, false);
+    }
 });
 
 
-// MOVING BACKGROUND (BLUE CIRCUIT TUNNEL)
+// ============================================
+// MOVING BACKGROUND
+// BLUE CIRCUIT TUNNEL
+// ============================================
 
 function initBackground() {
-
     const canvas = document.createElement("canvas");
 
     canvas.className = "bg-canvas";
@@ -279,6 +288,11 @@ function initBackground() {
     document.body.prepend(canvas);
 
     const ctx = canvas.getContext("2d");
+
+    if (!ctx) {
+        console.warn("Canvas is not supported.");
+        return;
+    }
 
     const NEAR = 0.25;
     const LENGTH = 6;
@@ -297,55 +311,44 @@ function initBackground() {
     let panels = [];
 
     function random(min, max) {
-
         return min + Math.random() * (max - min);
-
     }
 
-    // Turn a spot on a tunnel wall into x / y coordinates
     function wallPoint(wall, u) {
-
         if (wall === 0) return [u, -1];
         if (wall === 1) return [u, 1];
         if (wall === 2) return [-1, u];
 
         return [1, u];
-
     }
 
     function project(x, y, z) {
-
-        return [centerX + (x / z) * scaleX, centerY + (y / z) * scaleY];
-
+        return [
+            centerX + (x / z) * scaleX,
+            centerY + (y / z) * scaleY
+        ];
     }
 
     function wallToScreen(wall, u, z) {
-
         const point = wallPoint(wall, u);
 
         return project(point[0], point[1], z);
-
     }
 
-    // Position of something along the tunnel as it flies toward you
     function depthOf(phase, offset) {
-
-        return (((phase - travel) % LENGTH) + LENGTH) % LENGTH + NEAR + offset;
-
+        return (
+            (((phase - travel) % LENGTH) + LENGTH) % LENGTH
+        ) + NEAR + offset;
     }
 
-    // Far things fade out, and so do things that get too close
     function alphaAt(z) {
-
         const far = Math.max(0, 1 - (z - NEAR) / LENGTH);
         const close = Math.min(1, (z - NEAR) / 0.35);
 
         return Math.pow(far, 1.3) * close;
-
     }
 
     function build() {
-
         traces = [];
         panels = [];
 
@@ -353,7 +356,6 @@ function initBackground() {
         const panelCount = width < 700 ? 8 : 14;
 
         for (let i = 0; i < traceCount; i++) {
-
             let u = Math.round(random(-0.9, 0.9) * 10) / 10;
             let offset = 0;
 
@@ -362,21 +364,22 @@ function initBackground() {
             const steps = 3 + Math.floor(Math.random() * 3);
 
             for (let step = 0; step < steps; step++) {
-
                 if (step % 2 === 0) {
-
                     offset += random(0.2, 0.8);
-
                 } else {
+                    const direction =
+                        Math.random() < 0.5 ? -1 : 1;
 
-                    const direction = Math.random() < 0.5 ? -1 : 1;
-
-                    u = Math.max(-0.97, Math.min(0.97, u + direction * random(0.15, 0.55)));
-
+                    u = Math.max(
+                        -0.97,
+                        Math.min(
+                            0.97,
+                            u + direction * random(0.15, 0.55)
+                        )
+                    );
                 }
 
                 points.push({ u: u, offset: offset });
-
             }
 
             traces.push({
@@ -384,11 +387,9 @@ function initBackground() {
                 points: points,
                 phase: random(0, LENGTH)
             });
-
         }
 
         for (let i = 0; i < panelCount; i++) {
-
             const u0 = random(-0.9, 0.5);
             const offset0 = random(0, 0.6);
 
@@ -400,14 +401,14 @@ function initBackground() {
                 offset1: offset0 + random(0.3, 0.9),
                 phase: random(0, LENGTH)
             });
-
         }
-
     }
 
     function resize() {
-
-        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        const ratio = Math.min(
+            window.devicePixelRatio || 1,
+            1.5
+        );
 
         width = window.innerWidth;
         height = window.innerHeight;
@@ -424,16 +425,13 @@ function initBackground() {
         scaleY = height * 0.5;
 
         build();
-
     }
 
     function draw() {
-
         ctx.clearRect(0, 0, width, height);
 
-        // Soft see-through panels on the walls
+        // Soft see-through panels
         panels.forEach((panel) => {
-
             const z0 = depthOf(panel.phase, panel.offset0);
             const z1 = depthOf(panel.phase, panel.offset1);
 
@@ -448,7 +446,8 @@ function initBackground() {
             const c = wallToScreen(panel.wall, panel.u1, z1);
             const d = wallToScreen(panel.wall, panel.u0, z1);
 
-            ctx.fillStyle = "rgba(47, 107, 255, " + alpha + ")";
+            ctx.fillStyle =
+                "rgba(47, 107, 255, " + alpha + ")";
 
             ctx.beginPath();
             ctx.moveTo(a[0], a[1]);
@@ -457,20 +456,29 @@ function initBackground() {
             ctx.lineTo(d[0], d[1]);
             ctx.closePath();
             ctx.fill();
-
         });
 
         ctx.lineWidth = 1;
 
-        // Rings that rush toward you
+        // Tunnel rings
         for (let i = 0; i < RINGS; i++) {
-
-            const z = NEAR + ((((i * LENGTH) / RINGS - travel) % LENGTH) + LENGTH) % LENGTH;
+            const z =
+                NEAR +
+                (
+                    (
+                        (i * LENGTH) / RINGS -
+                        travel
+                    ) % LENGTH +
+                    LENGTH
+                ) % LENGTH;
 
             const topLeft = project(-1, -1, z);
             const bottomRight = project(1, 1, z);
 
-            ctx.strokeStyle = "rgba(80, 160, 255, " + alphaAt(z) * 0.22 + ")";
+            ctx.strokeStyle =
+                "rgba(80, 160, 255, " +
+                alphaAt(z) * 0.22 +
+                ")";
 
             ctx.strokeRect(
                 topLeft[0],
@@ -478,80 +486,122 @@ function initBackground() {
                 bottomRight[0] - topLeft[0],
                 bottomRight[1] - topLeft[1]
             );
-
         }
 
-        // Long faint lines down the walls
+        // Faint tunnel lines
         ctx.strokeStyle = "rgba(80, 160, 255, 0.07)";
 
         for (let wall = 0; wall < 4; wall++) {
-
             [-1, -0.5, 0, 0.5, 1].forEach((u) => {
+                const start = wallToScreen(
+                    wall,
+                    u,
+                    NEAR + 0.1
+                );
 
-                const start = wallToScreen(wall, u, NEAR + 0.1);
-                const end = wallToScreen(wall, u, NEAR + LENGTH);
+                const end = wallToScreen(
+                    wall,
+                    u,
+                    NEAR + LENGTH
+                );
 
                 ctx.beginPath();
                 ctx.moveTo(start[0], start[1]);
                 ctx.lineTo(end[0], end[1]);
                 ctx.stroke();
-
             });
-
         }
 
-        // Circuit lines with glowing dots at the corners
+        // Circuit traces
         traces.forEach((trace) => {
+            const depths = trace.points.map((point) =>
+                depthOf(trace.phase, point.offset)
+            );
 
-            const depths = trace.points.map((point) => depthOf(trace.phase, point.offset));
-
-            for (let i = 0; i < trace.points.length - 1; i++) {
-
-                if (depths[i] < NEAR + 0.05 || depths[i + 1] < NEAR + 0.05) {
+            for (
+                let i = 0;
+                i < trace.points.length - 1;
+                i++
+            ) {
+                if (
+                    depths[i] < NEAR + 0.05 ||
+                    depths[i + 1] < NEAR + 0.05
+                ) {
                     continue;
                 }
 
-                const alpha = alphaAt((depths[i] + depths[i + 1]) / 2) * 0.5;
+                const alpha =
+                    alphaAt((depths[i] + depths[i + 1]) / 2) *
+                    0.5;
 
-                const from = wallToScreen(trace.wall, trace.points[i].u, depths[i]);
-                const to = wallToScreen(trace.wall, trace.points[i + 1].u, depths[i + 1]);
+                const from = wallToScreen(
+                    trace.wall,
+                    trace.points[i].u,
+                    depths[i]
+                );
 
-                ctx.strokeStyle = "rgba(90, 170, 255, " + alpha + ")";
+                const to = wallToScreen(
+                    trace.wall,
+                    trace.points[i + 1].u,
+                    depths[i + 1]
+                );
+
+                ctx.strokeStyle =
+                    "rgba(90, 170, 255, " + alpha + ")";
 
                 ctx.beginPath();
                 ctx.moveTo(from[0], from[1]);
                 ctx.lineTo(to[0], to[1]);
                 ctx.stroke();
-
             }
 
+            // Glowing circuit dots
             trace.points.forEach((point, i) => {
-
                 if (depths[i] < NEAR + 0.05) {
                     return;
                 }
 
-                const spot = wallToScreen(trace.wall, point.u, depths[i]);
+                const spot = wallToScreen(
+                    trace.wall,
+                    point.u,
+                    depths[i]
+                );
 
-                const radius = Math.min(3, 0.8 + 0.9 / depths[i]);
+                const radius = Math.min(
+                    3,
+                    0.8 + 0.9 / depths[i]
+                );
 
-                ctx.fillStyle = "rgba(190, 235, 255, " + Math.min(1, alphaAt(depths[i]) * 1.3) + ")";
+                ctx.fillStyle =
+                    "rgba(190, 235, 255, " +
+                    Math.min(
+                        1,
+                        alphaAt(depths[i]) * 1.3
+                    ) +
+                    ")";
 
                 ctx.beginPath();
-                ctx.arc(spot[0], spot[1], radius, 0, Math.PI * 2);
+
+                ctx.arc(
+                    spot[0],
+                    spot[1],
+                    radius,
+                    0,
+                    Math.PI * 2
+                );
+
                 ctx.fill();
-
             });
-
         });
-
     }
 
     let lastTime = 0;
 
     function loop(time) {
-
-        const delta = Math.min(0.05, (time - lastTime) / 1000 || 0);
+        const delta = Math.min(
+            0.05,
+            (time - lastTime) / 1000 || 0
+        );
 
         lastTime = time;
 
@@ -560,48 +610,40 @@ function initBackground() {
         draw();
 
         requestAnimationFrame(loop);
-
     }
 
     resize();
 
-    window.addEventListener("resize", function() {
-
+    window.addEventListener("resize", function () {
         resize();
 
         if (reduceMotion) {
             draw();
         }
-
     });
 
     if (reduceMotion) {
-
         draw();
-
     } else {
-
         requestAnimationFrame(loop);
-
     }
-
 }
 
 initBackground();
 
 
+// ============================================
 // OPEN CORRECT PAGE WHEN WEBSITE LOADS
+// ============================================
 
-const initialPage = location.hash.replace("#", "") || "home";
+const initialPage =
+    location.hash.replace("#", "") || "home";
 
-showPage(initialPage, false);
+showPage(
+    pageOrder.includes(initialPage) ? initialPage : "home",
+    false
+);
 
 console.log("Pages detected:", pageOrder);
 console.log("Current page:", currentPage);
-console.log("Next button target:", nextButton.dataset.target);
-
-nextButton.addEventListener("click", function () {
-    console.log("NEXT CLICKED");
-    console.log("Going to:", this.dataset.target);
-});
-            
+    
