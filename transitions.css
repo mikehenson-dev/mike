@@ -1,5 +1,5 @@
 /* =========================
-   FUTURISTIC THEM
+   FUTURISTIC THEME
 ========================= */
 
 :root {
@@ -203,12 +203,14 @@ h2 {
 .about-card,
 .project-card,
 .family-card,
-.contact-card {
+.contact-card,
+.tree-cage-pod {
     position: relative;
 
     border-radius: 6px;
     background: rgba(10, 18, 38, 0.72);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .info-card {
@@ -230,7 +232,8 @@ h2 {
 .project-card::before,
 .family-card::before,
 .contact-card::before,
-.info-card::before {
+.info-card::before,
+.tree-cage-pod::before {
     content: "";
     position: absolute;
     inset: -1px;
@@ -246,7 +249,8 @@ h2 {
 
 .project-card:hover,
 .contact-card:hover,
-.info-card:hover {
+.info-card:hover,
+.tree-cage-pod:hover {
     border-color: var(--neon);
     box-shadow: 0 0 26px rgba(55, 230, 255, 0.22);
 }
@@ -325,32 +329,33 @@ footer::before {
     .info-column,
     .project-card,
     .family-card,
-    .contact-card
+    .contact-card,
+    .tree-cage-pod
 ) {
     animation: pageRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 }
 
-.page-panel.enter :is(.profile-container, .info-column:nth-child(2), .project-card:nth-child(2), .contact-card:nth-child(2)) {
+.page-panel.enter :is(.profile-container, .info-column:nth-child(2), .project-card:nth-child(2), .contact-card:nth-child(2), .tree-cage-pod:nth-child(2)) {
     animation-delay: 0.1s;
 }
 
-.page-panel.enter :is(.about-card, .family-card, .project-card:nth-child(3), .contact-card:nth-child(3)) {
-    animation-delay: 0.15s;
+.page-panel.enter :is(.about-card, .family-card, .project-card:nth-child(3), .contact-card:nth-child(3), .tree-cage-pod:nth-child(3)) {
+    animation-delay: 0.16s;
 }
 
-.page-panel.enter :is(.project-card:nth-child(4), .contact-card:nth-child(4)) {
+.page-panel.enter :is(.project-card:nth-child(4), .contact-card:nth-child(4), .tree-cage-pod:nth-child(4)) {
     animation-delay: 0.22s;
 }
 
 @keyframes pageRise {
     from {
         opacity: 0;
-        transform: translateY(26px);
+        translate: 0 26px;
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        translate: 0 0;
     }
 }
 
@@ -572,7 +577,11 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
 
     body::before,
-    body::after {
+    body::after,
+    .tree-canopy-sway,
+    .island-left,
+    .island-right,
+    .tree-spore {
         animation: none;
     }
 
@@ -589,10 +598,10 @@ body::after {
         .info-column,
         .project-card,
         .family-card,
-        .contact-card
+        .contact-card,
+        .tree-cage-pod
     ) {
         animation: none;
     }
 
-                      }
-
+}
