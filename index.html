@@ -12,7 +12,6 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="transitions.css">
-    <link rel="stylesheet" href="family-tree.css">
 </head>
 
 <body>
@@ -352,155 +351,107 @@
         </section>
 
 
-        <!-- FAMILY & FRIENDS -->
-        <section id="family" class="page-panel family-tree-page" hidden>
+        <!-- FAMILY -->
+        <section id="family" class="page-panel" hidden>
 
-            <!-- TRANSLUCENT ANIMATED TREE LAYER BLENDED WITH CIRCUIT TUNNEL -->
-            <div class="family-tree-backdrop" aria-hidden="true">
+            <div class="section-heading">
 
-                <svg class="bioluminescent-tree-svg" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMid slice">
-                    <defs>
-                        <radialGradient id="canopyAura" cx="50%" cy="32%" r="48%">
-                            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.34"/>
-                            <stop offset="55%" stop-color="#2f6bff" stop-opacity="0.14"/>
-                            <stop offset="100%" stop-color="#050b18" stop-opacity="0"/>
-                        </radialGradient>
+                <p class="intro">MY INSPIRATION</p>
 
-                        <linearGradient id="trunkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#1e354d" stop-opacity="0.82"/>
-                            <stop offset="50%" stop-color="#132438" stop-opacity="0.9"/>
-                            <stop offset="100%" stop-color="#0a1524" stop-opacity="0.95"/>
-                        </linearGradient>
+                <h1>My <span>Family</span></h1>
 
-                        <linearGradient id="veinGlow" x1="0%" y1="100%" x2="0%" y2="0%">
-                            <stop offset="0%" stop-color="#2f6bff" stop-opacity="0.9"/>
-                            <stop offset="55%" stop-color="#38bdf8" stop-opacity="0.95"/>
-                            <stop offset="100%" stop-color="#99f6e4" stop-opacity="0.9"/>
-                        </linearGradient>
-
-                        <filter id="cyanSoftGlow" x="-30%" y="-30%" width="160%" height="160%">
-                            <feGaussianBlur stdDeviation="4.5" result="blur"/>
-                            <feMerge>
-                                <feMergeNode in="blur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-
-                    <!-- Soft Cyan Ambient Canopy Glow -->
-                    <ellipse cx="720" cy="270" rx="560" ry="260" fill="url(#canopyAura)"/>
-
-                    <!-- Distant Floating Islands -->
-                    <g class="floating-island island-left" opacity="0.52">
-                        <polygon points="150,330 225,320 265,335 230,385 185,395 155,360" fill="#132742" stroke="#38bdf8" stroke-opacity="0.25"/>
-                        <path d="M165,330 Q195,305 235,325" fill="#1b3b5a"/>
-                    </g>
-                    <g class="floating-island island-right" opacity="0.52">
-                        <polygon points="1205,300 1285,290 1320,310 1280,368 1230,375 1198,335" fill="#132742" stroke="#38bdf8" stroke-opacity="0.25"/>
-                        <path d="M1215,300 Q1255,272 1295,298" fill="#1b3b5a"/>
-                    </g>
-
-                    <!-- Distant Futuristic Skyline Silhouettes -->
-                    <g fill="#0c1b30" opacity="0.58">
-                        <path d="M40,760 L40,560 L65,535 L85,560 L85,760 Z"/>
-                        <path d="M100,760 L100,610 L135,610 L135,760 Z"/>
-                        <path d="M1285,760 L1285,580 L1315,545 L1340,580 L1340,760 Z"/>
-                        <path d="M1355,760 L1355,620 L1395,620 L1395,760 Z"/>
-                    </g>
-
-                    <!-- Canopy Foliage Silhouettes -->
-                    <g class="tree-canopy-sway">
-                        <ellipse cx="720" cy="145" rx="430" ry="125" fill="#0d2238" opacity="0.65"/>
-                        <ellipse cx="470" cy="205" rx="260" ry="95" fill="#102942" opacity="0.58"/>
-                        <ellipse cx="970" cy="205" rx="260" ry="95" fill="#102942" opacity="0.58"/>
-                        <ellipse cx="300" cy="300" rx="170" ry="65" fill="#0e243b" opacity="0.5"/>
-                        <ellipse cx="1140" cy="300" rx="170" ry="65" fill="#0e243b" opacity="0.5"/>
-                    </g>
-
-                    <!-- Main Ancient Trunk & Roots -->
-                    <path d="M510,790 C585,745 635,690 652,580 C662,475 655,345 635,235 L685,165 L720,215 L755,165 L805,235 C785,345 778,475 788,580 C805,690 855,745 930,790 L835,790 C795,748 765,715 745,675 L720,765 L695,675 C675,715 645,748 605,790 Z"
-                          fill="url(#trunkGrad)" stroke="#38bdf8" stroke-opacity="0.22" stroke-width="1.5"/>
-
-                    <!-- SWAYING BRANCH 1: TOP LEFT (MOTHER) -->
-                    <g id="tree-branch-tl" class="tree-branch-group">
-                        <path d="M652,330 C570,305 470,285 335,295 C270,300 215,315 170,335 C225,330 285,322 350,324 C475,328 565,348 650,368 Z"
-                              fill="url(#trunkGrad)" stroke="#38bdf8" stroke-opacity="0.28" stroke-width="1.2"/>
-                        <!-- Branch Energy Conduit & Clamp -->
-                        <rect x="556" y="302" width="16" height="44" rx="5" transform="rotate(-10 564 324)" fill="#16324f" stroke="#5eead4" stroke-width="1.5"/>
-                        <path d="M648,348 C560,325 465,310 355,312" fill="none" stroke="url(#veinGlow)" stroke-width="2.2" filter="url(#cyanSoftGlow)"/>
-                        <path d="M555,338 C515,382 440,382 415,332" fill="none" stroke="#38bdf8" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="6 4"/>
-                    </g>
-
-                    <!-- SWAYING BRANCH 2: TOP RIGHT (FATHER) -->
-                    <g id="tree-branch-tr" class="tree-branch-group">
-                        <path d="M788,330 C870,305 970,285 1105,295 C1170,300 1225,315 1270,335 C1215,330 1155,322 1090,324 C965,328 875,348 790,368 Z"
-                              fill="url(#trunkGrad)" stroke="#38bdf8" stroke-opacity="0.28" stroke-width="1.2"/>
-                        <!-- Branch Energy Conduit & Clamp -->
-                        <rect x="868" y="302" width="16" height="44" rx="5" transform="rotate(10 876 324)" fill="#16324f" stroke="#5eead4" stroke-width="1.5"/>
-                        <path d="M792,348 C880,325 975,310 1085,312" fill="none" stroke="url(#veinGlow)" stroke-width="2.2" filter="url(#cyanSoftGlow)"/>
-                        <path d="M885,338 C925,382 1000,382 1025,332" fill="none" stroke="#38bdf8" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="6 4"/>
-                    </g>
-
-                    <!-- SWAYING BRANCH 3: BOTTOM LEFT (SIBLING) -->
-                    <g id="tree-branch-bl" class="tree-branch-group">
-                        <path d="M652,495 C565,485 455,482 315,505 C245,516 190,535 145,555 C205,546 268,535 335,532 C465,526 565,528 652,538 Z"
-                              fill="url(#trunkGrad)" stroke="#38bdf8" stroke-opacity="0.28" stroke-width="1.2"/>
-                        <!-- Branch Energy Conduit & Clamp -->
-                        <rect x="548" y="482" width="16" height="46" rx="5" transform="rotate(-5 556 505)" fill="#16324f" stroke="#5eead4" stroke-width="1.5"/>
-                        <path d="M650,516 C555,505 455,504 345,518" fill="none" stroke="url(#veinGlow)" stroke-width="2.2" filter="url(#cyanSoftGlow)"/>
-                        <path d="M548,520 C510,566 435,566 410,522" fill="none" stroke="#38bdf8" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="6 4"/>
-                    </g>
-
-                    <!-- SWAYING BRANCH 4: BOTTOM RIGHT (FRIENDS) -->
-                    <g id="tree-branch-br" class="tree-branch-group">
-                        <path d="M788,495 C875,485 985,482 1125,505 C1195,516 1250,535 1295,555 C1235,546 1172,535 1105,532 C975,526 875,528 788,538 Z"
-                              fill="url(#trunkGrad)" stroke="#38bdf8" stroke-opacity="0.28" stroke-width="1.2"/>
-                        <!-- Branch Energy Conduit & Clamp -->
-                        <rect x="876" y="482" width="16" height="46" rx="5" transform="rotate(5 884 505)" fill="#16324f" stroke="#5eead4" stroke-width="1.5"/>
-                        <path d="M790,516 C885,505 985,504 1095,518" fill="none" stroke="url(#veinGlow)" stroke-width="2.2" filter="url(#cyanSoftGlow)"/>
-                        <path d="M892,520 C930,566 1005,566 1030,522" fill="none" stroke="#38bdf8" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="6 4"/>
-                    </g>
-
-                    <!-- Glowing Bioluminescent Trunk Veins -->
-                    <g filter="url(#cyanSoftGlow)" fill="none" stroke="url(#veinGlow)" stroke-linecap="round">
-                        <path d="M625,775 C675,695 705,595 715,470 C722,375 705,285 680,195" stroke-width="3.2"/>
-                        <path d="M805,775 C755,690 735,585 732,465 C730,365 748,275 772,200" stroke-width="2.6"/>
-                        <path d="M718,520 C695,465 675,405 650,348" stroke-width="2.2"/>
-                        <path d="M730,510 C752,455 770,400 792,348" stroke-width="2.2"/>
-                    </g>
-
-                    <!-- Bioluminescent Spores / Fireflies -->
-                    <g fill="#99f6e4" filter="url(#cyanSoftGlow)">
-                        <circle class="tree-spore" cx="460" cy="210" r="3"/>
-                        <circle class="tree-spore" cx="980" cy="215" r="3"/>
-                        <circle class="tree-spore" cx="620" cy="145" r="2.5"/>
-                        <circle class="tree-spore" cx="825" cy="150" r="2.5"/>
-                        <circle class="tree-spore" cx="310" cy="430" r="2.5"/>
-                        <circle class="tree-spore" cx="1130" cy="430" r="2.5"/>
-                        <circle class="tree-spore" cx="560" cy="690" r="3"/>
-                        <circle class="tree-spore" cx="885" cy="695" r="3"/>
-                    </g>
-                </svg>
+                <p>The person who inspires and supports me.</p>
 
             </div>
 
 
-            <!-- FOREGROUND CONTENT -->
-            <div class="family-stage-wrapper">
+            <div class="family-card">
 
-                <div class="section-heading compact-heading">
+                <div class="family-image">
 
-                    <p class="intro">MY INSPIRATION</p>
-
-                    <h1>My <span>Family &amp; Friends</span></h1>
-
-                    <p>The people who root, inspire, and support my journey.</p>
+                    <img src="mother-graduation.jpg"
+                        alt="My mother">
 
                 </div>
 
 
-                <!-- FOUR BRANCH CAGES / PODS -->
-                <div class="tree-cages-grid">
+                <div class="family-text">
 
-                    <!-- TOP LEFT CAGE: MOTHER -->
-                    <article class="tree-cage-pod pod-top-left" data-pod-key="moth
+                    <h2>My Mother</h2>
+
+                    <p>
+                        My mother is an important part of my life.
+                        Her support, sacrifices, and guidance inspire
+                        me to work hard and pursue my goals.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+        <section id="contact" class="page-panel" hidden>
+
+            <div class="section-heading">
+
+                <p class="intro">LET'S CONNECT</p>
+
+                <h1>Contact <span>Me</span></h1>
+
+                <p>Feel free to reach out through the following platforms.</p>
+
+            </div>
+
+
+            <div class="contact-grid">
+
+                <div class="contact-card">
+
+                    <span>✉️</span>
+
+                    <h3>Email</h3>
+
+                    <a href="mailto:mikehensona@gmail.com">
+                        mikehensona@gmail.com
+                    </a>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <span>💻</span>
+
+                    <h3>GitHub</h3>
+
+                    <a href="https://github.com/mikehenson-dev"
+                        target="_blank"
+                        rel="noopener">
+                        Visit My GitHub
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>© 2026 Mike Henson Arcalas. All Rights Reserved.</p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
