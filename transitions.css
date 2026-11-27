@@ -360,23 +360,7 @@ footer::before {
 ========================= */
 
 .wipe {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-
-    display: grid;
-    place-items: center;
-
-    background: linear-gradient(120deg, #0875e8, #36aaff);
-    color: #ffffff;
-
-    font-family: var(--head);
-    font-size: clamp(56px, 16vw, 130px);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-
-    transform: translateX(101%);
-    pointer-events: none;
+    display: none !important;
 }
 
 
