@@ -269,31 +269,101 @@ personalTabs.forEach((tab) => {
 });
 
 
-// EDUCATION / ACHIEVEMENTS TABS (PHONES)
+// EDUCATION & ACHIEVEMENTS CONNECTED BRANCHES & CLICKABLE MODAL
 
-const eduTabs = document.querySelectorAll("[data-edu-tab]");
+function initEducationTree() {
 
-const eduGrid = document.querySelector(".education-achievements");
+    const rows = document.querySelectorAll(".edu-branch-row");
+    const modal = document.getElementById("eduModal");
+    const modalStage = document.getElementById("eduModalStage");
+    const modalSchool = document.getElementById("eduModalSchool");
+    const modalTitle = document.getElementById("eduModalTitle");
+    const modalDesc = document.getElementById("eduModalDesc");
+    const modalList = document.getElementById("eduModalList");
 
-eduTabs.forEach((tab) => {
+    function setActiveRow(targetRow) {
+        rows.forEach((row) => {
+            row.classList.toggle("is-active", row === targetRow);
+        });
+    }
 
-    tab.addEventListener("click", function() {
+    rows.forEach((row) => {
 
-        if (eduGrid) {
+        const eduBtn = row.querySelector(".edu-node");
+        const achChips = row.querySelectorAll(".ach-chip");
 
-            eduGrid.dataset.view = this.dataset.eduTab;
+        if (eduBtn) {
+            eduBtn.addEventListener("click", () => {
+                setActiveRow(row);
+                if (!modal) return;
 
+                modalStage.textContent = eduBtn.dataset.eduStage || "";
+                modalSchool.textContent = "";
+                modalSchool.hidden = true;
+                modalTitle.textContent = eduBtn.dataset.eduSchool || "";
+                modalDesc.textContent = "Connected achievements for this stage:";
+
+                modalList.innerHTML = "";
+                const rawItems = (eduBtn.dataset.eduItems || "").split("||").filter(Boolean);
+                rawItems.forEach((entry) => {
+                    const parts = entry.split("::");
+                    const item = document.createElement("div");
+                    item.className = "edu-modal-item";
+
+                    const h3 = document.createElement("h3");
+                    h3.textContent = parts[0] || "";
+
+                    const p = document.createElement("p");
+                    p.textContent = parts[1] || "";
+
+                    item.appendChild(h3);
+                    item.appendChild(p);
+                    modalList.appendChild(item);
+                });
+
+                modalList.hidden = false;
+                modal.hidden = false;
+            });
         }
 
-        eduTabs.forEach((button) => {
+        achChips.forEach((chip) => {
+            chip.addEventListener("click", () => {
+                setActiveRow(row);
+                if (!modal) return;
 
-            button.classList.toggle("active", button === this);
+                modalStage.textContent = chip.dataset.achStage || "";
+                modalSchool.textContent = chip.dataset.achSchool || "";
+                modalSchool.hidden = false;
+                modalTitle.textContent = chip.dataset.achTitle || "";
+                modalDesc.textContent = chip.dataset.achDesc || "";
+                modalList.innerHTML = "";
+                modalList.hidden = true;
 
+                modal.hidden = false;
+            });
         });
 
     });
 
-});
+    if (modal) {
+
+        modal.addEventListener("click", (event) => {
+            if (event.target.closest("[data-close-edu]")) {
+                modal.hidden = true;
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !modal.hidden) {
+                modal.hidden = true;
+            }
+        });
+
+    }
+
+}
+
+initEducationTree();
 
 
 // FAMILY & FRIENDS TREE PODS & MODAL
