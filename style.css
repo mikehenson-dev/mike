@@ -1,0 +1,452 @@
+/* =========================
+   BASE RESET & LAYOUT
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: #040a1a;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =========================
+   HEADER & NAVIGATION
+========================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    width: 100%;
+    height: 68px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(55, 230, 255, 0.28);
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.navigation a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #9fb2cf;
+    transition: color 0.25s ease;
+}
+
+.navigation a:hover,
+.navigation a.active {
+    color: #ffffff;
+}
+
+
+/* =========================
+   MAIN & PAGE PANELS
+========================= */
+
+main {
+    flex: 1 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.page-panel {
+    width: 100%;
+    padding: 18px 6%;
+}
+
+.page-panel[hidden] {
+    display: none;
+}
+
+
+/* =========================
+   HOME SECTION
+========================= */
+
+.home-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.home-content {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.home-text {
+    flex: 1 1 500px;
+    max-width: 600px;
+}
+
+.intro {
+    font-family: 'Chakra Petch', 'Segoe UI', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.home-text h1 {
+    font-size: clamp(34px, 5vw, 62px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.home-text h2 {
+    font-size: clamp(18px, 2.2vw, 24px);
+    font-weight: 600;
+    color: #9fb2cf;
+    margin-bottom: 16px;
+}
+
+.description {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #9fb2cf;
+    margin-bottom: 26px;
+    max-width: 520px;
+}
+
+.primary-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 26px;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+}
+
+.profile-container {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.profile-container img {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================
+   SECTION HEADINGS
+========================= */
+
+.section-heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 22px;
+}
+
+.section-heading h1 {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.section-heading p {
+    font-size: 14px;
+    color: #9fb2cf;
+}
+
+
+/* =========================
+   EDUCATION & ACHIEVEMENTS
+========================= */
+
+.education-achievements {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-column > h2 {
+    font-size: 17px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.info-card {
+    border: 1px solid rgba(55, 230, 255, 0.28);
+    padding: 13px 18px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-number,
+.achievement-icon {
+    display: inline-block;
+    font-family: 'Chakra Petch', 'Segoe UI', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.info-card h3 {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 3px;
+}
+
+.info-card p {
+    font-size: 13px;
+    color: #9fb2cf;
+    line-height: 1.45;
+}
+
+.info-card .year {
+    display: inline-block;
+    margin-top: 4px;
+    margin-right: 10px;
+    font-family: 'Chakra Petch', 'Segoe UI', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   PROJECTS & CONTACT
+========================= */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.project-card {
+    border: 1px solid rgba(55, 230, 255, 0.28);
+    padding: 24px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.project-card h2 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.project-card p {
+    font-size: 14px;
+    color: #9fb2cf;
+    line-height: 1.55;
+    margin-bottom: 14px;
+}
+
+.project-link {
+    font-family: 'Chakra Petch', 'Segoe UI', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    border: 1px solid rgba(55, 230, 255, 0.28);
+    padding: 24px 20px;
+    text-align: center;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-card span {
+    display: block;
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.contact-card h3 {
+    font-size: 17px;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.contact-card a {
+    font-size: 14px;
+    word-break: break-all;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #9fb2cf;
+    background: rgba(3, 5, 13, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .navigation {
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(4, 10, 26, 0.96);
+        border-bottom: 1px solid rgba(55, 230, 255, 0.28);
+        padding: 8px 6%;
+        display: none;
+        z-index: 29;
+    }
+
+    .navigation.show {
+        display: flex;
+    }
+
+    .navigation a {
+        width: 100%;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(55, 230, 255, 0.1);
+    }
+
+    .navigation a:last-child {
+        border-bottom: none;
+    }
+
+    .home-page {
+        overflow: hidden;
+    }
+
+    .home-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .home-text {
+        flex: 0 0 auto;
+        max-width: 100%;
+    }
+
+    .home-text h1 {
+        font-size: 30px;
+        margin-bottom: 6px;
+    }
+
+    .home-text h2 {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+
+    .primary-btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+
+}
