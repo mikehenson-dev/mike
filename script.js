@@ -26,19 +26,6 @@ const reduceMotion = window.matchMedia
     : false;
 
 let currentPage = null;
-let isMoving = false;
-let pendingPage = null;
-
-
-// TRANSITION PANEL (BLUE GRADIENT WITH LOGO)
-
-const wipe = document.createElement("div");
-
-wipe.className = "wipe";
-wipe.setAttribute("aria-hidden", "true");
-wipe.textContent = "MH.";
-
-document.body.appendChild(wipe);
 
 
 // BACK / NEXT BUTTONS IN THE FOOTER
@@ -174,49 +161,12 @@ function showPage(pageId, updateHistory = true) {
 }
 
 
-// GO TO A PAGE WITH A TRANSITION
-
-const DURATION = 420;
-const EASE = "cubic-bezier(0.7, 0, 0.3, 1)";
-
-function finishTransition() {
-
-    try {
-
-        wipe.getAnimations().forEach((animation) => animation.cancel());
-
-    } catch (error) {
-
-        // Older browsers have no getAnimations, nothing to clean up
-    }
-
-    isMoving = false;
-
-    if (pendingPage) {
-
-        const next = pendingPage;
-
-        pendingPage = null;
-
-        goToPage(next.pageId, next.updateHistory);
-
-    }
-
-}
+// GO TO A PAGE
 
 function goToPage(pageId, updateHistory = true) {
 
     if (!pageOrder.includes(pageId)) {
         return;
-    }
-
-    // A transition is running, remember the latest request
-    if (isMoving) {
-
-        pendingPage = { pageId, updateHistory };
-
-        return;
-
     }
 
     if (pageId === currentPage) {
@@ -231,127 +181,7 @@ function goToPage(pageId, updateHistory = true) {
 
     }
 
-    // First load, reduced motion, or no animation support: no transition
-    if (
-        currentPage === null ||
-        reduceMotion ||
-        typeof wipe.animate !== "function"
-    ) {
-
-        showPage(pageId, updateHistory);
-
-        return;
-
-    }
-
-    isMoving = true;
-
-    // 1 = moving forward, -1 = moving back
-    const direction =
-        pageOrder.indexOf(pageId) > pageOrder.indexOf(currentPage) ? 1 : -1;
-
-    if (navigation) {
-
-        navigation.classList.remove("show");
-
-    }
-
-    let pageShown = false;
-    let finished = false;
-
-    function swapPage() {
-
-        if (pageShown) {
-            return;
-        }
-
-        pageShown = true;
-
-        try {
-
-            showPage(pageId, updateHistory);
-
-        } catch (error) {
-
-            console.error(error);
-
-        }
-
-    }
-
-    function done() {
-
-        if (finished) {
-            return;
-        }
-
-        finished = true;
-
-        clearTimeout(failSafe);
-
-        finishTransition();
-
-    }
-
-    // Safety net: the page always changes and the panel never gets stuck
-    const failSafe = setTimeout(function() {
-
-        swapPage();
-
-        done();
-
-    }, DURATION * 2 + 700);
-
-    const options = {
-        duration: DURATION,
-        easing: EASE,
-        fill: "forwards"
-    };
-
-    try {
-
-        // The panel slides in and covers the screen
-        const cover = wipe.animate(
-            [
-                { transform: "translateX(" + direction * 100 + "%)" },
-                { transform: "translateX(0)" }
-            ],
-            options
-        );
-
-        cover.finished
-            .then(() => {
-
-                swapPage();
-
-                // The panel slides away and reveals the new page
-                const reveal = wipe.animate(
-                    [
-                        { transform: "translateX(0)" },
-                        { transform: "translateX(" + direction * -100 + "%)" }
-                    ],
-                    options
-                );
-
-                return reveal.finished;
-
-            })
-            .then(done)
-            .catch(function() {
-
-                swapPage();
-
-                done();
-
-            });
-
-    } catch (error) {
-
-        swapPage();
-
-        done();
-
-    }
+    showPage(pageId, updateHistory);
 
 }
 
@@ -809,4 +639,4 @@ try {
 
     console.error(error);
 
-    }
+}
