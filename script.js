@@ -242,6 +242,33 @@ if (menuToggle && navigation) {
 }
 
 
+// PERSONAL INFO TABS (PHONES)
+
+const personalTabs = document.querySelectorAll("[data-personal-tab]");
+
+const personalGrid = document.querySelector(".personal-grid");
+
+personalTabs.forEach((tab) => {
+
+    tab.addEventListener("click", function() {
+
+        if (personalGrid) {
+
+            personalGrid.dataset.view = this.dataset.personalTab;
+
+        }
+
+        personalTabs.forEach((button) => {
+
+            button.classList.toggle("active", button === this);
+
+        });
+
+    });
+
+});
+
+
 // EDUCATION / ACHIEVEMENTS TABS (PHONES)
 
 const eduTabs = document.querySelectorAll("[data-edu-tab]");
