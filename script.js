@@ -1,46 +1,55 @@
+// GET WEBSITE ELEMENTS
 
-document.addEventListener("DOMContentLoaded", function () {
+const pages = document.querySelectorAll(".page-panel");
 
-    // GET WEBSITE ELEMENTS
+const navLinks = document.querySelectorAll("[data-page-link]");
 
-    const pages = document.querySelectorAll(".page-panel");
-    const navLinks = document.querySelectorAll("[data-page-link]");
-    const navigation = document.getElementById("navigation");
-    const menuToggle = document.getElementById("menuToggle");
+const navigation = document.getElementById("navigation");
 
-    const pageOrder = Array.from(pages).map(page => page.id);
+const menuToggle = document.getElementById("menuToggle");
 
-    const pageLabels = {
-        home: "Home",
-        personal: "Personal Info",
-        education: "Achievements",
-        projects: "Projects",
-        family: "Family",
-        contact: "Contact"
-    };
+const footer = document.querySelector("footer");
 
-    const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
+const pageOrder = Array.from(pages).map((page) => page.id);
 
-    let currentPage = null;
+const pageLabels = {
+    home: "Home",
+    personal: "Personal Info",
+    education: "Achievements",
+    projects: "Projects",
+    family: "Family",
+    contact: "Contact"
+};
 
+const reduceMotion = window.matchMedia
+    ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    : false;
 
-    // CREATE FOOTER IF IT DOES NOT EXIST
-
-    let footer = document.querySelector("footer");
-
-    if (!footer) {
-        footer = document.createElement("footer");
-        footer.className = "page-footer";
-        document.body.appendChild(footer);
-    }
+let currentPage = null;
+let isMoving = false;
+let pendingPage = null;
 
 
-    // CREATE PREVIOUS AND NEXT BUTTONS
+// TRANSITION PANEL (BLUE GRADIENT WITH LOGO)
 
-    const prevButton = document.createElement("button");
-    const nextButton = document.createElement("button");
+const wipe = document.createElement("div");
+
+wipe.className = "wipe";
+wipe.setAttribute("aria-hidden", "true");
+wipe.textContent = "MH.";
+
+document.body.appendChild(wipe);
+
+
+// BACK / NEXT BUTTONS IN THE FOOTER
+
+let prevButton = null;
+let nextButton = null;
+
+if (footer) {
+
+    prevButton = document.createElement("button");
+    nextButton = document.createElement("button");
 
     prevButton.className = "pager-btn";
     nextButton.className = "pager-btn";
@@ -48,580 +57,756 @@ document.addEventListener("DOMContentLoaded", function () {
     prevButton.type = "button";
     nextButton.type = "button";
 
-    prevButton.textContent = "Previous";
-    nextButton.textContent = "Next";
-
-    footer.appendChild(prevButton);
+    footer.insertBefore(prevButton, footer.firstChild);
     footer.appendChild(nextButton);
 
+}
 
-    // PAGE LABEL
+function pageLabel(pageId) {
 
-    function pageLabel(pageId) {
-        return pageLabels[pageId] || pageId;
+    return pageLabels[pageId] || pageId;
+
+}
+
+function updatePager(pageId) {
+
+    if (!prevButton || !nextButton) {
+        return;
+    }
+
+    const index = pageOrder.indexOf(pageId);
+
+    const previous = pageOrder[index - 1];
+    const next = pageOrder[index + 1];
+
+    prevButton.hidden = !previous;
+    nextButton.hidden = !next;
+
+    if (previous) {
+
+        prevButton.dataset.target = previous;
+        prevButton.textContent = "\u2039 " + pageLabel(previous);
+
+    }
+
+    if (next) {
+
+        nextButton.dataset.target = next;
+        nextButton.textContent = pageLabel(next) + " \u203A";
+
+    }
+
+}
+
+
+// SHOW SELECTED PAGE
+
+function showPage(pageId, updateHistory = true) {
+
+    const selectedPage = document.getElementById(pageId);
+
+    // Check if the selected page exists
+    if (
+        !selectedPage ||
+        !selectedPage.classList.contains("page-panel")
+    ) {
+        return;
+    }
+
+    // Hide all other pages
+    pages.forEach((page) => {
+
+        page.hidden = page.id !== pageId;
+
+        page.classList.remove("enter");
+
+    });
+
+    currentPage = pageId;
+
+
+    // Update active navigation link
+    navLinks.forEach((link) => {
+
+        link.classList.toggle(
+            "active",
+            link.dataset.pageLink === pageId
+        );
+
+    });
+
+
+    // Close mobile navigation
+    if (navigation) {
+
+        navigation.classList.remove("show");
+
     }
 
 
-    // UPDATE PREVIOUS AND NEXT BUTTONS
+    // Update URL
+    if (updateHistory && location.hash !== "#" + pageId) {
 
-    function updatePager(pageId) {
+        try {
 
-        const index = pageOrder.indexOf(pageId);
+            history.pushState(null, "", "#" + pageId);
 
-        const previous = pageOrder[index - 1];
-        const next = pageOrder[index + 1];
+        } catch (error) {
 
-        prevButton.hidden = !previous;
-        nextButton.hidden = !next;
+            location.hash = pageId;
 
-        if (previous) {
-            prevButton.dataset.target = previous;
-            prevButton.textContent = "‹ " + pageLabel(previous);
         }
 
-        if (next) {
-            nextButton.dataset.target = next;
-            nextButton.textContent = pageLabel(next) + " ›";
-        }
     }
 
 
-    // SHOW SELECTED PAGE
+    // Reset page scroll position
+    selectedPage.scrollTop = 0;
 
-    function showPage(pageId, updateHistory = true) {
 
-        const selectedPage = document.getElementById(pageId);
+    // Play the entrance animation for this page
+    void selectedPage.offsetWidth;
 
-        if (
-            !selectedPage ||
-            !selectedPage.classList.contains("page-panel")
-        ) {
-            return;
-        }
+    selectedPage.classList.add("enter");
 
-        pages.forEach(page => {
-            page.hidden = page.id !== pageId;
-            page.classList.remove("enter");
-        });
+    updatePager(pageId);
 
-        navLinks.forEach(link => {
-            link.classList.toggle(
-                "active",
-                link.dataset.pageLink === pageId
-            );
-        });
+}
+
+
+// GO TO A PAGE WITH A TRANSITION
+
+const DURATION = 420;
+const EASE = "cubic-bezier(0.7, 0, 0.3, 1)";
+
+function finishTransition() {
+
+    try {
+
+        wipe.getAnimations().forEach((animation) => animation.cancel());
+
+    } catch (error) {
+
+        // Older browsers have no getAnimations, nothing to clean up
+    }
+
+    isMoving = false;
+
+    if (pendingPage) {
+
+        const next = pendingPage;
+
+        pendingPage = null;
+
+        goToPage(next.pageId, next.updateHistory);
+
+    }
+
+}
+
+function goToPage(pageId, updateHistory = true) {
+
+    if (!pageOrder.includes(pageId)) {
+        return;
+    }
+
+    // A transition is running, remember the latest request
+    if (isMoving) {
+
+        pendingPage = { pageId, updateHistory };
+
+        return;
+
+    }
+
+    if (pageId === currentPage) {
 
         if (navigation) {
+
             navigation.classList.remove("show");
+
         }
 
-        if (
-            updateHistory &&
-            location.hash !== "#" + pageId
-        ) {
-            history.pushState(null, "", "#" + pageId);
-        }
+        return;
 
-        selectedPage.scrollTop = 0;
-
-        void selectedPage.offsetWidth;
-
-        selectedPage.classList.add("enter");
-
-        currentPage = pageId;
-
-        updatePager(pageId);
     }
 
-
-    // GO TO A PAGE
-
-    function goToPage(pageId, updateHistory = true) {
-
-        if (!pageOrder.includes(pageId)) {
-            return;
-        }
-
-        if (pageId === currentPage) {
-            if (navigation) {
-                navigation.classList.remove("show");
-            }
-            return;
-        }
+    // First load, reduced motion, or no animation support: no transition
+    if (
+        currentPage === null ||
+        reduceMotion ||
+        typeof wipe.animate !== "function"
+    ) {
 
         showPage(pageId, updateHistory);
-    }
 
-
-    // PREVIOUS AND NEXT BUTTON EVENTS
-
-    prevButton.addEventListener("click", function () {
-        goToPage(this.dataset.target);
-    });
-
-    nextButton.addEventListener("click", function () {
-        goToPage(this.dataset.target);
-    });
-
-
-    // NAVIGATION LINKS
-
-    navLinks.forEach(link => {
-
-        link.addEventListener("click", function (event) {
-
-            event.preventDefault();
-
-            goToPage(this.dataset.pageLink);
-
-        });
-
-    });
-
-
-    // HOME BUTTON AND OTHER PAGE BUTTONS
-
-    document.querySelectorAll("[data-go-to]").forEach(button => {
-
-        button.addEventListener("click", function () {
-
-            goToPage(this.dataset.goTo);
-
-        });
-
-    });
-
-
-    // MOBILE MENU
-
-    if (menuToggle && navigation) {
-
-        menuToggle.addEventListener("click", function () {
-            navigation.classList.toggle("show");
-        });
+        return;
 
     }
 
+    isMoving = true;
 
-    // EDUCATION AND ACHIEVEMENTS TABS
+    // 1 = moving forward, -1 = moving back
+    const direction =
+        pageOrder.indexOf(pageId) > pageOrder.indexOf(currentPage) ? 1 : -1;
 
-    const eduTabs = document.querySelectorAll("[data-edu-tab]");
-    const eduGrid = document.querySelector(".education-achievements");
+    if (navigation) {
 
-    if (eduGrid) {
+        navigation.classList.remove("show");
 
-        eduTabs.forEach(tab => {
+    }
 
-            tab.addEventListener("click", function () {
+    let pageShown = false;
+    let finished = false;
 
-                eduGrid.dataset.view = this.dataset.eduTab;
+    function swapPage() {
 
-                eduTabs.forEach(button => {
-                    button.classList.toggle(
-                        "active",
-                        button === this
-                    );
-                });
+        if (pageShown) {
+            return;
+        }
+
+        pageShown = true;
+
+        try {
+
+            showPage(pageId, updateHistory);
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    }
+
+    function done() {
+
+        if (finished) {
+            return;
+        }
+
+        finished = true;
+
+        clearTimeout(failSafe);
+
+        finishTransition();
+
+    }
+
+    // Safety net: the page always changes and the panel never gets stuck
+    const failSafe = setTimeout(function() {
+
+        swapPage();
+
+        done();
+
+    }, DURATION * 2 + 700);
+
+    const options = {
+        duration: DURATION,
+        easing: EASE,
+        fill: "forwards"
+    };
+
+    try {
+
+        // The panel slides in and covers the screen
+        const cover = wipe.animate(
+            [
+                { transform: "translateX(" + direction * 100 + "%)" },
+                { transform: "translateX(0)" }
+            ],
+            options
+        );
+
+        cover.finished
+            .then(() => {
+
+                swapPage();
+
+                // The panel slides away and reveals the new page
+                const reveal = wipe.animate(
+                    [
+                        { transform: "translateX(0)" },
+                        { transform: "translateX(" + direction * -100 + "%)" }
+                    ],
+                    options
+                );
+
+                return reveal.finished;
+
+            })
+            .then(done)
+            .catch(function() {
+
+                swapPage();
+
+                done();
 
             });
 
-        });
+    } catch (error) {
+
+        swapPage();
+
+        done();
 
     }
 
+}
 
-    // ARROW KEYS MOVE BETWEEN PAGES
 
-    document.addEventListener("keydown", function (event) {
+// NAVIGATION LINKS, PAGE BUTTONS AND BACK / NEXT BUTTONS
 
-        const index = pageOrder.indexOf(currentPage);
+document.addEventListener("click", function(event) {
 
-        if (
-            event.key === "ArrowRight" &&
-            index < pageOrder.length - 1
-        ) {
-            goToPage(pageOrder[index + 1]);
-        }
+    const target = event.target;
 
-        if (
-            event.key === "ArrowLeft" &&
-            index > 0
-        ) {
-            goToPage(pageOrder[index - 1]);
-        }
+    if (!target || !target.closest) {
+        return;
+    }
+
+    const link = target.closest("[data-page-link]");
+
+    if (link) {
+
+        event.preventDefault();
+
+        goToPage(link.dataset.pageLink);
+
+        return;
+
+    }
+
+    const button = target.closest("[data-go-to]");
+
+    if (button) {
+
+        goToPage(button.dataset.goTo);
+
+        return;
+
+    }
+
+    const pager = target.closest(".pager-btn");
+
+    if (pager && pager.dataset.target) {
+
+        goToPage(pager.dataset.target);
+
+    }
+
+});
+
+
+// MOBILE MENU
+
+if (menuToggle && navigation) {
+
+    menuToggle.addEventListener("click", function() {
+
+        navigation.classList.toggle("show");
 
     });
 
+}
 
-    // BROWSER BACK AND FORWARD BUTTONS
 
-    window.addEventListener("popstate", function () {
+// EDUCATION / ACHIEVEMENTS TABS (PHONES)
 
-        const pageId = location.hash.replace("#", "") || "home";
+const eduTabs = document.querySelectorAll("[data-edu-tab]");
 
-        goToPage(pageId, false);
+const eduGrid = document.querySelector(".education-achievements");
+
+eduTabs.forEach((tab) => {
+
+    tab.addEventListener("click", function() {
+
+        if (eduGrid) {
+
+            eduGrid.dataset.view = this.dataset.eduTab;
+
+        }
+
+        eduTabs.forEach((button) => {
+
+            button.classList.toggle("active", button === this);
+
+        });
 
     });
 
+});
 
-    // MOVING BLUE CIRCUIT TUNNEL BACKGROUND
 
-    function initBackground() {
+// ARROW KEYS MOVE BETWEEN PAGES
 
-        const canvas = document.createElement("canvas");
+document.addEventListener("keydown", function(event) {
 
-        canvas.className = "bg-canvas";
-        canvas.setAttribute("aria-hidden", "true");
+    const index = pageOrder.indexOf(currentPage);
 
-        document.body.prepend(canvas);
+    if (event.key === "ArrowRight" && index < pageOrder.length - 1) {
 
-        const ctx = canvas.getContext("2d");
+        goToPage(pageOrder[index + 1]);
 
-        if (!ctx) return;
+    }
 
-        const NEAR = 0.25;
-        const LENGTH = 6;
-        const SPEED = 0.35;
-        const RINGS = 12;
+    if (event.key === "ArrowLeft" && index > 0) {
 
-        let width = 0;
-        let height = 0;
-        let centerX = 0;
-        let centerY = 0;
-        let scaleX = 0;
-        let scaleY = 0;
-        let travel = 0;
+        goToPage(pageOrder[index - 1]);
 
-        let traces = [];
-        let panels = [];
+    }
 
-        function random(min, max) {
-            return min + Math.random() * (max - min);
-        }
+});
 
-        function wallPoint(wall, u) {
 
-            if (wall === 0) return [u, -1];
-            if (wall === 1) return [u, 1];
-            if (wall === 2) return [-1, u];
+// BROWSER BACK AND FORWARD BUTTONS
 
-            return [1, u];
-        }
+window.addEventListener("popstate", function() {
 
-        function project(x, y, z) {
-            return [
-                centerX + (x / z) * scaleX,
-                centerY + (y / z) * scaleY
-            ];
-        }
+    const pageId = location.hash.replace("#", "") || "home";
 
-        function wallToScreen(wall, u, z) {
-            const point = wallPoint(wall, u);
-            return project(point[0], point[1], z);
-        }
+    goToPage(pageId, false);
 
-        function depthOf(phase, offset) {
-            return (
-                (((phase - travel) % LENGTH) + LENGTH) % LENGTH
-            ) + NEAR + offset;
-        }
+});
 
-        function alphaAt(z) {
 
-            const far = Math.max(0, 1 - (z - NEAR) / LENGTH);
-            const close = Math.min(1, (z - NEAR) / 0.35);
+// OPEN CORRECT PAGE WHEN WEBSITE LOADS
 
-            return Math.pow(far, 1.3) * close;
-        }
+const initialPage = location.hash.replace("#", "") || "home";
 
-        function build() {
+showPage(initialPage, false);
 
-            traces = [];
-            panels = [];
 
-            const traceCount = width < 700 ? 38 : 70;
-            const panelCount = width < 700 ? 8 : 14;
+// MOVING BACKGROUND (BLUE CIRCUIT TUNNEL)
 
-            for (let i = 0; i < traceCount; i++) {
+function initBackground() {
 
-                let u = Math.round(random(-0.9, 0.9) * 10) / 10;
-                let offset = 0;
+    const canvas = document.createElement("canvas");
 
-                const points = [{ u: u, offset: 0 }];
-                const steps = 3 + Math.floor(Math.random() * 3);
+    canvas.className = "bg-canvas";
+    canvas.setAttribute("aria-hidden", "true");
 
-                for (let step = 0; step < steps; step++) {
+    document.body.prepend(canvas);
 
-                    if (step % 2 === 0) {
-                        offset += random(0.2, 0.8);
-                    } else {
+    const ctx = canvas.getContext("2d");
 
-                        const direction =
-                            Math.random() < 0.5 ? -1 : 1;
+    const NEAR = 0.25;
+    const LENGTH = 6;
+    const SPEED = 0.35;
+    const RINGS = 12;
 
-                        u = Math.max(
-                            -0.97,
-                            Math.min(
-                                0.97,
-                                u + direction * random(0.15, 0.55)
-                            )
-                        );
-                    }
+    let width = 0;
+    let height = 0;
+    let centerX = 0;
+    let centerY = 0;
+    let scaleX = 0;
+    let scaleY = 0;
+    let travel = 0;
 
-                    points.push({ u: u, offset: offset });
+    let traces = [];
+    let panels = [];
+
+    function random(min, max) {
+
+        return min + Math.random() * (max - min);
+
+    }
+
+    // Turn a spot on a tunnel wall into x / y coordinates
+    function wallPoint(wall, u) {
+
+        if (wall === 0) return [u, -1];
+        if (wall === 1) return [u, 1];
+        if (wall === 2) return [-1, u];
+
+        return [1, u];
+
+    }
+
+    function project(x, y, z) {
+
+        return [centerX + (x / z) * scaleX, centerY + (y / z) * scaleY];
+
+    }
+
+    function wallToScreen(wall, u, z) {
+
+        const point = wallPoint(wall, u);
+
+        return project(point[0], point[1], z);
+
+    }
+
+    // Position of something along the tunnel as it flies toward you
+    function depthOf(phase, offset) {
+
+        return (((phase - travel) % LENGTH) + LENGTH) % LENGTH + NEAR + offset;
+
+    }
+
+    // Far things fade out, and so do things that get too close
+    function alphaAt(z) {
+
+        const far = Math.max(0, 1 - (z - NEAR) / LENGTH);
+        const close = Math.min(1, (z - NEAR) / 0.35);
+
+        return Math.pow(far, 1.3) * close;
+
+    }
+
+    function build() {
+
+        traces = [];
+        panels = [];
+
+        const traceCount = width < 700 ? 38 : 70;
+        const panelCount = width < 700 ? 8 : 14;
+
+        for (let i = 0; i < traceCount; i++) {
+
+            let u = Math.round(random(-0.9, 0.9) * 10) / 10;
+            let offset = 0;
+
+            const points = [{ u: u, offset: 0 }];
+
+            const steps = 3 + Math.floor(Math.random() * 3);
+
+            for (let step = 0; step < steps; step++) {
+
+                if (step % 2 === 0) {
+
+                    offset += random(0.2, 0.8);
+
+                } else {
+
+                    const direction = Math.random() < 0.5 ? -1 : 1;
+
+                    u = Math.max(-0.97, Math.min(0.97, u + direction * random(0.15, 0.55)));
+
                 }
 
-                traces.push({
-                    wall: Math.floor(Math.random() * 4),
-                    points: points,
-                    phase: random(0, LENGTH)
-                });
+                points.push({ u: u, offset: offset });
+
             }
 
-            for (let i = 0; i < panelCount; i++) {
+            traces.push({
+                wall: Math.floor(Math.random() * 4),
+                points: points,
+                phase: random(0, LENGTH)
+            });
 
-                const u0 = random(-0.9, 0.5);
-                const offset0 = random(0, 0.6);
-
-                panels.push({
-                    wall: Math.floor(Math.random() * 4),
-                    u0: u0,
-                    u1: u0 + random(0.2, 0.5),
-                    offset0: offset0,
-                    offset1: offset0 + random(0.3, 0.9),
-                    phase: random(0, LENGTH)
-                });
-            }
         }
 
-        function resize() {
+        for (let i = 0; i < panelCount; i++) {
 
-            const ratio = Math.min(
-                window.devicePixelRatio || 1,
-                1.5
+            const u0 = random(-0.9, 0.5);
+            const offset0 = random(0, 0.6);
+
+            panels.push({
+                wall: Math.floor(Math.random() * 4),
+                u0: u0,
+                u1: u0 + random(0.2, 0.5),
+                offset0: offset0,
+                offset1: offset0 + random(0.3, 0.9),
+                phase: random(0, LENGTH)
+            });
+
+        }
+
+    }
+
+    function resize() {
+
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        canvas.width = width * ratio;
+        canvas.height = height * ratio;
+
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+        centerX = width / 2;
+        centerY = height / 2;
+
+        scaleX = width * 0.5;
+        scaleY = height * 0.5;
+
+        build();
+
+    }
+
+    function draw() {
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Soft see-through panels on the walls
+        panels.forEach((panel) => {
+
+            const z0 = depthOf(panel.phase, panel.offset0);
+            const z1 = depthOf(panel.phase, panel.offset1);
+
+            if (z0 < NEAR + 0.05) {
+                return;
+            }
+
+            const alpha = alphaAt((z0 + z1) / 2) * 0.14;
+
+            const a = wallToScreen(panel.wall, panel.u0, z0);
+            const b = wallToScreen(panel.wall, panel.u1, z0);
+            const c = wallToScreen(panel.wall, panel.u1, z1);
+            const d = wallToScreen(panel.wall, panel.u0, z1);
+
+            ctx.fillStyle = "rgba(47, 107, 255, " + alpha + ")";
+
+            ctx.beginPath();
+            ctx.moveTo(a[0], a[1]);
+            ctx.lineTo(b[0], b[1]);
+            ctx.lineTo(c[0], c[1]);
+            ctx.lineTo(d[0], d[1]);
+            ctx.closePath();
+            ctx.fill();
+
+        });
+
+        ctx.lineWidth = 1;
+
+        // Rings that rush toward you
+        for (let i = 0; i < RINGS; i++) {
+
+            const z = NEAR + ((((i * LENGTH) / RINGS - travel) % LENGTH) + LENGTH) % LENGTH;
+
+            const topLeft = project(-1, -1, z);
+            const bottomRight = project(1, 1, z);
+
+            ctx.strokeStyle = "rgba(80, 160, 255, " + alphaAt(z) * 0.22 + ")";
+
+            ctx.strokeRect(
+                topLeft[0],
+                topLeft[1],
+                bottomRight[0] - topLeft[0],
+                bottomRight[1] - topLeft[1]
             );
 
-            width = window.innerWidth;
-            height = window.innerHeight;
-
-            canvas.width = width * ratio;
-            canvas.height = height * ratio;
-
-            ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-
-            centerX = width / 2;
-            centerY = height / 2;
-
-            scaleX = width * 0.5;
-            scaleY = height * 0.5;
-
-            build();
         }
 
-        function draw() {
+        // Long faint lines down the walls
+        ctx.strokeStyle = "rgba(80, 160, 255, 0.07)";
 
-            ctx.clearRect(0, 0, width, height);
+        for (let wall = 0; wall < 4; wall++) {
 
-            panels.forEach(panel => {
+            [-1, -0.5, 0, 0.5, 1].forEach((u) => {
 
-                const z0 = depthOf(panel.phase, panel.offset0);
-                const z1 = depthOf(panel.phase, panel.offset1);
-
-                if (z0 < NEAR + 0.05) return;
-
-                const alpha = alphaAt((z0 + z1) / 2) * 0.14;
-
-                const a = wallToScreen(panel.wall, panel.u0, z0);
-                const b = wallToScreen(panel.wall, panel.u1, z0);
-                const c = wallToScreen(panel.wall, panel.u1, z1);
-                const d = wallToScreen(panel.wall, panel.u0, z1);
-
-                ctx.fillStyle =
-                    "rgba(47, 107, 255, " + alpha + ")";
+                const start = wallToScreen(wall, u, NEAR + 0.1);
+                const end = wallToScreen(wall, u, NEAR + LENGTH);
 
                 ctx.beginPath();
-                ctx.moveTo(a[0], a[1]);
-                ctx.lineTo(b[0], b[1]);
-                ctx.lineTo(c[0], c[1]);
-                ctx.lineTo(d[0], d[1]);
-                ctx.closePath();
-                ctx.fill();
+                ctx.moveTo(start[0], start[1]);
+                ctx.lineTo(end[0], end[1]);
+                ctx.stroke();
+
             });
 
-            ctx.lineWidth = 1;
+        }
 
-            for (let i = 0; i < RINGS; i++) {
+        // Circuit lines with glowing dots at the corners
+        traces.forEach((trace) => {
 
-                const z = NEAR + (
-                    (
-                        ((i * LENGTH) / RINGS - travel) % LENGTH
-                        + LENGTH
-                    ) % LENGTH
-                );
+            const depths = trace.points.map((point) => depthOf(trace.phase, point.offset));
 
-                const topLeft = project(-1, -1, z);
-                const bottomRight = project(1, 1, z);
+            for (let i = 0; i < trace.points.length - 1; i++) {
 
-                ctx.strokeStyle =
-                    "rgba(80, 160, 255, " + alphaAt(z) * 0.22 + ")";
-
-                ctx.strokeRect(
-                    topLeft[0],
-                    topLeft[1],
-                    bottomRight[0] - topLeft[0],
-                    bottomRight[1] - topLeft[1]
-                );
-            }
-
-            ctx.strokeStyle = "rgba(80, 160, 255, 0.07)";
-
-            for (let wall = 0; wall < 4; wall++) {
-
-                [-1, -0.5, 0, 0.5, 1].forEach(u => {
-
-                    const start = wallToScreen(
-                        wall, u, NEAR + 0.1
-                    );
-
-                    const end = wallToScreen(
-                        wall, u, NEAR + LENGTH
-                    );
-
-                    ctx.beginPath();
-                    ctx.moveTo(start[0], start[1]);
-                    ctx.lineTo(end[0], end[1]);
-                    ctx.stroke();
-                });
-            }
-
-            traces.forEach(trace => {
-
-                const depths = trace.points.map(point =>
-                    depthOf(trace.phase, point.offset)
-                );
-
-                for (let i = 0; i < trace.points.length - 1; i++) {
-
-                    if (
-                        depths[i] < NEAR + 0.05 ||
-                        depths[i + 1] < NEAR + 0.05
-                    ) {
-                        continue;
-                    }
-
-                    const alpha =
-                        alphaAt((depths[i] + depths[i + 1]) / 2) * 0.5;
-
-                    const from = wallToScreen(
-                        trace.wall,
-                        trace.points[i].u,
-                        depths[i]
-                    );
-
-                    const to = wallToScreen(
-                        trace.wall,
-                        trace.points[i + 1].u,
-                        depths[i + 1]
-                    );
-
-                    ctx.strokeStyle =
-                        "rgba(90, 170, 255, " + alpha + ")";
-
-                    ctx.beginPath();
-                    ctx.moveTo(from[0], from[1]);
-                    ctx.lineTo(to[0], to[1]);
-                    ctx.stroke();
+                if (depths[i] < NEAR + 0.05 || depths[i + 1] < NEAR + 0.05) {
+                    continue;
                 }
 
-                trace.points.forEach((point, i) => {
+                const alpha = alphaAt((depths[i] + depths[i + 1]) / 2) * 0.5;
 
-                    if (depths[i] < NEAR + 0.05) return;
+                const from = wallToScreen(trace.wall, trace.points[i].u, depths[i]);
+                const to = wallToScreen(trace.wall, trace.points[i + 1].u, depths[i + 1]);
 
-                    const spot = wallToScreen(
-                        trace.wall,
-                        point.u,
-                        depths[i]
-                    );
+                ctx.strokeStyle = "rgba(90, 170, 255, " + alpha + ")";
 
-                    const radius = Math.min(
-                        3,
-                        0.8 + 0.9 / depths[i]
-                    );
+                ctx.beginPath();
+                ctx.moveTo(from[0], from[1]);
+                ctx.lineTo(to[0], to[1]);
+                ctx.stroke();
 
-                    ctx.fillStyle =
-                        "rgba(190, 235, 255, " +
-                        Math.min(1, alphaAt(depths[i]) * 1.3) +
-                        ")";
+            }
 
-                    ctx.beginPath();
-                    ctx.arc(
-                        spot[0],
-                        spot[1],
-                        radius,
-                        0,
-                        Math.PI * 2
-                    );
-                    ctx.fill();
-                });
+            trace.points.forEach((point, i) => {
+
+                if (depths[i] < NEAR + 0.05) {
+                    return;
+                }
+
+                const spot = wallToScreen(trace.wall, point.u, depths[i]);
+
+                const radius = Math.min(3, 0.8 + 0.9 / depths[i]);
+
+                ctx.fillStyle = "rgba(190, 235, 255, " + Math.min(1, alphaAt(depths[i]) * 1.3) + ")";
+
+                ctx.beginPath();
+                ctx.arc(spot[0], spot[1], radius, 0, Math.PI * 2);
+                ctx.fill();
+
             });
-        }
 
-        let lastTime = 0;
+        });
 
-        function loop(time) {
+    }
 
-            const delta = Math.min(
-                0.05,
-                (time - lastTime) / 1000 || 0
-            );
+    let lastTime = 0;
 
-            lastTime = time;
+    function loop(time) {
 
-            travel += SPEED * delta;
+        const delta = Math.min(0.05, (time - lastTime) / 1000 || 0);
 
-            draw();
+        lastTime = time;
 
-            requestAnimationFrame(loop);
-        }
+        travel += SPEED * delta;
+
+        draw();
+
+        requestAnimationFrame(loop);
+
+    }
+
+    resize();
+
+    window.addEventListener("resize", function() {
 
         resize();
 
-        window.addEventListener("resize", function () {
-
-            resize();
-
-            if (reduceMotion) {
-                draw();
-            }
-        });
-
         if (reduceMotion) {
             draw();
-        } else {
-            requestAnimationFrame(loop);
         }
+
+    });
+
+    if (reduceMotion) {
+
+        draw();
+
+    } else {
+
+        requestAnimationFrame(loop);
+
     }
 
+}
 
-    // START BACKGROUND
+
+// The background is only decoration: if it ever fails, the site still works
+
+try {
 
     initBackground();
 
+} catch (error) {
 
-    // OPEN CORRECT PAGE WHEN WEBSITE LOADS
+    console.error(error);
 
-    const initialPage =
-        location.hash.replace("#", "") || "home";
-
-    showPage(
-        pageOrder.includes(initialPage) ? initialPage : "home",
-        false
-    );
-
-
-    console.log("Pages detected:", pageOrder);
-    console.log("Current page:", currentPage);
-    console.log("Next button target:", nextButton.dataset.target);
-
-});
-                        
+    }
