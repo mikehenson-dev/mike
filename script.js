@@ -158,10 +158,6 @@ function showPage(pageId, updateHistory = true) {
 
     updatePager(pageId);
 
-    closePerson();
-
-    updateTree(pageId);
-
 }
 
 
@@ -198,24 +194,6 @@ document.addEventListener("click", function(event) {
 
     if (!target || !target.closest) {
         return;
-    }
-
-    const podButton = target.closest(".pod-btn");
-
-    if (podButton) {
-
-        openPerson(podButton.dataset.person, podButton);
-
-        return;
-
-    }
-
-    if (target.closest(".person-close") || target === personDialog) {
-
-        closePerson();
-
-        return;
-
     }
 
     const link = target.closest("[data-page-link]");
@@ -291,19 +269,91 @@ eduTabs.forEach((tab) => {
 });
 
 
+// FAMILY & FRIENDS TREE PODS & MODAL
+
+function initFamilyTree() {
+
+    const pods = document.querySelectorAll(".tree-pod");
+    const modal = document.getElementById("podModal");
+    const modalBranch = document.getElementById("podModalBranch");
+    const modalTitle = document.getElementById("podModalTitle");
+    const modalDesc = document.getElementById("podModalDesc");
+    const modalImg = document.getElementById("podModalImg");
+    const modalPlaceholder = document.getElementById("podModalPlaceholder");
+
+    pods.forEach((pod) => {
+
+        const img = pod.querySelector(".pod-photo");
+        const mediaBox = pod.querySelector(".pod-media");
+        const placeholder = pod.querySelector(".pod-placeholder");
+        const rawSrc = img ? (img.getAttribute("src") || "").trim() : "";
+
+        if (img && rawSrc) {
+
+            const reveal = () => {
+                img.hidden = false;
+                if (placeholder) placeholder.hidden = true;
+                if (mediaBox) mediaBox.classList.add("has-photo");
+            };
+
+            if (img.complete && img.naturalWidth > 0) {
+                reveal();
+            } else {
+                img.addEventListener("load", reveal, { once: true });
+            }
+
+        }
+
+        pod.addEventListener("click", () => {
+
+            if (!modal) return;
+
+            modalBranch.textContent = pod.dataset.podBranch || "";
+            modalTitle.textContent = pod.dataset.podTitle || "";
+            modalDesc.textContent = pod.dataset.podDesc || "";
+
+            const photoSrc = img ? (img.getAttribute("src") || "").trim() : "";
+
+            if (photoSrc) {
+                modalImg.src = photoSrc;
+                modalImg.alt = pod.dataset.podTitle || "";
+                modalImg.hidden = false;
+                modalPlaceholder.hidden = true;
+            } else {
+                modalImg.hidden = true;
+                modalPlaceholder.hidden = false;
+            }
+
+            modal.hidden = false;
+
+        });
+
+    });
+
+    if (modal) {
+
+        modal.addEventListener("click", (event) => {
+            if (event.target.closest("[data-close-pod]")) {
+                modal.hidden = true;
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !modal.hidden) {
+                modal.hidden = true;
+            }
+        });
+
+    }
+
+}
+
+initFamilyTree();
+
+
 // ARROW KEYS MOVE BETWEEN PAGES
 
 document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Escape") {
-
-        closePerson();
-
-    }
-
-    if (personDialog && !personDialog.hidden) {
-        return;
-    }
 
     const index = pageOrder.indexOf(currentPage);
 
@@ -331,223 +381,6 @@ window.addEventListener("popstate", function() {
     goToPage(pageId, false);
 
 });
-
-
-// FAMILY AND FRIENDS: TREE BACKGROUND
-
-const TREE_IMAGE = "tree-bg.webp";
-const TREE_RATIO = 1600 / 900;
-
-const treeLayer = document.createElement("div");
-
-treeLayer.className = "tree-layer";
-treeLayer.setAttribute("aria-hidden", "true");
-
-const treeTop = document.createElement("img");
-const treeBottom = document.createElement("img");
-
-treeTop.className = "tree-top";
-treeBottom.className = "tree-bottom";
-
-treeTop.alt = "";
-treeBottom.alt = "";
-
-treeLayer.appendChild(treeTop);
-treeLayer.appendChild(treeBottom);
-
-document.body.appendChild(treeLayer);
-
-let treeLoaded = false;
-
-// The tree only fades in on the Family & Friends page
-function updateTree(pageId) {
-
-    const onFamily = pageId === "family";
-
-    document.body.classList.toggle("on-family", onFamily);
-
-    if (onFamily && !treeLoaded) {
-
-        treeLoaded = true;
-
-        treeTop.src = TREE_IMAGE;
-        treeBottom.src = TREE_IMAGE;
-
-    }
-
-}
-
-
-// FAMILY AND FRIENDS: PODS
-
-// Where each pod sits on the picture (fractions of its width and height)
-const treeSlots = {
-    tl: [0.31, 0.31],
-    tr: [0.71, 0.30],
-    bl: [0.30, 0.60],
-    br: [0.70, 0.60]
-};
-
-function layoutPods() {
-
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    const pods = document.querySelectorAll(".pod");
-
-    pods.forEach((pod, index) => {
-
-        const slot = pod.dataset.slot;
-
-        const spot = treeSlots[slot];
-
-        if (!spot) {
-            return;
-        }
-
-        let x;
-        let y;
-
-        if (height < 520 && width > height) {
-
-            // Very short landscape screens: one row of four
-            x = width * (0.2 + index * 0.2);
-            y = height * 0.62;
-
-        } else if (width / height < 1) {
-
-            // Phones held upright: two rows around the trunk
-            x = width * (slot.endsWith("l") ? 0.27 : 0.73);
-            y = height * (slot.startsWith("t") ? 0.4 : 0.66);
-
-        } else {
-
-            // Wide screens: sit on top of the pods in the picture
-            let shownWidth;
-            let shownHeight;
-
-            if (width / height > TREE_RATIO) {
-
-                shownWidth = width;
-                shownHeight = width / TREE_RATIO;
-
-            } else {
-
-                shownHeight = height;
-                shownWidth = height * TREE_RATIO;
-
-            }
-
-            const spotX = (width - shownWidth) / 2 + spot[0] * shownWidth;
-            const spotY = (height - shownHeight) / 2 + spot[1] * shownHeight;
-
-            // The picture is slightly zoomed in (1.04) in the CSS
-            x = width / 2 + (spotX - width / 2) * 1.04;
-            y = height / 2 + (spotY - height / 2) * 1.04;
-
-            x = Math.max(90, Math.min(width - 90, x));
-            y = Math.max(150, Math.min(height - 110, y));
-
-        }
-
-        pod.style.left = x + "px";
-        pod.style.top = y + "px";
-
-    });
-
-}
-
-window.addEventListener("resize", layoutPods);
-
-layoutPods();
-
-
-// FAMILY AND FRIENDS: POP-UP CARD
-
-const personDialog = document.getElementById("personDialog");
-
-let lastPodButton = null;
-
-function openPerson(personId, trigger) {
-
-    if (!personDialog) {
-        return;
-    }
-
-    const info = document.querySelector(
-        '.person-info[data-person="' + personId + '"]'
-    );
-
-    if (!info) {
-        return;
-    }
-
-    const title = info.querySelector("h2");
-    const text = info.querySelector("p");
-    const photos = info.querySelectorAll("img");
-
-    const photoBox = personDialog.querySelector(".person-photos");
-
-    photoBox.textContent = "";
-
-    photoBox.classList.toggle("single", photos.length <= 1);
-
-    if (photos.length) {
-
-        photos.forEach((photo) => {
-
-            photoBox.appendChild(photo.cloneNode(true));
-
-        });
-
-    } else {
-
-        const placeholder = document.createElement("div");
-
-        placeholder.className = "person-placeholder";
-        placeholder.textContent = "Photo coming soon";
-
-        photoBox.appendChild(placeholder);
-
-    }
-
-    personDialog.querySelector(".person-title").textContent =
-        title ? title.textContent : "";
-
-    personDialog.querySelector(".person-text").textContent =
-        text ? text.textContent : "";
-
-    personDialog.hidden = false;
-
-    lastPodButton = trigger || null;
-
-    const closeButton = personDialog.querySelector(".person-close");
-
-    if (closeButton) {
-
-        closeButton.focus();
-
-    }
-
-}
-
-function closePerson() {
-
-    if (!personDialog || personDialog.hidden) {
-        return;
-    }
-
-    personDialog.hidden = true;
-
-    if (lastPodButton && lastPodButton.focus) {
-
-        lastPodButton.focus();
-
-    }
-
-    lastPodButton = null;
-
-}
 
 
 // OPEN CORRECT PAGE WHEN WEBSITE LOADS
@@ -889,4 +722,3 @@ try {
     console.error(error);
 
 }
-    
