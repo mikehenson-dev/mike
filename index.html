@@ -352,173 +352,188 @@
         </section>
 
 
-        <!-- FAMILY AND FRIENDS -->
+        <!-- FAMILY & FRIENDS -->
         <section id="family" class="page-panel family-page" hidden>
 
             <div class="section-heading compact-heading">
 
                 <p class="intro">MY INSPIRATION</p>
 
-                <h1>Family <span>&amp; Friends</span></h1>
+                <h1>Family &amp; <span>Friends</span></h1>
 
-                <p>Tap a pod to meet them.</p>
-
-            </div>
-
-
-            <!-- THE FOUR PODS ON THE TREE -->
-            <div class="tree-pods">
-
-                <div class="pod" data-slot="tl" style="--delay: 0.1s">
-                    <button class="pod-btn" type="button" data-person="mother">
-                        <span class="pod-light"></span>
-                        <span class="pod-label">Mother</span>
-                        <span class="pod-hint">Tap to open</span>
-                    </button>
-                </div>
-
-                <div class="pod" data-slot="tr" style="--delay: 0.2s">
-                    <button class="pod-btn" type="button" data-person="father">
-                        <span class="pod-light"></span>
-                        <span class="pod-label">Father</span>
-                        <span class="pod-hint">Tap to open</span>
-                    </button>
-                </div>
-
-                <div class="pod" data-slot="bl" style="--delay: 0.3s">
-                    <button class="pod-btn" type="button" data-person="siblings">
-                        <span class="pod-light"></span>
-                        <span class="pod-label">Siblings</span>
-                        <span class="pod-hint">Tap to open</span>
-                    </button>
-                </div>
-
-                <div class="pod" data-slot="br" style="--delay: 0.4s">
-                    <button class="pod-btn" type="button" data-person="friends">
-                        <span class="pod-light"></span>
-                        <span class="pod-label">Friends</span>
-                        <span class="pod-hint">Tap to open</span>
-                    </button>
-                </div>
+                <p>Tap a pod on the tree to open.</p>
 
             </div>
 
 
-            <!--
-                WHAT OPENS WHEN A POD IS TAPPED
-                To add pictures: put one or more lines like
-                <img src="photo-name.jpg" alt="Short description">
-                inside the matching block below, then upload the pictures
-                to your repo. Edit the title and the text the same way.
-            -->
+            <div class="family-tree-stage">
 
-            <div class="person-info" data-person="mother" hidden>
-                <h2>My Mother</h2>
-                <p>
-                    My mother is an important part of my life. Her support,
-                    sacrifices, and guidance inspire me to work hard and
-                    pursue my goals.
-                </p>
-                <img src="mother-graduation.jpg" alt="My mother">
-            </div>
+                <!-- TRANSLUCENT FUTURISTIC TREE CRADLING THE 4 PODS -->
+                <svg class="cyber-tree-svg" viewBox="0 0 1100 640"
+                    preserveAspectRatio="none" aria-hidden="true">
 
-            <div class="person-info" data-person="father" hidden>
-                <h2>My Father</h2>
-                <p>A few words about my father will be added here soon.</p>
-            </div>
+                    <defs>
+                        <!-- Translucent bark & root gradient -->
+                        <linearGradient id="barkFill" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="#071530" stop-opacity="0.22" />
+                            <stop offset="35%" stop-color="#0e2a5c" stop-opacity="0.72" />
+                            <stop offset="75%" stop-color="#133b7a" stop-opacity="0.65" />
+                            <stop offset="100%" stop-color="#1b529e" stop-opacity="0.25" />
+                        </linearGradient>
 
-            <div class="person-info" data-person="siblings" hidden>
-                <h2>My Siblings</h2>
-                <p>A few words about my siblings will be added here soon.</p>
-            </div>
+                        <!-- Translucent branch gradient -->
+                        <linearGradient id="boughFill" x1="0%" y1="50%" x2="100%" y2="50%">
+                            <stop offset="0%" stop-color="#143c7a" stop-opacity="0.38" />
+                            <stop offset="50%" stop-color="#184a94" stop-opacity="0.82" />
+                            <stop offset="100%" stop-color="#143c7a" stop-opacity="0.38" />
+                        </linearGradient>
 
-            <div class="person-info" data-person="friends" hidden>
-                <h2>My Friends</h2>
-                <p>A few words about my friends will be added here soon.</p>
-            </div>
+                        <!-- Glowing cyan circuit vein gradient -->
+                        <linearGradient id="veinGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" stop-color="#3d6bff" stop-opacity="0.3" />
+                            <stop offset="45%" stop-color="#37e6ff" stop-opacity="0.95" />
+                            <stop offset="100%" stop-color="#9beeff" stop-opacity="0.75" />
+                        </linearGradient>
 
+                        <!-- Canopy foliage aura -->
+                        <radialGradient id="leafClusterCyan" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#37e6ff" stop-opacity="0.22" />
+                            <stop offset="55%" stop-color="#2b6bff" stop-opacity="0.1" />
+                            <stop offset="100%" stop-color="#040a1a" stop-opacity="0" />
+                        </radialGradient>
 
-            <!-- POP-UP CARD -->
-            <div class="person-dialog" id="personDialog" hidden>
+                        <radialGradient id="leafClusterBlue" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#4d7cff" stop-opacity="0.25" />
+                            <stop offset="60%" stop-color="#1a3b80" stop-opacity="0.1" />
+                            <stop offset="100%" stop-color="#040a1a" stop-opacity="0" />
+                        </radialGradient>
 
-                <div class="person-sheet" role="dialog" aria-modal="true"
-                    aria-labelledby="personTitle">
+                        <filter id="treeNeon" x="-25%" y="-25%" width="150%" height="150%">
+                            <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
+                            <feMerge>
+                                <feMergeNode in="coloredBlur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
 
-                    <button class="person-close" type="button"
-                        aria-label="Close">&times;</button>
+                    <!-- AMBIENT TRANSLUCENT CANOPY CLOUDS -->
+                    <g class="tree-foliage">
+                        <ellipse cx="550" cy="110" rx="300" ry="95" fill="url(#leafClusterCyan)" />
+                        <ellipse cx="260" cy="150" rx="220" ry="90" fill="url(#leafClusterBlue)" />
+                        <ellipse cx="840" cy="150" rx="220" ry="90" fill="url(#leafClusterBlue)" />
+                        <ellipse cx="230" cy="395" rx="200" ry="85" fill="url(#leafClusterCyan)" />
+                        <ellipse cx="870" cy="395" rx="200" ry="85" fill="url(#leafClusterCyan)" />
+                        <ellipse cx="550" cy="605" rx="290" ry="32" fill="url(#leafClusterCyan)" />
+                    </g>
 
-                    <div class="person-photos"></div>
+                    <!-- TRUNK, ROOTS & 4 CRADLING BRANCHES -->
+                    <g class="tree-wood" stroke="rgba(55, 230, 255, 0.34)" stroke-width="1.4">
+                        <!-- Main trunk & spreading roots -->
+                        <path fill="url(#barkFill)"
+                            d="M 330 625
+                               C 400 612, 452 580, 484 528
+                               C 502 496, 508 442, 510 370
+                               L 512 215
+                               C 514 150, 498 102, 468 62
+                               C 502 84, 522 118, 534 162
+                               C 542 114, 550 74, 555 38
+                               C 562 76, 568 118, 572 164
+                               C 586 118, 608 84, 638 60
+                               C 605 102, 590 150, 590 215
+                               L 592 370
+                               C 594 442, 600 496, 618 528
+                               C 650 580, 702 612, 772 625
+                               C 700 624, 648 610, 606 578
+                               C 586 602, 572 620, 562 634
+                               C 555 612, 552 592, 550 570
+                               C 548 592, 545 612, 538 634
+                               C 528 620, 514 602, 494 578
+                               C 452 610, 400 624, 330 625 Z" />
 
-                    <h2 class="person-title" id="personTitle"></h2>
+                        <!-- UPPER LEFT BRANCH CRADLING FATHER POD -->
+                        <path fill="url(#boughFill)"
+                            d="M 514 282
+                               C 462 246, 415 234, 340 234
+                               L 95 234
+                               C 72 234, 56 218, 48 192
+                               C 64 210, 78 220, 102 220
+                               L 345 220
+                               C 405 220, 458 228, 514 252 Z" />
 
-                    <p class="person-text"></p>
+                        <!-- UPPER RIGHT BRANCH CRADLING MOTHER POD -->
+                        <path fill="url(#boughFill)"
+                            d="M 586 282
+                               C 638 246, 685 234, 760 234
+                               L 1005 234
+                               C 1028 234, 1044 218, 1052 192
+                               C 1036 210, 1022 220, 998 220
+                               L 755 220
+                               C 695 220, 642 228, 586 252 Z" />
 
-                </div>
+                        <!-- LOWER LEFT BRANCH CRADLING SIBLINGS POD -->
+                        <path fill="url(#boughFill)"
+                            d="M 510 524
+                               C 456 496, 408 486, 335 486
+                               L 95 486
+                               C 72 486, 56 470, 48 444
+                               C 64 462, 78 472, 102 472
+                               L 340 472
+                               C 402 472, 454 480, 512 498 Z" />
 
-            </div>
+                        <!-- LOWER RIGHT BRANCH CRADLING FRIENDS POD -->
+                        <path fill="url(#boughFill)"
+                            d="M 590 524
+                               C 644 496, 692 486, 765 486
+                               L 1005 486
+                               C 1028 486, 1044 470, 1052 444
+                               C 1036 462, 1022 472, 998 472
+                               L 760 472
+                               C 698 472, 646 480, 588 498 Z" />
+                    </g>
 
-        </section>
+                    <!-- GLOWING CYAN CIRCUIT VEINS RUNNING INTO EACH POD -->
+                    <g class="tree-circuit-veins" fill="none" stroke-linecap="round" filter="url(#treeNeon)">
+                        <!-- Trunk & root veins -->
+                        <path d="M 372 618 C 430 602, 478 570, 512 512 L 526 355 L 530 155"
+                            stroke="url(#veinGlow)" stroke-width="2.2" />
+                        <path d="M 728 618 C 670 602, 622 570, 588 512 L 574 355 L 570 155"
+                            stroke="url(#veinGlow)" stroke-width="2.2" />
+                        <path d="M 550 612 L 550 65"
+                            stroke="#7fd8ff" stroke-width="1.6" stroke-opacity="0.7"
+                            stroke-dasharray="10 8" />
 
+                        <!-- Upper-left branch vein -> Father cradle -->
+                        <path d="M 530 272 C 470 236, 418 227, 340 227 L 95 227 C 75 227, 62 216, 54 198"
+                            stroke="#37e6ff" stroke-width="2.6" />
 
-        <!-- CONTACT -->
-        <section id="contact" class="page-panel" hidden>
+                        <!-- Upper-right branch vein -> Mother cradle -->
+                        <path d="M 570 272 C 630 236, 682 227, 760 227 L 1005 227 C 1025 227, 1038 216, 1046 198"
+                            stroke="#37e6ff" stroke-width="2.6" />
 
-            <div class="section-heading">
+                        <!-- Lower-left branch vein -> Siblings cradle -->
+                        <path d="M 526 514 C 464 486, 412 479, 335 479 L 95 479 C 75 479, 62 468, 54 450"
+                            stroke="#37e6ff" stroke-width="2.6" />
 
-                <p class="intro">LET'S CONNECT</p>
+                        <!-- Lower-right branch vein -> Friends cradle -->
+                        <path d="M 574 514 C 636 486, 688 479, 765 479 L 1005 479 C 1025 479, 1038 468, 1046 450"
+                            stroke="#37e6ff" stroke-width="2.6" />
+                    </g>
 
-                <h1>Contact <span>Me</span></h1>
+                    <!-- GLOWING CRADLE NODES & DRIFTING CANOPY LEAVES -->
+                    <g class="tree-leaves" fill="#37e6ff" filter="url(#treeNeon)">
+                        <!-- Trunk split nodes -->
+                        <circle cx="530" cy="272" r="4.5" />
+                        <circle cx="570" cy="272" r="4.5" />
+                        <circle cx="526" cy="514" r="4.5" />
+                        <circle cx="574" cy="514" r="4.5" />
+                        <circle cx="550" cy="65" r="4" />
 
-                <p>Feel free to reach out through the following platforms.</p>
-
-            </div>
-
-
-            <div class="contact-grid">
-
-                <div class="contact-card">
-
-                    <span>✉️</span>
-
-                    <h3>Email</h3>
-
-                    <a href="mailto:mikehensona@gmail.com">
-                        mikehensona@gmail.com
-                    </a>
-
-                </div>
-
-
-                <div class="contact-card">
-
-                    <span>💻</span>
-
-                    <h3>GitHub</h3>
-
-                    <a href="https://github.com/mikehenson-dev"
-                        target="_blank"
-                        rel="noopener">
-                        Visit My GitHub
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        <p>© 2026 Mike Henson Arcalas. All Rights Reserved.</p>
-
-    </footer>
-
-
-    <script src="script.js"></script>
-
-</body>
-</html>
+                        <!-- Cradle contact nodes under each pod -->
+                        <circle cx="385" cy="227" r="4" />
+                        <circle cx="145" cy="227" r="4" />
+                        <circle cx="715" cy="227" r="4" />
+                        <circle cx="955" cy="227" r="4" />
+                        <circle cx="385" cy="479" r="4" />
+                        <circle cx="145" cy="479" r="4" />
+                        <circle cx="715" cy="479" r
