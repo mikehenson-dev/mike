@@ -295,157 +295,241 @@
         </section>
 
 
-        <!-- EDUCATION AND ACHIEVEMENTS -->
+        <!-- EDUCATION AND ACHIEVEMENTS (CONNECTED BY BRANCHES, CLICKABLE, NON-SCROLLABLE) -->
         <section id="education" class="page-panel education-page" hidden>
 
             <div class="section-heading compact-heading">
 
                 <p class="intro">MY ACADEMIC JOURNEY</p>
 
-                <h1>Education &amp; Achievements</h1>
+                <h1>Education &amp; <span>Achievements</span></h1>
 
-                <p>My educational background and accomplishments</p>
-
-            </div>
-
-
-            <!-- TABS (SHOWN ON PHONES ONLY) -->
-            <div class="edu-tabs" role="tablist">
-
-                <button class="edu-tab active" data-edu-tab="edu"
-                    role="tab">Education</button>
-
-                <button class="edu-tab" data-edu-tab="ach"
-                    role="tab">Achievements</button>
+                <p>Click any school stage or achievement node to view details.</p>
 
             </div>
 
 
-            <div class="education-achievements" data-view="edu">
+            <div class="edu-branch-tree">
 
-                <!-- LEFT COLUMN: EDUCATION -->
-                <div class="info-column edu-col">
+                <!-- ROW 01: ELEMENTARY -->
+                <div class="edu-branch-row is-active" data-stage="01">
 
-                    <h2>Education</h2>
+                    <button type="button" class="edu-node"
+                        data-edu-stage="01 // ELEMENTARY (2014–2020)"
+                        data-edu-school="San Vicente Elementary School"
+                        data-edu-items="Good Conduct Recognition::Recognized for demonstrating good behavior, respect, and responsibility in school.||Active Classroom Participation::Recognized for consistent participation in classroom activities and school assignments.">
+                        <div class="edu-node-top">
+                            <span class="card-number">01 · ELEMENTARY</span>
+                            <span class="year">2014–2020</span>
+                        </div>
+                        <h3>San Vicente Elementary School</h3>
+                        <span class="node-hint">View stage ↗</span>
+                    </button>
 
-                    <div class="info-card education-card">
-
-                        <span class="card-number">01</span>
-
-                        <h3>Elementary</h3>
-
-                        <p>San Vicente Elementary School</p>
-
-                        <span class="year">2014 – 2020</span>
-
+                    <div class="branch-connector" aria-hidden="true">
+                        <svg viewBox="0 0 90 60" preserveAspectRatio="none">
+                            <path class="branch-line" d="M 0 30 L 40 30 L 56 16 L 90 16" />
+                            <path class="branch-line" d="M 40 30 L 56 44 L 90 44" />
+                            <circle class="branch-dot" cx="3" cy="30" r="2.8" />
+                            <circle class="branch-dot branch-hub" cx="40" cy="30" r="3.8" />
+                            <circle class="branch-dot" cx="87" cy="16" r="2.8" />
+                            <circle class="branch-dot" cx="87" cy="44" r="2.8" />
+                        </svg>
                     </div>
 
+                    <div class="ach-cluster">
+                        <button type="button" class="ach-chip"
+                            data-ach-stage="ELEMENTARY · 2014–2020"
+                            data-ach-school="San Vicente Elementary School"
+                            data-ach-title="Good Conduct Recognition"
+                            data-ach-desc="Recognized for demonstrating good behavior, respect, and responsibility in school.">
+                            <span class="ach-chip-icon">🏅</span>
+                            <span class="ach-chip-title">Good Conduct Recognition</span>
+                            <span class="ach-chip-arrow">↗</span>
+                        </button>
 
-                    <div class="info-card education-card">
-
-                        <span class="card-number">02</span>
-
-                        <h3>Junior High School</h3>
-
-                        <p>San Vicente National High School</p>
-
-                        <span class="year">2020 – 2024</span>
-
-                    </div>
-
-
-                    <div class="info-card education-card">
-
-                        <span class="card-number">03</span>
-
-                        <h3>Senior High School</h3>
-
-                        <p>University of the Cordilleras – STEM</p>
-
-                        <span class="year">2024 – 2026</span>
-
-                    </div>
-
-
-                    <div class="info-card education-card">
-
-                        <span class="card-number">04</span>
-
-                        <h3>College</h3>
-
-                        <p>University of the Cordilleras</p>
-
-                        <span class="year">BSIT – Network and Security</span>
-
-                        <span class="year">2026 – Present</span>
-
+                        <button type="button" class="ach-chip"
+                            data-ach-stage="ELEMENTARY · 2014–2020"
+                            data-ach-school="San Vicente Elementary School"
+                            data-ach-title="Active Classroom Participation"
+                            data-ach-desc="Recognized for consistent participation in classroom activities and school assignments.">
+                            <span class="ach-chip-icon">⭐</span>
+                            <span class="ach-chip-title">Active Classroom Participation</span>
+                            <span class="ach-chip-arrow">↗</span>
+                        </button>
                     </div>
 
                 </div>
 
 
-                <!-- RIGHT COLUMN: ACHIEVEMENTS -->
-                <div class="info-column ach-col">
+                <!-- ROW 02: JUNIOR HIGH SCHOOL -->
+                <div class="edu-branch-row" data-stage="02">
 
-                    <h2>Achievements</h2>
+                    <button type="button" class="edu-node"
+                        data-edu-stage="02 // JUNIOR HIGH SCHOOL (2020–2024)"
+                        data-edu-school="San Vicente National High School"
+                        data-edu-items="Loyalty Award::Recognized for completing junior high school at San Vicente National High School.||Academic Effort Recognition::Recognized for consistent effort, dedication, and participation in academic activities.">
+                        <div class="edu-node-top">
+                            <span class="card-number">02 · JUNIOR HIGH</span>
+                            <span class="year">2020–2024</span>
+                        </div>
+                        <h3>San Vicente National High School</h3>
+                        <span class="node-hint">View stage ↗</span>
+                    </button>
 
-                    <div class="info-card achievement-card">
-
-                        <span class="achievement-icon">🏆</span>
-
-                        <h3>Loyalty Award</h3>
-
-                        <p>
-                            Recognized for loyalty and dedication
-                            during Junior High School.
-                        </p>
-
+                    <div class="branch-connector" aria-hidden="true">
+                        <svg viewBox="0 0 90 60" preserveAspectRatio="none">
+                            <path class="branch-line" d="M 0 30 L 40 30 L 56 16 L 90 16" />
+                            <path class="branch-line" d="M 40 30 L 56 44 L 90 44" />
+                            <circle class="branch-dot" cx="3" cy="30" r="2.8" />
+                            <circle class="branch-dot branch-hub" cx="40" cy="30" r="3.8" />
+                            <circle class="branch-dot" cx="87" cy="16" r="2.8" />
+                            <circle class="branch-dot" cx="87" cy="44" r="2.8" />
+                        </svg>
                     </div>
 
+                    <div class="ach-cluster">
+                        <button type="button" class="ach-chip"
+                            data-ach-stage="JUNIOR HIGH SCHOOL · 2020–2024"
+                            data-ach-school="San Vicente National High School"
+                            data-ach-title="Loyalty Award"
+                            data-ach-desc="Recognized for completing junior high school at San Vicente National High School.">
+                            <span class="ach-chip-icon">🏆</span>
+                            <span class="ach-chip-title">Loyalty Award</span>
+                            <span class="ach-chip-arrow">↗</span>
+                        </button>
 
-                    <div class="info-card achievement-card">
-
-                        <span class="achievement-icon">🎓</span>
-
-                        <h3>STEM Graduate</h3>
-
-                        <p>
-                            Successfully completed the Science,
-                            Technology, Engineering, and Mathematics strand.
-                        </p>
-
-                        <span class="year">2026</span>
-
-                    </div>
-
-
-                    <div class="info-card achievement-card">
-
-                        <span class="achievement-icon">❤️</span>
-
-                        <h3>Philippine Red Cross Volunteer</h3>
-
-                        <p>
-                            Humanitarian service and community activities.
-                        </p>
-
-                    </div>
-
-
-                    <div class="info-card achievement-card">
-
-                        <span class="achievement-icon">💻</span>
-
-                        <h3>Personal Portfolio Website</h3>
-
-                        <p>
-                            Designed and developed my own personal website.
-                        </p>
-
+                        <button type="button" class="ach-chip"
+                            data-ach-stage="JUNIOR HIGH SCHOOL · 2020–2024"
+                            data-ach-school="San Vicente National High School"
+                            data-ach-title="Academic Effort Recognition"
+                            data-ach-desc="Recognized for consistent effort, dedication, and participation in academic activities.">
+                            <span class="ach-chip-icon">📘</span>
+                            <span class="ach-chip-title">Academic Effort Recognition</span>
+                            <span class="ach-chip-arrow">↗</span>
+                        </button>
                     </div>
 
                 </div>
 
+
+                <!-- ROW 03: SENIOR HIGH SCHOOL -->
+                <div class="edu-branch-row" data-stage="03">
+
+                    <button type="button" class="edu-node"
+                        data-edu-stage="03 // SENIOR HIGH SCHOOL (2024–2026)"
+                        data-edu-school="University of the Cordilleras – STEM"
+                        data-edu-items="Teamwork and Collaboration Recognition::Recognized for contributing to group activities and collaborative projects.||STEM Project Participation::Recognized for active participation in STEM-related activities and project development.">
+                        <div class="edu-node-top">
+                            <span class="card-number">03 · SENIOR HIGH</span>
+                            <span class="year">2024–2026</span>
+                        </div>
+                        <h3>University of the Cordilleras – STEM</h3>
+                        <span class="node-hint">View stage ↗</span>
+                    </button>
+
+                    <div class="branch-connector" aria-hidden="true">
+                        <svg viewBox="0 0 90 60" preserveAspectRatio="none">
+                            <path class="branch-line" d="M 0 30 L 40 30 L 56 16 L 90 16" />
+                            <path class="branch-line" d="M 40 30 L 56 44 L 90 44" />
+                            <circle class="branch-dot" cx="3" cy="30" r="2.8" />
+                            <circle class="branch-dot branch-hub" cx="40" cy="30" r="3.8" />
+                            <circle class="branch-dot" cx="87" cy="16" r="2.8" />
+                            <circle class="branch-dot" cx="87" cy="44" r="2.8" />
+                        </svg>
+                    </div>
+
+                    <div class="ach-cluster">
+                        <button type="button" class="ach-chip"
+                            data-ach-stage="SENIOR HIGH SCHOOL · 2024–2026"
+                            data-ach-school="University of the Cordilleras – STEM"
+                            data-ach-title="Teamwork and Collaboration Recognition"
+                            data-ach-desc="Recognized for contributing to group activities and collaborative projects.">
+                            <span class="ach-chip-icon">🤝</span>
+                            <span class="ach-chip-title">Teamwork and Collaboration Recognition</span>
+                            <span class="ach-chip-arrow">↗</span>
+                        </button>
+
+                        <button type="button" class="ach-chip"
+                            data-ach-stage="SENIOR HIGH SCHOOL · 2024–2026"
+                            data-ach-school="University of the Cordilleras – STEM"
+                            data-ach-title="STEM Project Participation"
+                            data-ach-desc="Recognized for active participation in STEM-related activities and project development.">
+                            <span class="ach-chip-icon">🔬</span>
+                            <span class="ach-chip-title">STEM Project Participation</span>
+                            <span class="ach-chip-arrow">↗</span>
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <!-- ROW 04: COLLEGE (UNCHANGED) -->
+                <div class="edu-branch-row" data-stage="04">
+
+                    <button type="button" class="edu-node"
+                        data-edu-stage="04 // COLLEGE (2026 – PRESENT)"
+                        data-edu-school="University of the Cordilleras · BSIT – Network and Security"
+                        data-edu-items="Philippine Red Cross Volunteer::Humanitarian service and community activities.||Personal Portfolio Website::Designed and developed my own personal website.">
+                        <div class="edu-node-top">
+                            <span class="card-number">04 · COLLEGE</span>
+                            <span class="year">2026–Present</span>
+                        </div>
+                        <h3>University of the Cordilleras</h3>
+                        <p class="edu-sub">BSIT – Network and Security</p>
+                    </button>
+
+                    <div class="branch-connector" aria-hidden="true">
+                        <svg viewBox="0 0 90 60" preserveAspectRatio="none">
+                            <path class="branch-line" d="M 0 30 L 40 30 L 56 16 L 90 16" />
+                            <path class="branch-line" d="M 40 30 L 56 44 L 90 44" />
+                            <circle class="branch-dot" cx="3" cy="30" r="2.8" />
+                            <circle class="branch-dot branch-hub" cx="40" cy="30" r="3.8" />
+                            <circle class="branch-dot" cx="87" cy="16" r="2.8" />
+                            <circle class="branch-dot" cx="87" cy="44" r="2.8" />
+                        </svg>
+                    </div>
+
+                    <div class="ach-cluster">
+                        <button type="button" class="ach-chip"
+                            data-ach-stage="COLLEGE · 2026 – PRESENT"
+                            data-ach-school="University of the Cordilleras · BSIT – Network and Security"
+                            data-ach-title="Philippine Red Cross Volunteer"
+                            data-ach-desc="Humanitarian service and community activities.">
+                            <span class="ach-chip-icon">❤️</span>
+                            <span class="ach-chip-title">Philippine Red Cross Volunteer</span>
+                            <span class="ach-chip-arrow">↗</span>
+                        </button>
+
+                        <button type="button" class="ach-chip"
+                            data-ach-stage="COLLEGE · 2026 – PRESENT"
+                            data-ach-school="University of the Cordilleras · BSIT – Network and Security"
+                            data-ach-title="Personal Portfolio Website"
+                            data-ach-desc="Designed and developed my own personal website.">
+                            <span class="ach-chip-icon">💻</span>
+                            <span class="ach-chip-title">Personal Portfolio Website</span>
+                            <span class="ach-chip-arrow">↗</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EDUCATION & ACHIEVEMENT DETAIL MODAL -->
+            <div class="pod-modal" id="eduModal" hidden>
+                <div class="pod-modal-backdrop" data-close-edu></div>
+
+                <div class="pod-modal-card" role="dialog" aria-modal="true" aria-labelledby="eduModalTitle">
+                    <button type="button" class="pod-modal-close" data-close-edu aria-label="Close">✕</button>
+
+                    <span class="pod-tag" id="eduModalStage">ELEMENTARY · 2014–2020</span>
+                    <p class="edu-modal-school" id="eduModalSchool">San Vicente Elementary School</p>
+                    <h2 id="eduModalTitle">Good Conduct Recognition</h2>
+                    <p id="eduModalDesc"></p>
+                    <div class="edu-modal-list" id="eduModalList" hidden></div>
+                </div>
             </div>
 
         </section>
