@@ -352,30 +352,173 @@
         </section>
 
 
-        <!-- FAMILY & FRIENDS -->
+        <!-- FAMILY AND FRIENDS -->
         <section id="family" class="page-panel family-page" hidden>
 
             <div class="section-heading compact-heading">
 
-                <p class="intro">MY ROOTS &amp; CIRCLE</p>
+                <p class="intro">MY INSPIRATION</p>
 
-                <h1>Family &amp; <span>Friends</span></h1>
+                <h1>Family <span>&amp; Friends</span></h1>
 
-                <p>The people who support, inspire, and grow with me.</p>
+                <p>Tap a pod to meet them.</p>
 
             </div>
 
 
-            <div class="family-tree-stage">
+            <!-- THE FOUR PODS ON THE TREE -->
+            <div class="tree-pods">
 
-                <!-- TRANSLUCENT FUTURISTIC TREE & GLOWING BRANCHES -->
-                <svg class="tree-backdrop" viewBox="0 0 1000 660"
-                    preserveAspectRatio="none" aria-hidden="true">
+                <div class="pod" data-slot="tl" style="--delay: 0.1s">
+                    <button class="pod-btn" type="button" data-person="mother">
+                        <span class="pod-light"></span>
+                        <span class="pod-label">Mother</span>
+                        <span class="pod-hint">Tap to open</span>
+                    </button>
+                </div>
 
-                    <defs>
-                        <linearGradient id="trunkGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-                            <stop offset="0%" stop-color="#3d6bff" stop-opacity="0.12" />
-                            <stop offset="45%" stop-color="#37e6ff" stop-opacity="0.45" />
-                            <stop offset="100%" stop-color="#7fd8ff" stop-opacity="0.18" />
-                        </linear
-                          
+                <div class="pod" data-slot="tr" style="--delay: 0.2s">
+                    <button class="pod-btn" type="button" data-person="father">
+                        <span class="pod-light"></span>
+                        <span class="pod-label">Father</span>
+                        <span class="pod-hint">Tap to open</span>
+                    </button>
+                </div>
+
+                <div class="pod" data-slot="bl" style="--delay: 0.3s">
+                    <button class="pod-btn" type="button" data-person="siblings">
+                        <span class="pod-light"></span>
+                        <span class="pod-label">Siblings</span>
+                        <span class="pod-hint">Tap to open</span>
+                    </button>
+                </div>
+
+                <div class="pod" data-slot="br" style="--delay: 0.4s">
+                    <button class="pod-btn" type="button" data-person="friends">
+                        <span class="pod-light"></span>
+                        <span class="pod-label">Friends</span>
+                        <span class="pod-hint">Tap to open</span>
+                    </button>
+                </div>
+
+            </div>
+
+
+            <!--
+                WHAT OPENS WHEN A POD IS TAPPED
+                To add pictures: put one or more lines like
+                <img src="photo-name.jpg" alt="Short description">
+                inside the matching block below, then upload the pictures
+                to your repo. Edit the title and the text the same way.
+            -->
+
+            <div class="person-info" data-person="mother" hidden>
+                <h2>My Mother</h2>
+                <p>
+                    My mother is an important part of my life. Her support,
+                    sacrifices, and guidance inspire me to work hard and
+                    pursue my goals.
+                </p>
+                <img src="mother-graduation.jpg" alt="My mother">
+            </div>
+
+            <div class="person-info" data-person="father" hidden>
+                <h2>My Father</h2>
+                <p>A few words about my father will be added here soon.</p>
+            </div>
+
+            <div class="person-info" data-person="siblings" hidden>
+                <h2>My Siblings</h2>
+                <p>A few words about my siblings will be added here soon.</p>
+            </div>
+
+            <div class="person-info" data-person="friends" hidden>
+                <h2>My Friends</h2>
+                <p>A few words about my friends will be added here soon.</p>
+            </div>
+
+
+            <!-- POP-UP CARD -->
+            <div class="person-dialog" id="personDialog" hidden>
+
+                <div class="person-sheet" role="dialog" aria-modal="true"
+                    aria-labelledby="personTitle">
+
+                    <button class="person-close" type="button"
+                        aria-label="Close">&times;</button>
+
+                    <div class="person-photos"></div>
+
+                    <h2 class="person-title" id="personTitle"></h2>
+
+                    <p class="person-text"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+        <section id="contact" class="page-panel" hidden>
+
+            <div class="section-heading">
+
+                <p class="intro">LET'S CONNECT</p>
+
+                <h1>Contact <span>Me</span></h1>
+
+                <p>Feel free to reach out through the following platforms.</p>
+
+            </div>
+
+
+            <div class="contact-grid">
+
+                <div class="contact-card">
+
+                    <span>✉️</span>
+
+                    <h3>Email</h3>
+
+                    <a href="mailto:mikehensona@gmail.com">
+                        mikehensona@gmail.com
+                    </a>
+
+                </div>
+
+
+                <div class="contact-card">
+
+                    <span>💻</span>
+
+                    <h3>GitHub</h3>
+
+                    <a href="https://github.com/mikehenson-dev"
+                        target="_blank"
+                        rel="noopener">
+                        Visit My GitHub
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>© 2026 Mike Henson Arcalas. All Rights Reserved.</p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
