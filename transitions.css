@@ -125,6 +125,7 @@ h2 {
 .project-link,
 .contact-card a,
 .family-text h2,
+.pod-info h2,
 .info-column > h2 {
     color: var(--neon);
 }
@@ -243,7 +244,9 @@ h2 {
 .project-card::before,
 .family-card::before,
 .contact-card::before,
-.info-card::before {
+.info-card::before,
+.tree-pod::before,
+.pod-modal-card::before {
     content: "";
     position: absolute;
     inset: -1px;
@@ -262,6 +265,347 @@ h2 {
 .info-card:hover {
     border-color: var(--neon);
     box-shadow: 0 0 26px rgba(55, 230, 255, 0.22);
+}
+
+
+/* =========================
+   FAMILY & FRIENDS CYBER-TREE
+========================= */
+
+.family-tree-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 12px 0 36px;
+}
+
+.cyber-tree-svg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+    transform-origin: 50% 96%;
+    animation: treeWindSway 6.5s ease-in-out infinite alternate;
+}
+
+.tree-circuit-veins {
+    animation: veinPulse 3.6s ease-in-out infinite alternate;
+}
+
+.tree-leaves {
+    animation: leafShimmer 4.2s ease-in-out infinite alternate;
+}
+
+@keyframes treeWindSway {
+    0% {
+        transform: rotate(-0.85deg) skewX(-0.4deg);
+    }
+    50% {
+        transform: rotate(0.45deg) skewX(0.2deg);
+    }
+    100% {
+        transform: rotate(0.95deg) skewX(0.45deg);
+    }
+}
+
+@keyframes veinPulse {
+    from {
+        opacity: 0.74;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes leafShimmer {
+    from {
+        opacity: 0.65;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.tree-pods {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(130px, 22vw, 270px);
+    row-gap: clamp(46px, 8vh, 84px);
+    padding: 22px 68px 54px;
+}
+
+.tree-pod {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    text-align: left;
+    color: #ffffff;
+    font: inherit;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 13px 15px 15px;
+
+    border: 1px solid rgba(55, 230, 255, 0.38);
+    border-bottom: 2px solid rgba(55, 230, 255, 0.68);
+    border-radius: 6px;
+
+    /* Translucent glass so the tree & circuit background shine through */
+    background: linear-gradient(
+        145deg,
+        rgba(10, 24, 54, 0.44),
+        rgba(5, 13, 32, 0.32)
+    );
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 10px 26px rgba(3, 8, 22, 0.48),
+        0 4px 16px rgba(55, 230, 255, 0.16),
+        inset 0 1px 0 rgba(127, 216, 255, 0.22);
+
+    cursor: pointer;
+    transition: border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+/* Gentle breeze sway anchored at each branch attachment side */
+.pod-father {
+    transform-origin: 100% 85%;
+    animation: podBreezeLeft 5.6s ease-in-out infinite alternate;
+}
+
+.pod-mother {
+    transform-origin: 0% 85%;
+    animation: podBreezeRight 6.1s ease-in-out infinite alternate -1.4s;
+}
+
+.pod-siblings {
+    transform-origin: 100% 85%;
+    animation: podBreezeLeft 6.4s ease-in-out infinite alternate -2.2s;
+}
+
+.pod-friends {
+    transform-origin: 0% 85%;
+    animation: podBreezeRight 5.8s ease-in-out infinite alternate -0.8s;
+}
+
+@keyframes podBreezeLeft {
+    0% {
+        transform: translateY(0px) rotate(-1.1deg);
+    }
+    50% {
+        transform: translateY(-3px) rotate(0.5deg);
+    }
+    100% {
+        transform: translateY(1px) rotate(1.1deg);
+    }
+}
+
+@keyframes podBreezeRight {
+    0% {
+        transform: translateY(0px) rotate(1.1deg);
+    }
+    50% {
+        transform: translateY(-3px) rotate(-0.5deg);
+    }
+    100% {
+        transform: translateY(1px) rotate(-1.1deg);
+    }
+}
+
+.tree-pod:hover {
+    animation-play-state: paused;
+    border-color: var(--neon);
+    box-shadow: 0 0 28px rgba(55, 230, 255, 0.34);
+}
+
+.pod-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+}
+
+.pod-tag {
+    font-family: var(--head);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--pink);
+}
+
+.pod-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 10px var(--neon);
+}
+
+.pod-body {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+}
+
+.pod-media {
+    position: relative;
+    flex: 0 0 76px;
+    height: 76px;
+    border: 1px dashed rgba(55, 230, 255, 0.38);
+    border-radius: 5px;
+    background: rgba(5, 13, 30, 0.42);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pod-media.has-photo {
+    border-style: solid;
+    border-color: rgba(55, 230, 255, 0.55);
+}
+
+.pod-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pod-photo[hidden] {
+    display: none;
+}
+
+.pod-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-align: center;
+    font-family: var(--head);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.pod-info h2 {
+    margin: 0 0 4px;
+    font-size: 19px;
+    color: var(--neon);
+}
+
+.pod-cta {
+    display: inline-block;
+    font-family: var(--head);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    transition: color 0.25s;
+}
+
+.tree-pod:hover .pod-cta {
+    color: #ffffff;
+}
+
+
+/* ---------- Pod Modal ---------- */
+
+.pod-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.pod-modal[hidden] {
+    display: none;
+}
+
+.pod-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 8, 22, 0.72);
+    backdrop-filter: blur(6px);
+}
+
+.pod-modal-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    padding: 22px;
+    border: 1px solid var(--neon);
+    border-radius: 6px;
+    background: rgba(10, 20, 44, 0.88);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 0 40px rgba(55, 230, 255, 0.25);
+}
+
+.pod-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--neon);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.pod-modal-close:hover {
+    border-color: var(--neon);
+    color: #ffffff;
+}
+
+.pod-modal-media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    margin: 14px 0;
+    border: 1px dashed rgba(55, 230, 255, 0.36);
+    border-radius: 5px;
+    background: rgba(5, 13, 30, 0.5);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pod-modal-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pod-modal-card h2 {
+    margin: 0 0 8px;
+    color: var(--neon);
+    font-size: 24px;
+}
+
+.pod-modal-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 
@@ -338,20 +682,21 @@ footer::before {
     .info-column,
     .project-card,
     .family-card,
+    .tree-pod,
     .contact-card
 ) {
     animation: pageRise 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 }
 
-.page-panel.enter :is(.profile-container, .info-column:nth-child(2), .project-card:nth-child(2), .contact-card:nth-child(2)) {
+.page-panel.enter :is(.profile-container, .info-column:nth-child(2), .project-card:nth-child(2), .tree-pod:nth-child(2), .contact-card:nth-child(2)) {
     animation-delay: 0.1s;
 }
 
-.page-panel.enter :is(.about-card, .family-card, .project-card:nth-child(3), .contact-card:nth-child(3)) {
+.page-panel.enter :is(.about-card, .family-card, .project-card:nth-child(3), .tree-pod:nth-child(3), .contact-card:nth-child(3)) {
     animation-delay: 0.15s;
 }
 
-.page-panel.enter :is(.project-card:nth-child(4), .contact-card:nth-child(4)) {
+.page-panel.enter :is(.project-card:nth-child(4), .tree-pod:nth-child(4), .contact-card:nth-child(4)) {
     animation-delay: 0.22s;
 }
 
@@ -482,6 +827,42 @@ footer::before {
         font-size: 11px;
     }
 
+    /* Family & Friends Tree on mobile */
+    .tree-pods {
+        column-gap: 32px;
+        row-gap: 28px;
+        padding: 14px 14px 30px;
+    }
+
+    .tree-pod {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .pod-tag {
+        font-size: 8.5px;
+    }
+
+    .pod-body {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .pod-media {
+        flex: none;
+        width: 100%;
+        height: 60px;
+    }
+
+    .pod-info h2 {
+        font-size: 15px;
+    }
+
+    .pod-cta {
+        font-size: 10px;
+    }
+
 }
 
 
@@ -576,7 +957,11 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
 
     body::before,
-    body::after {
+    body::after,
+    .cyber-tree-svg,
+    .tree-circuit-veins,
+    .tree-leaves,
+    .tree-pod {
         animation: none;
     }
 
@@ -588,6 +973,7 @@ body::after {
         .info-column,
         .project-card,
         .family-card,
+        .tree-pod,
         .contact-card
     ) {
         animation: none;
