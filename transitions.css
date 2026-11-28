@@ -150,51 +150,64 @@ h2 {
 }
 
 
-/* ---------- Profile photo ---------- */
+/* ---------- Profile photo (full body, blended into the background) ---------- */
 
 .profile-container img {
-    border-radius: 10px;
-    border: 1px solid var(--neon);
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+
+    object-fit: contain;
+    object-position: center bottom;
+
+    border: 0;
+    border-radius: 0;
+
+    filter: drop-shadow(0 0 22px rgba(55, 160, 255, 0.35));
 }
 
 .profile-glow {
-    border-radius: 20px;
-    background: linear-gradient(135deg, var(--neon), var(--violet) 55%, var(--pink));
-    opacity: 0.4;
-    filter: blur(40px);
+    position: absolute;
+    inset: 6% -35% -2% -35%;
+    z-index: 0;
+
+    border-radius: 50%;
+    background: radial-gradient(
+        ellipse at 50% 55%,
+        rgba(47, 123, 255, 0.55),
+        rgba(55, 230, 255, 0.12) 45%,
+        transparent 70%
+    );
+
+    filter: blur(24px);
+    opacity: 1;
 }
 
+/* Glowing floor under the feet */
 .profile-container::after {
     content: "";
     position: absolute;
-    left: 1px;
-    right: 1px;
-    top: 0;
-    height: 2px;
-    z-index: 2;
+    left: -10%;
+    right: -10%;
+    bottom: -8px;
+    top: auto;
+    height: 34px;
+    z-index: 0;
 
-    background: linear-gradient(90deg, transparent, var(--neon), transparent);
-    box-shadow: 0 0 14px var(--neon);
+    border-radius: 50%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(55, 230, 255, 0.6),
+        rgba(47, 107, 255, 0.2) 50%,
+        transparent 72%
+    );
 
+    filter: blur(5px);
+    box-shadow: none;
+    animation: none;
     pointer-events: none;
-    animation: scan 4s linear infinite;
-}
-
-@keyframes scan {
-    0% {
-        top: 0;
-        opacity: 0;
-    }
-
-    10%,
-    90% {
-        opacity: 1;
-    }
-
-    100% {
-        top: calc(100% - 2px);
-        opacity: 0;
-    }
 }
 
 
@@ -507,18 +520,18 @@ footer::before {
 
 .profile-container {
     width: clamp(240px, 25vw, 440px);
-    height: clamp(300px, calc(100vh - 210px), 600px);
-}
-
-.profile-container img {
-    object-position: center top;
+    height: clamp(340px, calc(100vh - 190px), 700px);
 }
 
 @media (max-width: 700px) {
 
     .profile-container {
-        width: min(64vw, 250px);
-        height: min(34dvh, 320px);
+        width: min(70vw, 300px);
+        height: min(44dvh, 380px);
+    }
+
+    .home-page .description {
+        display: none;
     }
 
 }
@@ -590,11 +603,6 @@ body::after {
     body::before,
     body::after {
         animation: none;
-    }
-
-    .profile-container::after {
-        animation: none;
-        display: none;
     }
 
     .page-panel.enter :is(
