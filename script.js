@@ -17,7 +17,7 @@ const pageLabels = {
     personal: "Personal Info",
     education: "Achievements",
     projects: "Projects",
-    family: "Family",
+    family: "Family & Friends",
     contact: "Contact"
 };
 
@@ -267,6 +267,45 @@ eduTabs.forEach((tab) => {
     });
 
 });
+
+
+// FAMILY & FRIENDS PHOTO SLOTS (SHOW IMAGE AUTOMATICALLY WHEN SRC IS ADDED)
+
+function initFamilyPods() {
+
+    const podPhotos = document.querySelectorAll(".pod-photo");
+
+    podPhotos.forEach((img) => {
+
+        const rawSrc = (img.getAttribute("src") || "").trim();
+        const mediaBox = img.closest(".pod-media");
+        const placeholder = mediaBox ? mediaBox.querySelector(".pod-placeholder") : null;
+
+        if (!rawSrc) {
+            return;
+        }
+
+        const revealPhoto = () => {
+            img.hidden = false;
+            if (placeholder) {
+                placeholder.hidden = true;
+            }
+            if (mediaBox) {
+                mediaBox.classList.add("has-photo");
+            }
+        };
+
+        if (img.complete && img.naturalWidth > 0) {
+            revealPhoto();
+        } else {
+            img.addEventListener("load", revealPhoto, { once: true });
+        }
+
+    });
+
+}
+
+initFamilyPods();
 
 
 // ARROW KEYS MOVE BETWEEN PAGES
